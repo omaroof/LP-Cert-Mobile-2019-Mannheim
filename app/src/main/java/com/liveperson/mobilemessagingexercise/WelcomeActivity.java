@@ -36,9 +36,10 @@ public class WelcomeActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.ask_us:
-                Intent intentAskUs = new Intent(this, AskUsActivity.class);
-                this.startActivity(intentAskUs);
+            case R.id.action_my_account:
+                //TODO check if already logged in 
+                Intent intentLogin = new Intent(this, LoginActivity.class);
+                this.startActivity(intentLogin);
                 break;
             default:
                 return super.onOptionsItemSelected(item);

@@ -9,14 +9,14 @@ import android.view.MenuItem;
 
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
-public class AskUsActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     ApplicationStorage applicationStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ask_us);
+        setContentView(R.layout.activity_login);
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
     }

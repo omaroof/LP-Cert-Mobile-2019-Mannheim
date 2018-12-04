@@ -17,8 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AskUsActivity"
-            android:label="@string/ask_us"
+        <activity android:name=".LoginActivity"
+            android:label="@string/login"
             android:launchMode="singleTop"
         />
     </application>
