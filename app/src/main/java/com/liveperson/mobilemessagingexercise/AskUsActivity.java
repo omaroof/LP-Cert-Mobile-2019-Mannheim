@@ -1,5 +1,6 @@
 package com.liveperson.mobilemessagingexercise;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,26 +16,15 @@ public class AskUsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_ask_us);
+        Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
-
-        /**
-         * Access the shared data for the application
-         */
-        applicationStorage = ApplicationStorage.getInstance();
-
-        /* TODO - Replace with your LiveEngage Account Number */
-        applicationStorage.setBrandAccountNumber("20553802");
-        /* TODO - Replace with the brand's JWT public key */
-        applicationStorage.setJwtPublicKey("kldjflkdjlakjd;lkjd");
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_welcome, menu);
+        getMenuInflater().inflate(R.menu.menu_ask_us, menu);
         return true;
     }
 
@@ -45,11 +35,15 @@ public class AskUsActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.ask_us) {
-            return true;
+        switch (id) {
+            case R.id.welcome:
+                Intent intentWelcome = new Intent(this, WelcomeActivity.class);
+                this.startActivity(intentWelcome);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 }
