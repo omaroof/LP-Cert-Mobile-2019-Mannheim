@@ -1,12 +1,12 @@
-/**
- * Singleton to hold data shared across the entire application.
- */
 package com.liveperson.mobilemessagingexercise.model;
 
 import android.content.BroadcastReceiver;
 
 import com.liveperson.api.LivePersonCallbackImpl;
 
+/**
+ * Singleton to hold data shared across the entire application.
+ */
 public class ApplicationStorage {
 
     private static final String TAG = ApplicationStorage.class.getSimpleName();
@@ -24,8 +24,9 @@ public class ApplicationStorage {
     private String sessionId;
     private String visitorId;
     private String interactionContextId;
+    private boolean loggedIn = false;
 
-    /**
+    /*
      * Private constructor to ensure no-one can instantiate additional instances
      */
     private ApplicationStorage() {
@@ -35,14 +36,12 @@ public class ApplicationStorage {
         }
     }
 
-    /**
+    /*
      * Factory method to return an instance
      */
     public synchronized static ApplicationStorage getInstance() {
         if (applicationStorage == null) {
-            /**
-             * Create the singleton, and set up the shared data for the application
-             */
+            // Create the singleton, and set up the shared data for the application
             applicationStorage = new ApplicationStorage();
             /* TODO - Replace with your LiveEngage Account Number */
             applicationStorage.setBrandAccountNumber("20553802");
@@ -53,9 +52,9 @@ public class ApplicationStorage {
         return applicationStorage;
     }
 
-    /**
+    /*****************************************************
      * Bean Methods
-     */
+     ****************************************************/
     public String getFirstName() {
         return firstName;
     }
@@ -95,7 +94,6 @@ public class ApplicationStorage {
     public void setBrandAccountNumber(String brandAccountNumber) {
         this.brandAccountNumber = brandAccountNumber;
     }
-
     public String getJwtPublicKey() {
         return jwtPublicKey;
     }
@@ -142,6 +140,12 @@ public class ApplicationStorage {
 
     public void setInteractionContextId(String interactionContextId) {
         this.interactionContextId = interactionContextId;
+    }
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
 }
 

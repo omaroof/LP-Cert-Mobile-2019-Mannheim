@@ -19,7 +19,7 @@ public class MobileMessagingExerciseApplication extends Application {
     public static MobileMessagingExerciseApplication applicationInstance;
     private LivePersonCallbackImpl livePersonCallback;
     private BroadcastReceiver mLivePersonReceiver;
-    private boolean showToastOnCallback;
+    private boolean showToastOnCallback = true;
     private LivePersonBroadcastReceiver livePersonBroadcastReceiver;
 
     @Override

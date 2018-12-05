@@ -29,9 +29,9 @@
 
     <TextView
         android:id="@+id/firstNameLabel"
+        android:labelFor="@id/firstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:layout_marginLeft="24sp"
         android:layout_marginRight="24sp"
         android:layout_marginTop="24sp"
@@ -49,9 +49,9 @@
 
     <TextView
         android:id="@+id/lastNameLabel"
+        android:labelFor="@id/lastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:layout_marginLeft="24sp"
         android:layout_marginRight="24sp"
         android:text="@string/lastName"
@@ -67,7 +67,7 @@
         />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/ask_us_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24sp"
@@ -84,7 +84,7 @@
         android:textSize="18sp"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/my_account_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24sp"
