@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Customize the toolbar -->
     <color name="lp_colorPrimary">@color/colorPrimary</color>
     <color name="lp_textColorSecondary">@android:color/white</color>
 
@@ -125,9 +126,6 @@
     <string name="csds_url">adminlogin.liveperson.net</string>
     <string name="lptag_domain">lptag.liveperson.net</string>
 
-    <!-- Customize the brand name -->
-    <string name="brand_name">Twisted Entertainment</string>
-
     <integer name="idp_num_history_conversation">2</integer>
 
     <!--Credit card masking-->
@@ -248,7 +246,7 @@
     <!-- Customize the brand name / agent name text in toolbar -->
     <!--  Brand/Agent name header properties-->
     <color name="lp_brand_header_text_color">@android:color/white</color>
-
+    
     <!--Voice-->
     <bool name="enable_voice_sharing">true</bool>
     <integer name="max_number_stored_voice_files">20</integer>
