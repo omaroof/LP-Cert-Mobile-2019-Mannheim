@@ -4,21 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 public class WelcomeActivity extends AppCompatActivity {
-
-    ApplicationStorage applicationStorage;
+    private static final String TAG = WelcomeActivity.class.getSimpleName();
+    private ApplicationStorage applicationStorage;
+    private MobileMessagingExerciseApplication application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         applicationStorage = ApplicationStorage.getInstance();
+        application = MobileMessagingExerciseApplication.getInstance();
         setContentView(R.layout.activity_welcome);
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
@@ -54,11 +56,19 @@ public class WelcomeActivity extends AppCompatActivity {
                     startLogin();
                 }
                 break;
+            case R.id.action_ask_us:
+                startAskUs();
             default:
                 return super.onOptionsItemSelected(item);
         }
 
         return true;
+    }
+
+    private void startAskUs() {
+        //application.initializeLivePerson();
+        MobileMessagingExerciseApplication.AskUsRunner askUsRunner = application.new AskUsRunner(this);
+        runOnUiThread(askUsRunner);
     }
 
     private void startLogin() {
@@ -75,7 +85,7 @@ public class WelcomeActivity extends AppCompatActivity {
      *********************************************/
     private class AskUsOnClickListener implements View.OnClickListener {
         public void onClick(View v) {
-            int i = 42;
+            startAskUs();
         }
     }
 
