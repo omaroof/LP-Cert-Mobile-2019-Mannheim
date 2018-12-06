@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -66,7 +68,10 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void startAskUs() {
-        //application.initializeLivePerson();
+        EditText firstNameControl = findViewById(R.id.firstName);
+        EditText lastNameControl = findViewById(R.id.lastName);
+        applicationStorage.setFirstName(firstNameControl.getText().toString());
+        applicationStorage.setLastName(lastNameControl.getText().toString());
         MobileMessagingExerciseApplication.AskUsRunner askUsRunner = application.new AskUsRunner(this);
         runOnUiThread(askUsRunner);
     }
