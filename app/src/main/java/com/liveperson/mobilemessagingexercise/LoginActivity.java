@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
@@ -45,8 +46,7 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
 
         switch (id) {
             case R.id.welcome:
-                Intent intentWelcome = new Intent(this, WelcomeActivity.class);
-                this.startActivity(intentWelcome);
+                startWelcome();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -55,14 +55,32 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
         return true;
     }
 
+    /**
+     * Log the user in
+     * @param userId the user id to be used for login
+     * @param password the password to be used for login
+     * @return true if the login was successful, and false otherwise
+     */
+    private boolean logUserIn(String userId, String password) {
+        boolean result = false;
+        return result;
+    }
 
     /**********************************************
      * Inner Classes
      *********************************************/
     private class LoginOnClickListener implements View.OnClickListener {
         public void onClick(View v) {
-            //logUserIn();
-            startMyAccount();
+            EditText userIdControl = findViewById(R.id.userId);
+            EditText passwordControl = findViewById(R.id.password);
+            boolean loginSuccessful = logUserIn(userIdControl.getText().toString(), passwordControl.getText().toString());
+            if (loginSuccessful) {
+                startMyAccount();
+            }
+            else {
+                showToast("Unable to log in");
+                startWelcome();
+            }
         }
     }
 

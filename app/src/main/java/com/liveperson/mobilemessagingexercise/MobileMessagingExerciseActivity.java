@@ -38,6 +38,14 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
     }
 
     /**
+     * Transfer control to the Welcome activity
+     */
+    protected void startWelcome() {
+        Intent intentWelcome = new Intent(this, WelcomeActivity.class);
+        this.startActivity(intentWelcome);
+    }
+
+    /**
      * Transfer control to the Login activity
      */
     protected void startLogin() {
