@@ -13,16 +13,12 @@ import android.widget.EditText;
 
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends MobileMessagingExerciseActivity {
     private static final String TAG = WelcomeActivity.class.getSimpleName();
-    private ApplicationStorage applicationStorage;
-    private MobileMessagingExerciseApplication application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        applicationStorage = ApplicationStorage.getInstance();
-        application = MobileMessagingExerciseApplication.getInstance();
         setContentView(R.layout.activity_welcome);
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
@@ -49,7 +45,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.action_my_account:
-                if (applicationStorage.isLoggedIn()) {
+                if (getApplicationStorage().isLoggedIn()) {
                     //User already logged in, so go straight there
                     startMyAccount();
                 }
@@ -65,24 +61,6 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
         return true;
-    }
-
-    private void startAskUs() {
-        EditText firstNameControl = findViewById(R.id.firstName);
-        EditText lastNameControl = findViewById(R.id.lastName);
-        applicationStorage.setFirstName(firstNameControl.getText().toString());
-        applicationStorage.setLastName(lastNameControl.getText().toString());
-        MobileMessagingExerciseApplication.AskUsRunner askUsRunner = application.new AskUsRunner(this);
-        runOnUiThread(askUsRunner);
-    }
-
-    private void startLogin() {
-        Intent intentLogin = new Intent(this, LoginActivity.class);
-        this.startActivity(intentLogin);
-    }
-
-    private void startMyAccount() {
-        //TODO implement this
     }
 
     /**********************************************

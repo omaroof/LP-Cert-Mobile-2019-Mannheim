@@ -6,10 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends MobileMessagingExerciseActivity {
 
     ApplicationStorage applicationStorage;
 
@@ -19,6 +21,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
+        Button loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new LoginOnClickListener());
+
     }
 
     @Override
@@ -46,4 +51,17 @@ public class LoginActivity extends AppCompatActivity {
 
         return true;
     }
+
+
+    /**********************************************
+     * Inner Classes
+     *********************************************/
+    private class LoginOnClickListener implements View.OnClickListener {
+        public void onClick(View v) {
+            //logUserIn();
+            startMyAccount();
+        }
+    }
+
+
 }

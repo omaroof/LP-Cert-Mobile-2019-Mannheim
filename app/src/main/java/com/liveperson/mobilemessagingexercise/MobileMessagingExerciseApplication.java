@@ -97,37 +97,6 @@ public class MobileMessagingExerciseApplication extends Application {
 
     }
 
-    public class AskUsRunner implements Runnable {
-        private Activity hostContext;
-
-        /**
-         * Constructor
-         * @param hostContext the context of the activity that starts this instance
-         */
-        public AskUsRunner(Activity hostContext) {
-            this.hostContext = hostContext;
-        }
-
-        @Override
-        public void run() {
-            LPAuthenticationParams authParams = new LPAuthenticationParams();
-            authParams.setHostAppJWT(applicationStorage.getJwtPublicKey());
-
-            ConversationViewParams conversationViewParams = new ConversationViewParams(false);
-            conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
-
-            //Start the conversation
-            LivePerson.showConversation(hostContext, authParams, conversationViewParams);
-
-            ConsumerProfile consumerProfile = new ConsumerProfile.Builder()
-                    .setFirstName(applicationStorage.getFirstName())
-                    .setLastName(applicationStorage.getLastName())
-                    .setPhoneNumber(applicationStorage.getPhoneNumber())
-                    .build();
-            LivePerson.setUserProfile(consumerProfile);
-        }
-    }
-
     /******************************************
      * Bean methods
      *****************************************/
