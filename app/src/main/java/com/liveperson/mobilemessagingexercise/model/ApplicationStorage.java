@@ -13,18 +13,18 @@ public class ApplicationStorage {
 
     private static volatile ApplicationStorage applicationStorage = null;
 
-    private String appId;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private String authCode;
-    private String brandAccountNumber;
-    private String jwtPublicKey;
+    private String appId = "";
+    private String firstName = "";
+    private String lastName = "";
+    private String phoneNumber = "";
+    private String authCode = "";
+    private String brandAccountNumber = "";
+    private String jwtPublicKey = "";
     private Long campaignId;
     private Long engagementId;
-    private String sessionId;
-    private String visitorId;
-    private String interactionContextId;
+    private String sessionId = "";
+    private String visitorId = "";
+    private String interactionContextId = "";
     private boolean loggedIn = false;
 
     /*

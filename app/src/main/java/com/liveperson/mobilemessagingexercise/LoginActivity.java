@@ -11,6 +11,9 @@ import android.widget.Button;
 
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
+/**
+ * Activity associated with the application LoginFred screen
+ */
 public class LoginActivity extends MobileMessagingExerciseActivity {
 
     ApplicationStorage applicationStorage;

@@ -38,6 +38,9 @@ public class MobileMessagingExerciseApplication extends Application {
 
     }
 
+    /**
+     * Initialize the connection to LivePerson for the entire application
+     */
     public void initializeLivePerson() {
         InitLivePersonProperties initLivePersonProperties =
                 new InitLivePersonProperties(applicationStorage.getBrandAccountNumber(),
@@ -47,13 +50,19 @@ public class MobileMessagingExerciseApplication extends Application {
         LivePerson.initialize(this, initLivePersonProperties);
     }
 
+    /**
+     * Register to receive events from LivePerson within this application
+     */
     private void registerForLivePersonEvents() {
         livePersonBroadcastReceiver = new LivePersonBroadcastReceiver(this);
-
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getApplicationContext());
         localBroadcastManager.registerReceiver(livePersonBroadcastReceiver, LivePersonIntents.getIntentFilterForAllEvents());
     }
 
+    /**
+     * Display a pop up toast message
+     * @param message the text of the message to be shown
+     */
     public void showToast(String message) {
         if (showToastOnCallback){
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
@@ -62,11 +71,17 @@ public class MobileMessagingExerciseApplication extends Application {
         }
     }
 
-
     /**********************************************
      * Inner classes
      *********************************************/
+
+    /**
+     * Callback associated with initialization of LivePerson
+     */
     private class MobileMessagingInitCallback implements InitLivePersonCallBack {
+        /**
+         * Invoked if initialization of LivePerson is successful
+         */
         @Override
         public void onInitSucceed() {
             Log.i(TAG, "LivePerson SDK initialize completed");
@@ -74,12 +89,16 @@ public class MobileMessagingExerciseApplication extends Application {
             setLivePersonInitialized(true);
         }
 
+        /**
+         * Invoked if initialization of LivePerson fails
+         * @param e the exception associated with the failure
+         */
         @Override
         public void onInitFailed(Exception e) {
+            Log.e(TAG, "LivePerson SDK initialize failed", e);
             showToast("Unable to initialize LivePerson");
             setLivePersonInitialized(false);
         }
-
     }
 
     /******************************************

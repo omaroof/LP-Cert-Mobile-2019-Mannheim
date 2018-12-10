@@ -13,6 +13,9 @@ import android.widget.EditText;
 
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
+/**
+ * Activity associated with the application Welcome screen
+ */
 public class WelcomeActivity extends MobileMessagingExerciseActivity {
     private static final String TAG = WelcomeActivity.class.getSimpleName();
 
@@ -27,8 +30,19 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity {
         askUsButton.setOnClickListener(new AskUsOnClickListener());
         Button myAccountButton = findViewById(R.id.my_account_button);
         myAccountButton.setOnClickListener(new MyAccountOnClickListener());
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ApplicationStorage applicationStorage = getApplicationStorage();
+        EditText firstNameControl = findViewById(R.id.firstName);
+        firstNameControl.setText(applicationStorage.getFirstName());
+        EditText lastNameControl = findViewById(R.id.lastName);
+        lastNameControl.setText(applicationStorage.getLastName());
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -68,6 +82,10 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity {
      *********************************************/
     private class AskUsOnClickListener implements View.OnClickListener {
         public void onClick(View v) {
+            EditText firstNameControl = findViewById(R.id.firstName);
+            EditText lastNameControl = findViewById(R.id.lastName);
+            getApplicationStorage().setFirstName(firstNameControl.getText().toString());
+            getApplicationStorage().setLastName(lastNameControl.getText().toString());
             startAskUs();
         }
     }

@@ -13,6 +13,9 @@ import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.messaging.sdk.api.model.ConsumerProfile;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
+/**
+ * Parent class providing common capabilities for all Activities
+ */
 public class MobileMessagingExerciseActivity extends AppCompatActivity {
 
     private static final String TAG = MobileMessagingExerciseActivity.class.getSimpleName();
@@ -25,24 +28,34 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
         applicationStorage = ApplicationStorage.getInstance();
     }
 
+    /**
+     * Display a pop up toast message
+     * @param message the text of the message to be shown
+     */
     protected void showToast(String message) {
+        //Delegate to the method in the application
         applicationInstance.showToast(message);
     }
 
+    /**
+     * Transfer control to the Login activity
+     */
     protected void startLogin() {
         Intent intentLogin = new Intent(this, LoginActivity.class);
         this.startActivity(intentLogin);
     }
 
+    /**
+     * Transfer control to the My Account activity
+     */
     protected void startMyAccount() {
         //TODO implement this
     }
 
+    /**
+     * Transfer control to the Ask Us activity
+     */
     protected void startAskUs() {
-        EditText firstNameControl = findViewById(R.id.firstName);
-        EditText lastNameControl = findViewById(R.id.lastName);
-        applicationStorage.setFirstName(firstNameControl.getText().toString());
-        applicationStorage.setLastName(lastNameControl.getText().toString());
         AskUsRunner askUsRunner = new AskUsRunner(this);
         runOnUiThread(askUsRunner);
     }
