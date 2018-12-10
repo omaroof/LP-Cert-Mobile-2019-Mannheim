@@ -15,11 +15,18 @@ import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 public class MobileMessagingExerciseActivity extends AppCompatActivity {
 
+    private static final String TAG = MobileMessagingExerciseActivity.class.getSimpleName();
     private ApplicationStorage applicationStorage;
+    private MobileMessagingExerciseApplication applicationInstance;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        applicationInstance = (MobileMessagingExerciseApplication)getApplication();
         applicationStorage = ApplicationStorage.getInstance();
+    }
+
+    protected void showToast(String message) {
+        applicationInstance.showToast(message);
     }
 
     protected void startLogin() {
