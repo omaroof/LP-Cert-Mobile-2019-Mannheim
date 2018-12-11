@@ -57,7 +57,8 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
      * Transfer control to the My Account activity
      */
     protected void startMyAccount() {
-        //TODO implement this
+        MyAccountRunner myAccountRunner = new MyAccountRunner(this);
+        runOnUiThread(myAccountRunner);
     }
 
     /**
@@ -74,6 +75,9 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
     /**********************************************
      * Inner Classes
      *********************************************/
+    /**
+     * Run the Ask Us screen
+     */
     protected class AskUsRunner implements Runnable {
         private Activity hostContext;
 
@@ -89,7 +93,7 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
         @Override
         public void run() {
             LPAuthenticationParams authParams = new LPAuthenticationParams();
-            authParams.setHostAppJWT(applicationStorage.getJwtPublicKey());
+            authParams.setHostAppJWT(getApplicationInstance().getJwt());
 
             ConversationViewParams conversationViewParams = new ConversationViewParams(false);
             conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
@@ -106,6 +110,35 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Run the My Account screen
+     */
+    protected class MyAccountRunner implements Runnable {
+        private Activity hostContext;
+
+        /**
+         * Constructor
+         *
+         * @param hostContext the context of the activity that starts this instance
+         */
+        public MyAccountRunner(Activity hostContext) {
+            this.hostContext = hostContext;
+        }
+
+        @Override
+        public void run() {
+            LPAuthenticationParams authParams = new LPAuthenticationParams();
+            authParams.setHostAppJWT(getApplicationInstance().getJwt());
+
+            ConversationViewParams conversationViewParams = new ConversationViewParams(false);
+            conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
+
+            //Start the conversation
+            LivePerson.showConversation(hostContext, authParams, conversationViewParams);
+
+        }
+    }
+
     /*************************
      * Bean methods
      ************************/
@@ -117,4 +150,7 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
         this.applicationStorage = applicationStorage;
     }
 
+    public MobileMessagingExerciseApplication getApplicationInstance() {
+        return applicationInstance;
+    }
 }

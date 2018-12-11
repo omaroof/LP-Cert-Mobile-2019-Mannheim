@@ -15,8 +15,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
-import com.liveperson.mobilemessagingexercise.model.AuthenticationResponse;
 
 import org.json.JSONObject;
 
@@ -25,9 +23,6 @@ import org.json.JSONObject;
  */
 public class LoginActivity extends MobileMessagingExerciseActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
-
-    boolean loginSuccessful = false;
-    String jwt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,59 +65,70 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
      * @param password the password to be used for login
      * @return true if the login was successful, and false otherwise
      */
-    private boolean logUserIn(String userId, String password) {
+    private void logUserIn(String userId, String password) {
         RequestQueue authenticationQueue = Volley.newRequestQueue(this);
         AuthenticationResponseListener authenticationResponseListener = new AuthenticationResponseListener();
         JSONObject credentials = new JSONObject();
         try {
+            //Set up the body for the POST request to the authentication API
             credentials.put("userId", userId);
             credentials.put("password", password);
-            System.out.println(credentials);
+            //Create the authentication POST request
+            JsonObjectRequest authenticationRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    getBrandServerBaseUrl() + "/authenticate",
+                    credentials,
+                    authenticationResponseListener,
+                    authenticationResponseListener
+            );
+            //Send the authentication POST request
+            authenticationQueue.add(authenticationRequest);
         }
         catch(Exception e) {
             Log.e(TAG, e.getMessage());
             showToast(e.getMessage());
-            return false;
         }
-        JsonObjectRequest authenticationRequest = new JsonObjectRequest(
-                Request.Method.POST,
-                getBrandServerBaseUrl() + "/authenticate",
-                credentials,
-                authenticationResponseListener,
-                authenticationResponseListener
-        );
 
-        authenticationQueue.add(authenticationRequest);
-
-
-        return loginSuccessful;
+        return;
     }
 
     /**********************************************
      * Inner Classes
      *********************************************/
+
+    /**
+     * Listener for the user requesting login
+     */
     private class LoginOnClickListener implements View.OnClickListener {
         public void onClick(View v) {
             EditText userIdControl = findViewById(R.id.userId);
             EditText passwordControl = findViewById(R.id.password);
-            boolean loginSuccessful = logUserIn(userIdControl.getText().toString(), passwordControl.getText().toString());
+            logUserIn(userIdControl.getText().toString(), passwordControl.getText().toString());
         }
     }
 
+    /**
+     * Listener for responses from the authentication request
+     */
     private class AuthenticationResponseListener
             implements Response.Listener<JSONObject>, Response.ErrorListener {
+        /**
+         * Process responses for POST requests that completed normally. The response
+         * indicates whether login was successful or not.
+         * @param authenticationResponse the response to the request
+         */
         @Override
         public void onResponse(JSONObject authenticationResponse) {
             try {
-
-                loginSuccessful = authenticationResponse.getBoolean("loginSuccessful");
-                jwt = authenticationResponse.getString("jwt");
+                getApplicationInstance().setLoggedIn(authenticationResponse.getBoolean("loginSuccessful"));
+                getApplicationInstance().setJwt(authenticationResponse.getString("jwt"));
             }
             catch (Exception e) {
+                //There was a problem parsing the response from the server
                 Log.e(TAG, e.getMessage());
                 showToast(e.getMessage());
             }
-            if (loginSuccessful) {
+            if (getApplicationInstance().isLoggedIn()) {
                 startMyAccount();
             }
             else {
@@ -130,6 +136,11 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
                 startWelcome();
             }
         }
+
+        /**
+         * Process responses from POST requests that failed
+         * @param error the error information associated with the failure
+         */
         @Override
         public void onErrorResponse(VolleyError error) {
             Log.e(TAG, "Call to login failed: " + error.getMessage());

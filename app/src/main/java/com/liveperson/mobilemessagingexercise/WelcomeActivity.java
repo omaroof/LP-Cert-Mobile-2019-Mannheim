@@ -30,7 +30,6 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity {
         askUsButton.setOnClickListener(new AskUsOnClickListener());
         Button myAccountButton = findViewById(R.id.my_account_button);
         myAccountButton.setOnClickListener(new MyAccountOnClickListener());
-
     }
 
     @Override
@@ -92,7 +91,12 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity {
 
     private class MyAccountOnClickListener implements View.OnClickListener {
         public void onClick(View v) {
-            startLogin();
+            if (getApplicationInstance().isLoggedIn()) {
+                startMyAccount();
+            }
+            else {
+                startLogin();
+            }
         }
     }
 }

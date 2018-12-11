@@ -19,7 +19,6 @@ public class ApplicationStorage {
     private String phoneNumber = "";
     private String authCode = "";
     private String brandAccountNumber = "";
-    private String jwtPublicKey = "";
     private Long campaignId;
     private Long engagementId;
     private String sessionId = "";
@@ -47,8 +46,6 @@ public class ApplicationStorage {
             applicationStorage.setAppId("com.liveperson.mobilemessagingexercise");
             /* TODO - Replace with your LiveEngage Account Number */
             applicationStorage.setBrandAccountNumber("20553802");
-            /* TODO - Replace with the brand's JWT public key */
-            applicationStorage.setJwtPublicKey("");
 
         }
         return applicationStorage;
@@ -103,13 +100,6 @@ public class ApplicationStorage {
 
     public void setBrandAccountNumber(String brandAccountNumber) {
         this.brandAccountNumber = brandAccountNumber;
-    }
-    public String getJwtPublicKey() {
-        return jwtPublicKey;
-    }
-
-    public void setJwtPublicKey(String jwtPublicKey) {
-        this.jwtPublicKey = jwtPublicKey;
     }
 
     public Long getCampaignId() {

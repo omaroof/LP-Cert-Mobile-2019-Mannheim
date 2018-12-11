@@ -26,6 +26,8 @@ public class MobileMessagingExerciseApplication extends Application {
     private LivePersonBroadcastReceiver livePersonBroadcastReceiver;
     private boolean livePersonInitialized = false;
     private String brandServerBaseUrl = "http://10.0.8.243:5000";
+    private boolean isLoggedIn = false;
+    private String jwt;
 
     @Override
     public void onCreate () {
@@ -117,4 +119,19 @@ public class MobileMessagingExerciseApplication extends Application {
         return brandServerBaseUrl;
     }
 
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
+    }
+
+    public String getJwt() {
+        return jwt;
+    }
+
+    public void setJwt(String jwt) {
+        this.jwt = jwt;
+    }
 }
