@@ -68,6 +68,9 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
         runOnUiThread(askUsRunner);
     }
 
+    protected String getBrandServerBaseUrl() {
+        return applicationInstance.getBrandServerBaseUrl();
+    }
     /**********************************************
      * Inner Classes
      *********************************************/

@@ -25,6 +25,7 @@ public class MobileMessagingExerciseApplication extends Application {
     private LivePersonCallbackImpl livePersonCallback;
     private LivePersonBroadcastReceiver livePersonBroadcastReceiver;
     private boolean livePersonInitialized = false;
+    private String brandServerBaseUrl = "http://10.0.8.243:5000";
 
     @Override
     public void onCreate () {
@@ -111,4 +112,9 @@ public class MobileMessagingExerciseApplication extends Application {
     public void setLivePersonInitialized(boolean livePersonInitialized) {
         this.livePersonInitialized = livePersonInitialized;
     }
+
+    public String getBrandServerBaseUrl() {
+        return brandServerBaseUrl;
+    }
+
 }

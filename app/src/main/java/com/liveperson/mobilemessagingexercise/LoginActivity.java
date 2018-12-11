@@ -1,23 +1,33 @@
 package com.liveperson.mobilemessagingexercise;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
+import com.liveperson.mobilemessagingexercise.model.AuthenticationResponse;
+
+import org.json.JSONObject;
 
 /**
  * Activity associated with the application LoginFred screen
  */
 public class LoginActivity extends MobileMessagingExerciseActivity {
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
-    ApplicationStorage applicationStorage;
+    boolean loginSuccessful = false;
+    String jwt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +37,6 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
         setSupportActionBar(toolbar);
         Button loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new LoginOnClickListener());
-
     }
 
     @Override
@@ -62,8 +71,31 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
      * @return true if the login was successful, and false otherwise
      */
     private boolean logUserIn(String userId, String password) {
-        boolean result = false;
-        return result;
+        RequestQueue authenticationQueue = Volley.newRequestQueue(this);
+        AuthenticationResponseListener authenticationResponseListener = new AuthenticationResponseListener();
+        JSONObject credentials = new JSONObject();
+        try {
+            credentials.put("userId", userId);
+            credentials.put("password", password);
+            System.out.println(credentials);
+        }
+        catch(Exception e) {
+            Log.e(TAG, e.getMessage());
+            showToast(e.getMessage());
+            return false;
+        }
+        JsonObjectRequest authenticationRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                getBrandServerBaseUrl() + "/authenticate",
+                credentials,
+                authenticationResponseListener,
+                authenticationResponseListener
+        );
+
+        authenticationQueue.add(authenticationRequest);
+
+
+        return loginSuccessful;
     }
 
     /**********************************************
@@ -74,6 +106,22 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
             EditText userIdControl = findViewById(R.id.userId);
             EditText passwordControl = findViewById(R.id.password);
             boolean loginSuccessful = logUserIn(userIdControl.getText().toString(), passwordControl.getText().toString());
+        }
+    }
+
+    private class AuthenticationResponseListener
+            implements Response.Listener<JSONObject>, Response.ErrorListener {
+        @Override
+        public void onResponse(JSONObject authenticationResponse) {
+            try {
+
+                loginSuccessful = authenticationResponse.getBoolean("loginSuccessful");
+                jwt = authenticationResponse.getString("jwt");
+            }
+            catch (Exception e) {
+                Log.e(TAG, e.getMessage());
+                showToast(e.getMessage());
+            }
             if (loginSuccessful) {
                 startMyAccount();
             }
@@ -82,7 +130,13 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
                 startWelcome();
             }
         }
-    }
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            Log.e(TAG, "Call to login failed: " + error.getMessage());
+            showToast("Unable to log in: " + error.getMessage());
+            startWelcome();
+        }
 
+    }
 
 }
