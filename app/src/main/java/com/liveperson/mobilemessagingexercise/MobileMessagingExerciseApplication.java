@@ -1,13 +1,12 @@
 package com.liveperson.mobilemessagingexercise;
 
 import android.app.Application;
-import android.content.Context;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.liveperson.api.LivePersonCallbackImpl;
 import com.liveperson.api.LivePersonIntents;
-import com.liveperson.infra.log.LPMobileLog;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 import com.liveperson.mobilemessagingexercise.receivers.LivePersonBroadcastReceiver;
 
@@ -50,7 +49,7 @@ public class MobileMessagingExerciseApplication extends Application {
         if (showToastOnCallback){
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }else{
-            LPMobileLog.d(TAG + "_CALLBACK", message);
+            Log.d(TAG + "_CALLBACK", message);
         }
     }
 
