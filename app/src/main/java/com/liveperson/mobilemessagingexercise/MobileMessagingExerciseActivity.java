@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.EditText;
+import android.util.Log;
 
 import com.liveperson.infra.ConversationViewParams;
+import com.liveperson.infra.InitLivePersonProperties;
 import com.liveperson.infra.LPAuthenticationParams;
 import com.liveperson.infra.LPConversationsHistoryStateToDisplay;
 import com.liveperson.messaging.sdk.api.LivePerson;
+import com.liveperson.infra.callbacks.InitLivePersonCallBack;
+import com.liveperson.messaging.sdk.api.callbacks.LogoutLivePersonCallback;
 import com.liveperson.messaging.sdk.api.model.ConsumerProfile;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
@@ -21,12 +24,31 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
     private static final String TAG = MobileMessagingExerciseActivity.class.getSimpleName();
     private ApplicationStorage applicationStorage;
     private MobileMessagingExerciseApplication applicationInstance;
+    private boolean livePersonInitialized = false;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         applicationInstance = (MobileMessagingExerciseApplication)getApplication();
         applicationStorage = ApplicationStorage.getInstance();
     }
+
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    /**
+     * Clear any existing conversation before running the activity associated with
+     * a new one.
+     * @param runnable the runnable which executes the chosen activity
+     */
+    protected void clearAndRun(Runnable runnable) {
+        ClearAndRunLogoutCallback clearAndRunCallback = new ClearAndRunLogoutCallback(runnable);
+
+        LivePerson.logOut(this, applicationStorage.getBrandAccountNumber(),
+                applicationStorage.getAppId(), clearAndRunCallback) ;
+    }
+
 
     /**
      * Display a pop up toast message
@@ -58,26 +80,29 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
      */
     protected void startMyAccount() {
         MyAccountRunner myAccountRunner = new MyAccountRunner(this);
-        runOnUiThread(myAccountRunner);
+        //Clear any previous conversation, and start My Account
+        clearAndRun(myAccountRunner);
     }
+
 
     /**
      * Transfer control to the Ask Us activity
      */
     protected void startAskUs() {
         AskUsRunner askUsRunner = new AskUsRunner(this);
-        runOnUiThread(askUsRunner);
+        clearAndRun(askUsRunner);
     }
 
     protected String getBrandServerBaseUrl() {
         return applicationInstance.getBrandServerBaseUrl();
     }
+
     /**********************************************
      * Inner Classes
      *********************************************/
-    /**
-     * Run the Ask Us screen
-     */
+    /******************************************
+     * Class to run the Ask Us screen
+     *****************************************/
     protected class AskUsRunner implements Runnable {
         private Activity hostContext;
 
@@ -92,33 +117,41 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            LPAuthenticationParams authParams = new LPAuthenticationParams();
-            authParams.setHostAppJWT(getApplicationInstance().getJwt());
-
-            ConversationViewParams conversationViewParams = new ConversationViewParams(false);
-            conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
-
-            //Start the conversation
-            LivePerson.showConversation(hostContext, authParams, conversationViewParams);
 
             ConsumerProfile consumerProfile = new ConsumerProfile.Builder()
                     .setFirstName(applicationStorage.getFirstName())
                     .setLastName(applicationStorage.getLastName())
                     .setPhoneNumber(applicationStorage.getPhoneNumber())
                     .build();
-            LivePerson.setUserProfile(consumerProfile);
+
+            LPAuthenticationParams authParams = new LPAuthenticationParams();
+            //Ask Us provides a conversation without authentication
+            authParams.setHostAppJWT("");
+
+            ConversationViewParams conversationViewParams = new ConversationViewParams(false);
+            conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
+
+            ConversationRunner askUsRunnerStarter =
+                    new ConversationRunner(this.hostContext, authParams, conversationViewParams, consumerProfile);
+
+            InitLivePersonProperties initLivePersonProperties =
+                    new InitLivePersonProperties(applicationStorage.getBrandAccountNumber(),
+                            applicationStorage.getAppId(),
+                            askUsRunnerStarter);
+
+            LivePerson.initialize(this.hostContext, initLivePersonProperties);
+
         }
     }
 
-    /**
-     * Run the My Account screen
-     */
+    /******************************************
+     * Class to run the My Account screen
+     *****************************************/
     protected class MyAccountRunner implements Runnable {
         private Activity hostContext;
 
         /**
          * Constructor
-         *
          * @param hostContext the context of the activity that starts this instance
          */
         public MyAccountRunner(Activity hostContext) {
@@ -127,15 +160,110 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
 
         @Override
         public void run() {
+
+            ConsumerProfile consumerProfile = new ConsumerProfile.Builder().build();
             LPAuthenticationParams authParams = new LPAuthenticationParams();
-            authParams.setHostAppJWT(getApplicationInstance().getJwt());
+            authParams.setHostAppJWT(applicationInstance.getJwt());
 
             ConversationViewParams conversationViewParams = new ConversationViewParams(false);
             conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
 
+            ConversationRunner myAccountRunnerStarter =
+                new ConversationRunner(this.hostContext, authParams, conversationViewParams, consumerProfile);
+
+
+            InitLivePersonProperties initLivePersonProperties =
+                    new InitLivePersonProperties(applicationStorage.getBrandAccountNumber(),
+                            applicationStorage.getAppId(),
+                            myAccountRunnerStarter);
+
+            LivePerson.initialize(this.hostContext, initLivePersonProperties);
+
+        }
+    }
+
+    /****************************************************************
+     * Class to handle callbacks from Initialization of LivePerson by
+     * running the specified conversation
+     ***************************************************************/
+    protected class ConversationRunner implements InitLivePersonCallBack {
+
+        private Activity hostContext;
+        private LPAuthenticationParams authParams;
+        private ConversationViewParams conversationViewParams;
+        private ConsumerProfile consumerProfile;
+
+        /**
+         * Construct the conversation runner
+         * @param hostContext the context from which the conversation is to be run
+         * @param authParams the LivePerson authentication parameters for the conversation
+         * @param conversationViewParams the LivePerson view parameters for the conversation
+         */
+        public ConversationRunner(Activity hostContext, LPAuthenticationParams authParams, ConversationViewParams conversationViewParams, ConsumerProfile consumerProfile) {
+            this.hostContext = hostContext;
+            this.authParams = authParams;
+            this.conversationViewParams = conversationViewParams;
+            this.consumerProfile = consumerProfile;
+        }
+
+        /**
+         * Invoked if initialization of LivePerson is successful
+         */
+        @Override
+        public void onInitSucceed() {
+            //Display and log a confirmation message
+            Log.i(TAG, "LivePerson SDK initialize completed");
+            showToast("LivePerson SDK initialize completed");
+            setLivePersonInitialized(true);
+
+            //Set the consumer profile
+            LivePerson.setUserProfile(consumerProfile);
+
             //Start the conversation
             LivePerson.showConversation(hostContext, authParams, conversationViewParams);
+        }
 
+        /**
+         * Invoked if initialization of LivePerson fails
+         * @param e the exception associated with the failure
+         */
+        @Override
+        public void onInitFailed(Exception e) {
+            //Display and log the error
+            Log.e(TAG, "LivePerson SDK initialize failed", e);
+            showToast("Unable to initialize LivePerson");
+            setLivePersonInitialized(false);
+        }
+    }
+    /****************************************************************
+     * Class to handle callbacks from Logout from LivePerson
+     ***************************************************************/
+    protected class ClearAndRunLogoutCallback implements LogoutLivePersonCallback {
+        Runnable activity;
+
+        protected ClearAndRunLogoutCallback(Runnable activity) {
+            this.activity = activity;
+        }
+
+        /**
+         * Invoked if initialization of LivePerson is successful
+         */
+        @Override
+        public void onLogoutSucceed() {
+            Log.i(TAG, "LivePerson SDK logout completed");
+            showToast("LivePerson SDK logout completed");
+            setLivePersonInitialized(false);
+            //Now run the specified activity
+            runOnUiThread(activity);
+        }
+
+        /**
+         * Invoked if initialization of LivePerson fails
+         */
+        @Override
+        public void onLogoutFailed() {
+            Log.e(TAG, "LivePerson SDK logout failed");
+            showToast("Unable to log out from LivePerson");
         }
     }
 
@@ -153,4 +281,13 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
     public MobileMessagingExerciseApplication getApplicationInstance() {
         return applicationInstance;
     }
+
+    public boolean isLivePersonInitialized() {
+        return livePersonInitialized;
+    }
+
+    public void setLivePersonInitialized(boolean livePersonInitialized) {
+        this.livePersonInitialized = livePersonInitialized;
+    }
+
 }
