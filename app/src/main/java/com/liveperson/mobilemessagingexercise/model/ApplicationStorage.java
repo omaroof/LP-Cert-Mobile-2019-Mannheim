@@ -13,7 +13,9 @@ public class ApplicationStorage {
 
     private static volatile ApplicationStorage applicationStorage = null;
 
+    private String brandServerBaseUrl = "";
     private String appId = "";
+    private String appInstallationId = "";
     private String firstName = "";
     private String lastName = "";
     private String phoneNumber = "";
@@ -43,10 +45,6 @@ public class ApplicationStorage {
         if (applicationStorage == null) {
             // Create the singleton, and set up the shared data for the application
             applicationStorage = new ApplicationStorage();
-            applicationStorage.setAppId("com.liveperson.mobilemessagingexercise");
-            /* TODO - Replace with your LiveEngage Account Number */
-            applicationStorage.setBrandAccountNumber("20553802");
-
         }
         return applicationStorage;
     }
@@ -54,12 +52,28 @@ public class ApplicationStorage {
     /*****************************************************
      * Bean Methods
      ****************************************************/
+    public String getBrandServerBaseUrl() {
+        return brandServerBaseUrl;
+    }
+
+    public void setBrandServerBaseUrl(String brandServerBaseUrl) {
+        this.brandServerBaseUrl = brandServerBaseUrl;
+    }
+
     public String getAppId() {
         return appId;
     }
 
     public void setAppId(String appId) {
         this.appId = appId;
+    }
+
+    public String getAppInstallationId() {
+        return appInstallationId;
+    }
+
+    public void setAppInstallationId(String appInstallationId) {
+        this.appInstallationId = appInstallationId;
     }
 
     public String getFirstName() {

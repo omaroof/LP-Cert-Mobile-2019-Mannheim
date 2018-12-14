@@ -17,9 +17,7 @@ public class MobileMessagingExerciseApplication extends Application {
 
     private static boolean showToastOnCallback = true;
     private ApplicationStorage applicationStorage;
-    private LivePersonCallbackImpl livePersonCallback;
     private LivePersonBroadcastReceiver livePersonBroadcastReceiver;
-    private String brandServerBaseUrl = "http://10.0.0.105:5000";
     private boolean isLoggedIn = false;
     private String jwt;
 
@@ -27,6 +25,15 @@ public class MobileMessagingExerciseApplication extends Application {
     public void onCreate () {
         super.onCreate();
         applicationStorage = ApplicationStorage.getInstance();
+        applicationStorage.setAppId("com.liveperson.mobilemessagingexercise");
+        applicationStorage.setBrandServerBaseUrl("http://10.0.8.130:5000");
+
+        //TODO - Replace with your app's LiveEngage application installation id
+        applicationStorage.setAppInstallationId("2aa6228e-1edc-443a-83e9-341a8696a1d8");
+
+        /* TODO - Replace with your LiveEngage Account Number */
+        applicationStorage.setBrandAccountNumber("20553802");
+
 
         //Register the app to receive events from LivePerson
         registerForLivePersonEvents();
@@ -56,10 +63,6 @@ public class MobileMessagingExerciseApplication extends Application {
     /******************************************
      * Bean methods
      *****************************************/
-    public String getBrandServerBaseUrl() {
-        return brandServerBaseUrl;
-    }
-
     public boolean isLoggedIn() {
         return isLoggedIn;
     }
