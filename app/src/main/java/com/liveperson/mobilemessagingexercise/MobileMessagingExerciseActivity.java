@@ -10,13 +10,11 @@ import com.liveperson.infra.ConversationViewParams;
 import com.liveperson.infra.InitLivePersonProperties;
 import com.liveperson.infra.LPAuthenticationParams;
 import com.liveperson.infra.LPConversationsHistoryStateToDisplay;
-import com.liveperson.infra.MonitoringInitParams;
 import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.infra.callbacks.InitLivePersonCallBack;
 import com.liveperson.messaging.sdk.api.callbacks.LogoutLivePersonCallback;
 import com.liveperson.messaging.sdk.api.model.ConsumerProfile;
 import com.liveperson.mobilemessagingexercise.ConversationRunners.AskUsRunner;
-import com.liveperson.mobilemessagingexercise.ConversationRunners.UnAuthenticatedConversationRunner;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /**
