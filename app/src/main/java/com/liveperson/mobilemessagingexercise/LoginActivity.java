@@ -18,22 +18,32 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
-/**
- * Activity associated with the application LoginFred screen
- */
-public class LoginActivity extends MobileMessagingExerciseActivity {
+/******************************************************************************
+ * Class for the activity associated with the application Login screen
+ * NOTE: This class also provides the listeners for click events on the screen
+ * and for the response of the authentication
+ *****************************************************************************/
+public class LoginActivity extends MobileMessagingExerciseActivity
+        implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
     private static final String TAG = LoginActivity.class.getSimpleName();
 
+    /**
+     * Android callback invoked as the activity is created
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
-        Button loginButton = findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(new LoginOnClickListener());
+
+        //Set up the click listeners
+        findViewById(R.id.loginButton).setOnClickListener(this);
     }
 
+    /**
+     * Android callback invoked as the options menu is created
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -41,17 +51,20 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
         return true;
     }
 
+    /**
+     * Android callback invoked as an option is selected from the options menu
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         switch (id) {
+            //Process selection of the Welcome item
             case R.id.welcome:
                 startWelcome();
                 break;
+
+            //Process selection of any other items
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -67,7 +80,6 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
      */
     private void logUserIn(String userId, String password) {
         RequestQueue authenticationQueue = Volley.newRequestQueue(this);
-        AuthenticationResponseListener authenticationResponseListener = new AuthenticationResponseListener();
         JSONObject credentials = new JSONObject();
         try {
             //Set up the body for the POST request to the authentication API
@@ -78,8 +90,8 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
                     Request.Method.POST,
                     getBrandServerBaseUrl() + "/authenticate",
                     credentials,
-                    authenticationResponseListener,
-                    authenticationResponseListener
+                    this,
+                    this
             );
             //Send the authentication POST request
             authenticationQueue.add(authenticationRequest);
@@ -92,42 +104,33 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
         return;
     }
 
-    /**********************************************
-     * Inner Classes
-     *********************************************/
-
     /**
-     * Listener for the user requesting login
+     * Handle click events for controls on the Welcome screen
+     * @param view the control on which the event occurred
      */
-    private class LoginOnClickListener implements View.OnClickListener {
-        public void onClick(View v) {
-            EditText userIdControl = findViewById(R.id.userId);
-            EditText passwordControl = findViewById(R.id.password);
-            logUserIn(userIdControl.getText().toString(), passwordControl.getText().toString());
+    public void onClick(View view) {
+        switch (view.getId()) {
+            //Process clicks on the Login button
+            case R.id.loginButton:
+                EditText userIdControl = findViewById(R.id.userId);
+                EditText passwordControl = findViewById(R.id.password);
+                logUserIn(userIdControl.getText().toString(), passwordControl.getText().toString());
+                break;
         }
     }
 
     /**
-     * Listener for responses from the authentication request
+     * Process responses for login requests that completed normally. The response
+     * indicates whether login was successful or not.
+     * @param authenticationResponse the response to the request
      */
-    private class AuthenticationResponseListener
-            implements Response.Listener<JSONObject>, Response.ErrorListener {
-        /**
-         * Process responses for POST requests that completed normally. The response
-         * indicates whether login was successful or not.
-         * @param authenticationResponse the response to the request
-         */
-        @Override
-        public void onResponse(JSONObject authenticationResponse) {
-            try {
-                getApplicationInstance().setLoggedIn(authenticationResponse.getBoolean("loginSuccessful"));
-                getApplicationInstance().setJwt(authenticationResponse.getString("jwt"));
-            }
-            catch (Exception e) {
-                //There was a problem parsing the response from the server
-                Log.e(TAG, e.getMessage());
-                showToast(e.getMessage());
-            }
+    @Override
+    public void onResponse(JSONObject authenticationResponse) {
+        try {
+            //Save the results of the login attempt
+            getApplicationInstance().setLoggedIn(authenticationResponse.getBoolean("loginSuccessful"));
+            getApplicationInstance().setJwt(authenticationResponse.getString("jwt"));
+
             if (getApplicationInstance().isLoggedIn()) {
                 startMyAccount();
             }
@@ -136,18 +139,22 @@ public class LoginActivity extends MobileMessagingExerciseActivity {
                 startWelcome();
             }
         }
-
-        /**
-         * Process responses from POST requests that failed
-         * @param error the error information associated with the failure
-         */
-        @Override
-        public void onErrorResponse(VolleyError error) {
-            Log.e(TAG, "Call to login failed: " + error.getMessage());
-            showToast("Unable to log in: " + error.getMessage());
-            startWelcome();
+        catch (Exception e) {
+            //There was a problem parsing the response from the server
+            Log.e(TAG, e.getMessage());
+            showToast(e.getMessage());
         }
+    }
 
+    /**
+     * Process responses from login requests that failed
+     * @param error the error information associated with the failure
+     */
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Log.e(TAG, "Call to login failed: " + error.getMessage());
+        showToast("Unable to log in: " + error.getMessage());
+        startWelcome();
     }
 
 }

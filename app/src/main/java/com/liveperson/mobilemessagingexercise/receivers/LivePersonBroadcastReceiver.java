@@ -8,13 +8,13 @@ import android.util.Log;
 import com.liveperson.api.LivePersonIntents;
 import com.liveperson.api.sdk.LPConversationData;
 import com.liveperson.api.sdk.PermissionType;
-import com.liveperson.infra.LPAuthenticationParams;
 import com.liveperson.messaging.TaskType;
 import com.liveperson.messaging.model.AgentData;
-import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
-import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
+/****************************************************
+ * Class to receive events broadcast by LivePerson
+ ***************************************************/
 public class LivePersonBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = LivePersonBroadcastReceiver.class.getSimpleName();
     private MobileMessagingExerciseApplication applicationInstance;
@@ -27,11 +27,16 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
         this.applicationInstance = applicationInstance;
     }
 
-
+    /**
+     * Invoked when an event, broadcast by LivePerson, is received
+     * @param context the application context in which the event was raised
+     * @param intent the intent broadcast by LivePerson
+     */
     @Override
     public void onReceive (Context context, Intent intent) {
         Log.d(TAG, "Got LP intent event with action " + intent.getAction());
 
+        //Route the event to the appropriate method
         switch (intent.getAction()) {
             case LivePersonIntents.ILivePersonIntentAction.LP_ON_AGENT_AVATAR_TAPPED_INTENT_ACTION:
                 onAgentAvatarTapped(intent);
@@ -50,11 +55,11 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
                 break;
 
             case LivePersonIntents.ILivePersonIntentAction.LP_ON_CONVERSATION_MARKED_AS_NORMAL_INTENT_ACTION:
-                onConversationMarkedAsNormal();
+                onConversationMarkedAsNormal(intent);
                 break;
 
             case LivePersonIntents.ILivePersonIntentAction.LP_ON_CONVERSATION_MARKED_AS_URGENT_INTENT_ACTION:
-                onConversationMarkedAsUrgent();
+                onConversationMarkedAsUrgent(intent);
                 break;
 
             case LivePersonIntents.ILivePersonIntentAction.LP_ON_CONVERSATION_RESOLVED_INTENT_ACTION:
@@ -109,75 +114,135 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
 
     }
 
+    /**
+     * Process the Avatar Tapped event
+     * @param intent the associated intent
+     */
     private void onAgentAvatarTapped(Intent intent) {
         AgentData agentData = LivePersonIntents.getAgentData(intent);
         applicationInstance.showToast("Agent Avatar Tapped: " + agentData.mFirstName +
                                       " " + agentData.mLastName);
     }
 
+    /**
+     * Process the Agent Details Changed event
+     * @param intent the associated intent
+     */
     private void onAgentDetailsChanged(Intent intent) {
         AgentData agentData = LivePersonIntents.getAgentData(intent);
         applicationInstance.showToast("Agent Details Changed: " + agentData);
     }
 
+    /**
+     * Process the Agent Typing event
+     * @param intent the associated intent
+     */
     private void onAgentTyping(Intent intent) {
         boolean isTyping = LivePersonIntents.getAgentTypingValue(intent);
         applicationInstance.showToast("Agent is typing: " + isTyping);
     }
 
+    /**
+     * Process the Connection Changed event
+     * @param intent the associated intent
+     */
     private void onConnectionChanged(Intent intent) {
         boolean isConnected = LivePersonIntents.getConnectedValue(intent);
         applicationInstance.showToast("Connected to LiveEngage: " + isConnected);
     }
 
-    private void onConversationMarkedAsNormal() {
+    /**
+     * Process the Conversation Marked as Normal event
+     * @param intent the associated intent
+     */
+    private void onConversationMarkedAsNormal(Intent intent) {
         applicationInstance.showToast("Conversation Marked As Normal");
     }
 
-    private void onConversationMarkedAsUrgent() {
+    /**
+     * Process the Conversation Marked as Urgent event
+     * @param intent the associated intent
+     */
+    private void onConversationMarkedAsUrgent(Intent intent) {
         applicationInstance.showToast("Conversation Marked As Urgent");
     }
 
+    /**
+     * Process the Conversation Resolved event
+     * @param intent the associated intent
+     */
     private void onConversationResolved(Intent intent) {
         LPConversationData conversationData = LivePersonIntents.getLPConversationData(intent);
         applicationInstance.showToast("Conversation started " + conversationData.getId() +
                 " reason " + conversationData.getCloseReason());
     }
 
+    /**
+     * Process the Conversation Started event
+     * @param intent the associated intent
+     */
     private void onConversationStarted(Intent intent) {
         LPConversationData conversationData = LivePersonIntents.getLPConversationData(intent);
         applicationInstance.showToast("Conversation started " + conversationData.getId() +
                 " reason " + conversationData.getCloseReason());
     }
 
+    /**
+     * Process the Customer Satisfaction Screen Launched event
+     * @param intent the associated intent
+     */
     private void onCsatLaunched(Intent intent) {
         applicationInstance.showToast("CSAT launched");
     }
 
+    /**
+     * Process the Customer Satisfaction Screen Dismissed event
+     * @param intent the associated intent
+     */
     private void onCsatDismissed(Intent intent) {
         applicationInstance.showToast("CSAT skipped");
     }
 
+    /**
+     * Process the Customer Satisfaction Screen Skipped event
+     * @param intent the associated intent
+     */
     private void onCsatSkipped(Intent intent) {
         applicationInstance.showToast("CSAT skipped");
     }
 
+    /**
+     * Process the Customer Satisfaction Submitted event
+     * @param intent the associated intent
+     */
     private void onCsatSubmitted(Intent intent) {
         String conversationId = LivePersonIntents.getConversationID(intent);
         applicationInstance.showToast("CSAT submitted for conversation: " + conversationId);
     }
 
+    /**
+     * Process the Error event
+     * @param intent the associated intent
+     */
     private void onError(Intent intent) {
         TaskType type = LivePersonIntents.getOnErrorTaskType(intent);
         String message = LivePersonIntents.getOnErrorMessage(intent);
         applicationInstance.showToast("Error: " + type.name() + " " + message);
     }
 
+    /**
+     * Process the Offline Hours Changes event
+     * @param intent the associated intent
+     */
     private void onOfflineHoursChanges(Intent intent) {
         boolean isOfflineHoursOn = LivePersonIntents.getOfflineHoursOn(intent);
         applicationInstance.showToast("Offline hours changes: " + isOfflineHoursOn);
     }
 
+    /**
+     * Process the Token Expired Event
+     * @param intent the associated event
+     */
     //TODO check whether this is only for OAuth token, and not JWT
     private void onTokenExpired(Intent intent) {
         applicationInstance.showToast("Token Expired");
@@ -185,6 +250,10 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
 
     }
 
+    /**
+     * Process the User Denied Permission event
+     * @param intent the associated intent
+     */
     private void onUserDeniedPermission(Intent intent) {
         PermissionType permissionType = LivePersonIntents.getPermissionType(intent);
         boolean doNotShowAgainMarked = LivePersonIntents.getPermissionDoNotShowAgainMarked(intent);
@@ -192,15 +261,22 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
                 " doNotShowAgainMarked = " + doNotShowAgainMarked);
     }
 
+    /**
+     * Process the User Action on Prevented Permission event
+     * @param intent the associated intent
+     */
     private void onUserActionOnPreventedPermission(Intent intent) {
         PermissionType permissionType = LivePersonIntents.getPermissionType(intent);
         applicationInstance.showToast("User Action On Prevented Permission: " + permissionType.name());
     }
 
+    /**
+     * Process the Structured Content Link Clicked event
+     * @param intent the associated intent
+     */
     private void onStructuredContentLinkClicked(Intent intent) {
         String uri = LivePersonIntents.getLinkUri(intent);
         applicationInstance.showToast("Structured Content Link Clicked. Uri: " + uri);
     }
-
 
 }

@@ -22,6 +22,7 @@ public class ClearRunner implements LogoutLivePersonCallback{
     /**
      * Constructor
      * @param hostContext the context of the activity that starts this instance
+     * @param applicationStorage the singleton holding the shared storage for the app
      */
     public ClearRunner(Activity hostContext, ApplicationStorage applicationStorage) {
         this.hostContext = hostContext;
@@ -29,25 +30,31 @@ public class ClearRunner implements LogoutLivePersonCallback{
         this.applicationInstance = (MobileMessagingExerciseApplication)hostContext.getApplication();
     }
 
+    /**
+     * Clear any existing conversation, and then execute the specified runnable
+     * @param runnable the runnable to execute
+     */
     public void clearAndRun(Runnable runnable) {
         this.runnable = runnable;
+        //Log out from LivePerson, clearing any existing conversation
         LivePerson.logOut(hostContext, applicationStorage.getBrandAccountNumber(),
                 applicationStorage.getAppId(), this) ;
     }
 
     /**
-     * Invoked if initialization of LivePerson is successful
+     * Invoked if logout from LivePerson is successful
      */
     @Override
     public void onLogoutSucceed() {
         Log.i(TAG, "LivePerson SDK logout completed");
         applicationInstance.showToast("LivePerson SDK logout completed");
-        //Now run the specified activity
+
+        //Logout has been successful, so execute the runnable
         hostContext.runOnUiThread(runnable);
     }
 
     /**
-     * Invoked if initialization of LivePerson fails
+     * Invoked if logout from LivePerson fails
      */
     @Override
     public void onLogoutFailed() {

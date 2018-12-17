@@ -10,9 +10,10 @@ import com.liveperson.mobilemessagingexercise.ConversationRunners.AskUsRunner;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 import com.liveperson.mobilemessagingexercise.ConversationRunners.MyAccountRunner;
 
-/**
- * Parent class providing common capabilities for all Activities
- */
+/******************************************************************
+ * Parent class providing common capabilities for the activities
+ * in the Mobile Messaging Exercise
+ *****************************************************************/
 public class MobileMessagingExerciseActivity extends AppCompatActivity {
 
     private static final String TAG = MobileMessagingExerciseActivity.class.getSimpleName();
@@ -20,22 +21,24 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
     private MobileMessagingExerciseApplication applicationInstance;
     private ClearRunner clearRunner;
 
+    /**
+     * Android callback invoked as the activity is created
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         applicationInstance = (MobileMessagingExerciseApplication)getApplication();
         applicationStorage = ApplicationStorage.getInstance();
         clearRunner = new ClearRunner(this, applicationStorage);
-    }
 
-    protected void onDestroy() {
-        super.onDestroy();
+        Log.i(TAG, "MobileMessagingActivity created");
     }
 
     /**
-     * Clear any existing conversation before running the activity associated with
-     * a new one.
-     * @param runnable the runnable which executes the chosen activity
+     * Android callback invoked as the activity is destroyed
      */
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     /**
      * Display a pop up toast message
@@ -88,10 +91,6 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
      ************************/
     public ApplicationStorage getApplicationStorage() {
         return applicationStorage;
-    }
-
-    public void setApplicationStorage(ApplicationStorage applicationStorage) {
-        this.applicationStorage = applicationStorage;
     }
 
     public MobileMessagingExerciseApplication getApplicationInstance() {

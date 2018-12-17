@@ -1,8 +1,6 @@
 package com.liveperson.mobilemessagingexercise.model;
 
-import android.content.BroadcastReceiver;
-
-import com.liveperson.api.LivePersonCallbackImpl;
+import android.util.Log;
 
 /**
  * Singleton to hold data shared across the entire application.
@@ -45,6 +43,7 @@ public class ApplicationStorage {
         if (applicationStorage == null) {
             // Create the singleton, and set up the shared data for the application
             applicationStorage = new ApplicationStorage();
+            Log.i(TAG, "ApplicationStorage singleton created");
         }
         return applicationStorage;
     }

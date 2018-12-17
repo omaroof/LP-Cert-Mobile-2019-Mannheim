@@ -47,6 +47,7 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
                         null,
                         this);
 
+        //Initialize LivePerson
         LivePerson.initialize(this.hostContext, initLivePersonProperties);
     }
 
@@ -59,13 +60,14 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
         Log.i(TAG, "LivePerson SDK initialize completed");
         applicationInstance.showToast("LivePerson SDK initialize completed");
 
-        //Set up the consumer profile
+        //Set up the consumer profile from data in application storage
         this.consumerProfile = new ConsumerProfile.Builder()
              .setFirstName(applicationStorage.getFirstName())
              .setLastName(applicationStorage.getLastName())
              .setPhoneNumber(applicationStorage.getPhoneNumber())
              .build();
 
+        //Set up the user profile
         LivePerson.setUserProfile(consumerProfile);
 
         //Set up the authentication parameters

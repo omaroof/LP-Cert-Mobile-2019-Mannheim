@@ -5,12 +5,13 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.liveperson.api.LivePersonCallbackImpl;
 import com.liveperson.api.LivePersonIntents;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 import com.liveperson.mobilemessagingexercise.receivers.LivePersonBroadcastReceiver;
 
-
+/******************************************************************
+ * The main application class for the Mobile Messaging Exercise
+ *****************************************************************/
 public class MobileMessagingExerciseApplication extends Application {
 
     private static final String TAG = MobileMessagingExerciseApplication.class.getSimpleName();
@@ -21,6 +22,9 @@ public class MobileMessagingExerciseApplication extends Application {
     private boolean isLoggedIn = false;
     private String jwt;
 
+    /**
+     * Android callback invoked as the application is created
+     */
     @Override
     public void onCreate () {
         super.onCreate();
@@ -33,7 +37,6 @@ public class MobileMessagingExerciseApplication extends Application {
 
         /* TODO - Replace with your LiveEngage Account Number */
         applicationStorage.setBrandAccountNumber("20553802");
-
 
         //Register the app to receive events from LivePerson
         registerForLivePersonEvents();
@@ -51,11 +54,16 @@ public class MobileMessagingExerciseApplication extends Application {
     /**
      * Display a pop up toast message
      * @param message the text of the message to be shown
+     *
+     * If showToastOnCallback is false, the message is logged instead
      */
     public void showToast(String message) {
         if (showToastOnCallback){
+            //Show the message as a popup
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        }else{
+        }
+        else {
+            //Log the message
             Log.d(TAG + "_CALLBACK", message);
         }
     }

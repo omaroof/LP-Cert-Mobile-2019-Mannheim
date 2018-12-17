@@ -12,9 +12,9 @@ import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
-/***********************************************************************************
+/**************************************************************************************
  * Class to run the My Account Screen. Provides the LivePerson initialization callback
- **********************************************************************************/
+ *************************************************************************************/
 public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
     private static final String TAG = MyAccountRunner.class.getSimpleName();
 
@@ -32,6 +32,9 @@ public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
         this.applicationInstance = (MobileMessagingExerciseApplication)hostContext.getApplication();
     }
 
+    /**
+     * Start the My Account screen
+     */
     @Override
     public void run() {
         //Set up the parameters needed for initializing LivePerson
@@ -41,6 +44,7 @@ public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
                         null,
                         this);
 
+        //Initialize LivePerson for the My Account screen
         LivePerson.initialize(this.hostContext, initLivePersonProperties);
     }
 
