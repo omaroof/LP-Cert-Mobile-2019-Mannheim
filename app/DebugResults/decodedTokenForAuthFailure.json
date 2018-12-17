@@ -1,0 +1,9 @@
+{
+    "iss": "https://enigmatic-shelf-93460.herokuapp.com/",
+    "sub": "845024",
+    "given_name": "Jonathan",
+    "family_name": "Jones",
+    "email": "jonathan.jones@te.com",
+    "iat": 1544718379,
+    "exp": 1544721979
+}

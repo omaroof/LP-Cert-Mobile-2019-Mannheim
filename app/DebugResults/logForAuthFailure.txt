@@ -1,0 +1,608 @@
+D/OpenGLRenderer: HWUI GL Pipeline
+D/: HostConnection::get() New Host Connection established 0x99c45e00, tid 23131
+I/zygote: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColorDisplay retrieved: 0
+I/OpenGLRenderer: Initialized EGL, version 1.4
+D/OpenGLRenderer: Swap behavior 1
+W/OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+D/OpenGLRenderer: Swap behavior 0
+D/EGL_emulation: eglCreateContext: 0xa4439b00: maj 3 min 0 rcv 3
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+I/AssistStructure: Flattened final assist data: 4328 bytes, containing 1 windows, 14 views
+I/zygote: Do partial code cache collection, code=24KB, data=30KB
+I/zygote: After code cache collection, code=24KB, data=30KB
+    Increasing code cache capacity to 128KB
+I/zygote: Do partial code cache collection, code=24KB, data=47KB
+    After code cache collection, code=24KB, data=47KB
+I/zygote: Increasing code cache capacity to 256KB
+    JIT allocated 71KB for compiled code of void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+    Compiler allocated 4MB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+I/AssistStructure: Flattened final assist data: 3368 bytes, containing 1 windows, 11 views
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+I/zygote: Do full code cache collection, code=119KB, data=76KB
+I/zygote: After code cache collection, code=115KB, data=50KB
+I/zygote: Do partial code cache collection, code=122KB, data=61KB
+I/zygote: After code cache collection, code=122KB, data=61KB
+I/zygote: Increasing code cache capacity to 512KB
+D/NetworkSecurityConfig: No Network Security Config specified, using platform default
+I/zygote: Do full code cache collection, code=244KB, data=162KB
+I/zygote: After code cache collection, code=164KB, data=114KB
+D/Liveperson **InfraStateMachine**: IdleState <-<- LogoutEvent
+    IdleState -> Logout
+D/Liveperson **InfraStateMachine**: Logout <-<- LogoutEvent
+    Stating logout process...
+    initForLogout...
+D/Liveperson **Loggos**: validateDomainAndBrand: Get domain from preferences: z2.loggos.liveperson.net
+    validateDomainAndBrand: Get targetId from preferences: 20553802
+D/Liveperson **InternetConnectionService**: creating new receiver
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+    isConnected true
+D/Liveperson **InternetConnectionService**: lastConnectionState false
+I/Liveperson **InternetConnectionService**: Getting broadcast with action android.net.conn.CONNECTIVITY_CHANGE, connected = true
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+    isConnected true
+    lastConnectionState true
+D/Liveperson **InternetConnectionService**: RegisteredReceiver, currentStatus = Intent { act=android.net.conn.CONNECTIVITY_CHANGE flg=0x4000010 (has extras) }
+    RegisteredReceiver, lastConnectionState = true
+D/Liveperson **Messaging**: Initializing...
+W/Liveperson **ClientProperties**: ## DEVICE_FAMILY: MOBILE
+    ## OS_NAME: ANDROID
+    ## OS_VERSION: 27
+    ## INTEGRATION: MOBILE_SDK
+    ## OS_VERSION: REL
+I/Liveperson **DatabaseHelper**: initializing db...
+D/Liveperson **ConnectionsController**: Registering Connection Receiver
+D/Liveperson **MessagingUi**: initForLogout...
+D/Liveperson **InfraStateMachine**: preLogout...
+I/Liveperson **UnregisterPusherCommand**: execute unregister for brandId 20553802
+D/Liveperson **AmsUsers**: getConsumerId for brand 20553802
+D/Liveperson **UnregisterPusherCommand**: execute: consumerId is not available. Trying to get from DB...
+W/Liveperson **UnregisterPusherCommand**: onResult: Cannot get user profile from DB. Quit unregister push
+D/Liveperson **InfraStateMachine**: Logout <-<- PreLogoutCompletedEvent
+    shutDownForLogout...
+D/Liveperson **ConnectionsController**: Unregistering Connection Receiver
+D/Liveperson **Infra**: Shutting down for logout...
+I/Liveperson **SocketManager**: Shutting down all
+D/Liveperson **ResponseMap**: onSocketClosed: sending event to all waiting requests. map = []
+D/Liveperson **DataBaseExecutor**: killing all...
+D/Liveperson **DispatchQueue**: dispose InfraStateMachine
+D/Liveperson **DataBaseExecutor**: kill all finished
+I/Liveperson **DatabaseManager**: closed db.
+D/Liveperson **InternetConnectionService**: unRegisteredReceiver
+D/Liveperson **MessageTimeoutQueue**: Remove all messages from queue.
+D/Liveperson **InfraStateMachine**: Logout <-<- ShutDownCompletedEvent
+    logout...
+D/Liveperson **NotificationController**: Clearing all data
+D/Liveperson **ImageUtils**: deleteImageFolder: Trying to delete the images folder: /data/user/0/com.liveperson.mobilemessagingexercise/files/images
+D/Liveperson **LPAudioUtils**: deleteVoiceFolder: Trying to delete the voice folder: /data/user/0/com.liveperson.mobilemessagingexercise/files/voice
+    deleteRecursive: deleting directory: /data/user/0/com.liveperson.mobilemessagingexercise/files/voice
+D/Liveperson **PreferenceManager**: Clearing all data
+D/Liveperson **DatabaseManager**: removing db
+D/Liveperson **Monitoring**: Logging out...
+W/Liveperson **Monitoring**: Not initialized
+I/MobileMessagingExerciseActivity: LivePerson SDK logout completed
+D/Liveperson **InfraStateMachine**: Logout -> IdleState
+D/Liveperson **LivePerson**: init = false mBrandId = 20553802
+D/Liveperson **MessagingUi**: init: Infra module version = 3.4.1.1245
+    init: UI module version = 3.4.1.575
+    init: Messaging module version = 3.4.0.630
+D/Liveperson **MessagingUi**: init: MessagingUi module version = 3.4.0.474
+D/Liveperson **Infra**: init: Interceptors enabled: false
+D/Liveperson **InfraStateMachine**: IdleState <-<- InitEvent
+    IdleState -> Initializing
+    Initializing <-<- InitEvent
+D/Liveperson **Infra**: Initializing!
+D/Liveperson **Loggos**: validateDomainAndBrand: Get domain from preferences: null
+    validateDomainAndBrand: Get targetId from preferences: null
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/Liveperson **InternetConnectionService**: creating new receiver
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+    isConnected true
+    lastConnectionState false
+I/Liveperson **InternetConnectionService**: Getting broadcast with action android.net.conn.CONNECTIVITY_CHANGE, connected = true
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+    isConnected true
+    lastConnectionState true
+    RegisteredReceiver, currentStatus = Intent { act=android.net.conn.CONNECTIVITY_CHANGE flg=0x4000010 (has extras) }
+    RegisteredReceiver, lastConnectionState = true
+D/Liveperson **Messaging**: Initializing...
+W/Liveperson **ClientProperties**: ## DEVICE_FAMILY: MOBILE
+    ## OS_NAME: ANDROID
+    ## OS_VERSION: 27
+    ## INTEGRATION: MOBILE_SDK
+    ## OS_VERSION: REL
+I/Liveperson **DatabaseHelper**: initializing db...
+D/Liveperson **DatabaseHelper**: Creating table MessagesTable
+D/Liveperson **DatabaseHelper**: Creating table DialogsTable
+D/Liveperson **DatabaseHelper**: Creating table ConversationsTable
+D/Liveperson **DatabaseHelper**: Creating table BrandProfileTable
+D/Liveperson **DatabaseHelper**: Creating table UsersTable
+D/Liveperson **DatabaseHelper**: Creating table FilesTable
+D/Liveperson **ConnectionsController**: Registering Connection Receiver
+D/Liveperson **MessagingUi**: Initializing...
+D/Liveperson **InfraStateMachine**: Init finished Successfully! :) 
+    Initializing -> Initialized
+    Initialized <-<- InitEvent
+    Initialized! calling onInitSucceed callback
+D/Liveperson **LivePerson**: onInitSucceed: lp_messaging_sdk module version = 3.4.0
+I/MobileMessagingExerciseActivity: LivePerson SDK initialize completed
+D/Liveperson **LivePerson**: init = true mBrandId = 20553802
+I/Liveperson **SetUsersProfileRequest**: Running SetUserProfile request...
+D/Liveperson **LivePerson**: init = true mBrandId = 20553802
+W/Liveperson **ConversationActivity**: ### DEVICE_FAMILY: DeviceFamily.MOBILE.name
+W/Liveperson **ConversationActivity**: ### OS_NAME: android
+    ### OS_VERSION: 27
+    ### INTEGRATION: Integration.MOBILE_SDK
+    ### OS_VERSION: REL
+D/Liveperson **MessagingUi**: init: Infra module version = 3.4.1.1245
+D/Liveperson **MessagingUi**: init: UI module version = 3.4.1.575
+    init: Messaging module version = 3.4.0.630
+D/Liveperson **MessagingUi**: init: MessagingUi module version = 3.4.0.474
+D/Liveperson **Infra**: init: Interceptors enabled: false
+D/Liveperson **InfraStateMachine**: Initialized <-<- InitEvent
+    Initialized! calling onInitSucceed callback
+D/Liveperson **Messaging**: Setting conversation view params : State To Display = ALL, Max Days = -1, Max Days Type = startConversationDate
+W/Settings: Setting airplane_mode_on has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+D/Liveperson **ConversationFragment**: initConversationProvider
+D/Liveperson **ConversationFragment**: onCreateView = 20553802
+I/zygote: Do partial code cache collection, code=188KB, data=164KB
+I/zygote: After code cache collection, code=188KB, data=164KB
+I/zygote: Increasing code cache capacity to 1024KB
+I/zygote: JIT allocated 71KB for compiled code of void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+    Compiler allocated 4MB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+I/zygote: JIT allocated 56KB for compiled code of void android.view.View.<init>(android.content.Context, android.util.AttributeSet, int, int)
+D/Liveperson **ConversationFragment**: onViewCreated: Set RecyclerView cache size to 10
+D/Liveperson **ConversationFragment**: onActivityCreated
+    onActivityCreated isInitialized = true
+D/Liveperson **Messaging**: Setting conversation view params : State To Display = ALL, Max Days = -1, Max Days Type = startConversationDate
+D/Liveperson **ChatMessageListRecyclerView**: isAttachedToWindow = true
+D/Liveperson **MessagesAsListLoader**: MessagesAsListLoader ctor: 214309988
+D/Liveperson **MessagesAsListLoader**: initMessages num of items:size = 0
+    MessagesAsListLoader addOldMultiItem no messages.
+D/Liveperson **ConversationFragment**: onResume: 
+I/Liveperson **ForegroundService**: register with brand 20553802
+D/Liveperson **Messaging**: moveToForeground: brandId = 20553802
+D/Liveperson **Messaging**: Init brand 20553802
+I/Liveperson **AccountsController**: Adding new account: 20553802
+D/Liveperson **AmsAccount**: setToken: storing token in preferences - null
+D/Liveperson **AmsAccount**: restoring mOriginalConsumerId = null, mConnectorId = null
+D/Liveperson **AmsAccount**: restoring data: mNonAuthCode = null
+    restoring data: mToken = null
+D/Liveperson **Messaging**: Setting conversation view params : State To Display = ALL, Max Days = -1, Max Days Type = startConversationDate
+I/Liveperson **ConnectionsController**: Adding new AmsConnection: 20553802
+I/Liveperson **AmsConnection**: --LOGIN_FLOW-- moveToForeground for brand 20553802
+I/Liveperson **NotificationController**: Clearing notification messages for brand 20553802
+D/Liveperson **ConnectionStateMachine**: DisconnectedState <-<- ForegroundEvent
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **ConversationFragment**: onConnectionChanged isConnected = false
+D/Liveperson **MessagesAsListLoader_LOAD**: onConnectionLost - removing loading old messages indicator
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+    isConnected true
+    lastConnectionState true
+    RegisteredReceiver, currentStatus = Intent { act=android.net.conn.CONNECTIVITY_CHANGE flg=0x4000010 (has extras) }
+D/Liveperson **InternetConnectionService**: RegisteredReceiver, lastConnectionState = true
+D/Liveperson **ConnectionStateMachine**: DisconnectedState -> ConnectingState
+I/Liveperson **AmsConnection**: --LOGIN_FLOW-- Start connecting for brand: 20553802
+D/Liveperson **ConnectionStatusController**: onConnectionChanged - isConnecting = true current state = -1
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **ConnectionStatusController**: apply state = 1 getHeight() = 0
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- jwt exists: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2VuaWdtYXRpYy1zaGVsZi05MzQ2MC5oZXJva3VhcHAuY29tLyIsInN1YiI6Ijg0NTAyNCIsImdpdmVuX25hbWUiOiJKb25hdGhhbiIsImZhbWlseV9uYW1lIjoiSm9uZXMiLCJlbWFpbCI6ImpvbmF0aGFuLmpvbmVzQHRlLmNvbSIsImlhdCI6MTU0NDcxODEyNSwiZXhwIjoxNTQ0NzIxNzI1fQ.YjlCUnyWHq1GGKCZ09IlyrGz88bEhgzT2gQjin-WIBC2PHo3INlOT9awYr_knewveHVzB0vBsv5FyNOuEsCNzDuSVgTXSrfP-xJam52HyZfdc0ya7FdyKP1wWACyJYqCCDGuJKr2Dx7GFy81U_hG_MRWaIRG98AhUImm10LX6RxQhZeQeyWnw7XSeuBsFHq6HcQX94Hp2KILGg5Oz55VP4oIYCs4hUMiavWOJyOIlYvR43EOyO1Ux0XQ79YnhISSeoe6WntJQrtlF_vwWBqBG1BcY6QdLBmw61JGXvCycE0CTn7_cIpnfmV3yZV5hv0DQgsA_5Lw4d7TiKyrkG8e2Q checking if expired..
+I/Choreographer: Skipped 52 frames!  The application may be doing too much work on its main thread.
+W/StaticLayout: maxLineHeight should not be -1.  maxLines:1 lineCount:1
+W/StaticLayout: maxLineHeight should not be -1.  maxLines:1 lineCount:1
+I/chatty: uid=10085(com.liveperson.mobilemessagingexercise) identical 5 lines
+W/StaticLayout: maxLineHeight should not be -1.  maxLines:1 lineCount:1
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- expiration = Thu Dec 13 17:22:05 GMT 2018
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- iat = Thu Dec 13 16:22:05 GMT 2018
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- JWT is still valid 
+D/Liveperson **ConnectionStateMachine_ConnectingState**: --LOGIN_FLOW-- ConnectingState actionOnEntry: CSDS data is missing from persistence OR version wasn't compatible on last connection or full flow required.
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- RunTaskEvent #0
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Running task: CsdsTask Retry #0, After delay: 0
+D/Liveperson **CsdsTask**: Running CSDS task...
+I/zygote: NativeAlloc concurrent copying GC freed 5989(751KB) AllocSpace objects, 0(0B) LOS objects, 50% free, 2MB/5MB, paused 5.226ms total 246.592ms
+D/Liveperson **MessagesAsListLoader_LOAD**: remove loading for history =  indexLoadingHistory = -1
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+    isConnected true
+    lastConnectionState true
+D/Liveperson **ConnectionStatusController**: onConnectionChanged - action = BROADCAST_START_CONNECTING
+    onConnectionChanged - isConnecting = true current state = 1
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **ConnectionStatusController**: apply state = 1 getHeight() = 95
+I/Choreographer: Skipped 32 frames!  The application may be doing too much work on its main thread.
+D/Liveperson **HttpHandler**: header.first User-Agent header.second ANDROID
+W/StaticLayout: maxLineHeight should not be -1.  maxLines:1 lineCount:1
+W/StaticLayout: maxLineHeight should not be -1.  maxLines:1 lineCount:1
+I/Liveperson **HttpHandler**: URL: adminlogin.liveperson.net
+W/StaticLayout: maxLineHeight should not be -1.  maxLines:1 lineCount:1
+W/StaticLayout: maxLineHeight should not be -1.  maxLines:1 lineCount:1
+D/Liveperson **HttpHandler**: Sending http request: https://adminlogin.liveperson.net/csdr/account/20553802/service/baseURI.json?version=1.0 with no Pinning Keys
+W/StaticLayout: maxLineHeight should not be -1.  maxLines:1 lineCount:1
+W/StaticLayout: maxLineHeight should not be -1.  maxLines:1 lineCount:1
+I/chatty: uid=10085(com.liveperson.mobilemessagingexercise) identical 1 line
+W/StaticLayout: maxLineHeight should not be -1.  maxLines:1 lineCount:1
+I/Liveperson **HttpHandler**: onResponse from URL: https://adminlogin.liveperson.net/csdr/account/20553802/service/baseURI.json?version=1.0
+I/Liveperson **HttpRequest**: onSuccess! 200
+D/Liveperson **CSDSRequest**: serviceName: cqmMsg : lo.cqm-msg.liveperson.net
+    serviceName: leCdnDomain : lpcdn.lpsnmedia.net
+    serviceName: mcs : mcs.liveperson.net
+    serviceName: connectionPanel : z2.connection-panel.liveperson.net
+    serviceName: redirect : z2.liveper.sn
+    serviceName: facadeMsg : lo.facade-msg.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: msgEwtAPI : lo.lp-msgewt.liveperson.net
+    serviceName: visitorFeed : lo.v-feed.liveperson.net
+    serviceName: loggos : z2.loggos.liveperson.net
+    serviceName: swift : z2.objectstorage.liveperson.net
+    serviceName: faasUI : lo.faasui.liveperson.net
+    serviceName: rtbf : lo.data-mng.liveperson.net
+    serviceName: leBiMstr : z2.bi.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: intentAnalyzer : lo.intent.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: sentinel : lo.sentinel.liveperson.net
+    serviceName: agentVep : lo.agentvep.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: keyService : lo.keyservice.liveperson.net
+    serviceName: coBrowse : lo.cobrowse.liveperson.net
+    serviceName: conversationVep : lo.convep.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: msgHist : lo.msghist.liveperson.net
+    serviceName: accountConfigReadOnly : z2.acr.liveperson.net
+    serviceName: asyncMessagingEnt : lo.msg.liveperson.net
+    serviceName: act : lo.act.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: etool : z2.etool.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: mobileVisit : dispatch.look.io
+    serviceName: acCdnDomain : accdn.lpsnmedia.net
+    serviceName: asyncMessaging : lo.ams.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: leIntegration : lo.octopus.liveperson.net
+    serviceName: nlp : lo.nlp.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: liveEngage : z2.le.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: accountConfigReadWrite : lo.ac.liveperson.net
+    serviceName: pusherInt : lo.pushsrv.int.liveperson.net
+    serviceName: leDataReporting : lo.data.liveperson.net
+    serviceName: adminArea : server.lon.liveperson.net
+    serviceName: mTag : server.lon.liveperson.net
+    serviceName: provisionGW : lo.register.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: leBilling : lo.le-billing.liveperson.net
+    serviceName: appKeyManagement : z2.appkey-mgmnt.liveperson.net
+    serviceName: liveEngageVep : lo.batchelor.liveperson.net
+    serviceName: idp : lo.idp.liveperson.net
+    serviceName: tokenizer : lo.tokenizer.liveperson.net
+    serviceName: routingBot : lo.routingbot.ext.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: accountCreation : z2.acc-create.liveperson.net
+    serviceName: predictiveDialer : lo.pd.liveperson.net
+    serviceName: staticContent : lo.content.lpsnmedia.net
+    serviceName: batchelor : z2.batchelor.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: liveEngageUI : lo.le1.liveperson.net
+    serviceName: faasGW : lo.faasgw.liveperson.net
+    serviceName: rtDashboard : lo.realtime.liveperson.net
+    serviceName: leBackofficeInt : z2.houston.int.liveperson.net
+    serviceName: mobileChat : dispatch.look.io
+D/Liveperson **CSDSRequest**: serviceName: pusher : lo.push.liveperson.net
+    serviceName: lpEng : z2.lpEng.liveperson.net
+    serviceName: openPlatform : server.lon.liveperson.net
+    serviceName: engHistDomain : lo.enghist.liveperson.net
+    serviceName: agent : server.lon.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: visitManager : lo.vm.liveperson.net
+    serviceName: msdkgw : lo.v.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: leRBMstr : z2-2.birb.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: smt : lo.v.liveperson.net
+D/Liveperson **CSDSRequest**: serviceName: coApp : z2.coapp.liveperson.net
+D/Liveperson **Loggos**: init: save domain: z2.loggos.liveperson.net, targetId: 20553802 to prefs
+D/Liveperson **AmsConnectionAnalytics**: --LOGIN_FLOW_CsdsTask--  task time = 1145 millis
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- TaskSuccessEvent
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Task CsdsTask finished successfully
+D/Liveperson **ConnectionStateMachine_ConnectingState**: Running next task...
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- RunTaskEvent #1
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Running task: LptagTask Retry #0, After delay: 0
+D/Liveperson **LptagTask**: Running LPTag task...
+D/Liveperson **HttpHandler**: header.first User-Agent header.second ANDROID
+I/Liveperson **HttpHandler**: URL: lptag.liveperson.net
+D/Liveperson **HttpHandler**: Sending http request: https://lptag.liveperson.net/lptag/api/account/20553802/configuration/applications/taglets/?v=2.0&scp=mb with no Pinning Keys
+D/Liveperson **ConnectionStatusController**: apply state = 2 getHeight() = 95
+I/Liveperson **HttpHandler**: onResponse from URL: https://lptag.liveperson.net/lptag/api/account/20553802/configuration/applications/taglets/?v=2.0&scp=mb
+I/Liveperson **HttpRequest**: onSuccess! 200
+D/Liveperson **LptagRequest**: onSuccess: received response: {"serviceMap":[{"service":"agent","account":"20553802","baseURI":"server.lon.liveperson.net"},{"service":"keyService","account":"20553802","baseURI":"lo.keyservice.liveperson.net"},{"service":"facadeMsg","account":"20553802","baseURI":"lo.facade-msg.liveperson.net"},{"service":"mTag","account":"20553802","baseURI":"server.lon.liveperson.net"},{"service":"leCdnDomain","account":"20553802","baseURI":"lpcdn.lpsnmedia.net"},{"service":"liveEngageUI","account":"20553802","baseURI":"lo.le1.liveperson.net"},{"service":"leBiMstr","account":"20553802","baseURI":"z2.bi.liveperson.net"},{"service":"msdkgw","account":"20553802","baseURI":"lo.v.liveperson.net"},{"service":"swift","account":"20553802","baseURI":"z2.objectstorage.liveperson.net"},{"service":"pusherInt","account":"20553802","baseURI":"lo.pushsrv.int.liveperson.net"},{"service":"lpEng","account":"20553802","baseURI":"z2.lpEng.liveperson.net"},{"service":"nlp","account":"20553802","baseURI":"lo.nlp.liveperson.net"},{"service":"liveEngage","account":"20553802","baseURI":"z2.le.liveperson.net"},{"service":"accountConfigReadWrite","account":"20553802","baseURI":"lo.ac.liveperson.net"},{"service":"idp","account":"20553802","baseURI":"lo.idp.liveperson.net"},{"service":"staticContent","account":"20553802","baseURI":"lo.content.lpsnmedia.net"},{"service":"batchelor","account":"20553802","baseURI":"z2.batchelor.liveperson.net"},{"service":"asyncMessaging","account":"20553802","baseURI":"lo.ams.liveperson.net"},{"service":"rtDashboard","account":"20553802","baseURI":"lo.realtime.liveperson.net"},{"service":"provisionGW","account":"20553802","baseURI":"lo.register.liveperson.net"},{"service":"routingBot","account":"20553802","baseURI":"lo.routingbot.ext.liveperson.net"},{"service":"msgEwtAPI","account":"20553802","baseURI":"lo.lp-msgewt.liveperson.net"},{"service":"adminArea","account":"20553802","baseURI":"server.lon.liveperson.net"},{"service":"openPlatform","account":"20553802","baseURI":"server.lon.liveperson.net"},{"service":"accountCreation","account":"20553802","baseURI":"z2.acc-create.liveperson.net"},{"service":"act","account":"20553802","baseURI":"lo.act.liveperson.net"},{"service":"predictiveDialer","account":"20553802","baseURI":"lo.pd.liveperson.net"},{"service":"engHistDomain","account":"20553802","baseURI":"lo.enghist.liveperson.net"},{"service":"asyncMessagingEnt","account":"20553802","baseURI":"lo.msg.liveperson.net"},{"service":"visitManager","account":"20553802","baseURI":"lo.vm.liveperson.net"},{"service":"liveEngageVep","account":"20553802","baseURI":"lo.batchelor.liveperson.net"},{"service":"coApp","account":"20553802","baseURI":"z2.coapp.liveperson.net"},{"service":"rtbf","account":"20553802","baseURI":"lo.data-mng.liveperson.net"},{"service":"etool","account":"20553802","baseURI":"z2.etool.liveperson.net"},{"service":"redirect","account":"20553802","baseURI":"z2.liveper.sn"},{"service":"faasGW","account":"20553802","baseURI":"lo.faasgw.liveperson.net"},{"service":"leBilling","account":"20553802","baseURI":"lo.le-billing.liveperson.net"},{"service":"loggos","account":"20553802","baseURI":"z2.loggos.liveperson.net"},{"service":"coBrowse","account":"20553802","baseURI":"lo.cobrowse.liveperson.net"},{"service":"conversationVep","account":"20553802","baseURI":"lo.convep.liveperson.net"},{"service":"cqmMsg","account":"20553802","baseURI":"lo.cqm-msg.liveperson.net"},{"service":"leDataReporting","account":"20553802","baseURI":"lo.data.liveperson.net"},{"service":"leBackofficeInt","account":"20553802","baseURI":"z2.houston.int.liveperson.net"},{"service":"agentVep","account":"20553802","baseURI":"lo.agentvep.liveperson.net"},{"service":"intentAnalyzer","account":"20553802","baseURI":"lo.intent.liveperson.net"},{"service":"pusher","account":"20553802","baseURI":"lo.push.liveperson.net"},{"service":"leRBMstr","account":"20553802","baseURI":"z2-2.birb.liveperson.net"},{"service":"appKeyManagement","account":"20553802","baseURI":"z2.appkey-mgmnt.liveperson.net"},{"service":"mcs","ac
+D/Liveperson **LptagRequest**: onSuccess: Received Features json. Parse and return
+D/Liveperson **LptagTask**: onSuccess: Got AutoMessages feature: true
+D/Liveperson **AmsConnectionAnalytics**: --LOGIN_FLOW_LptagTask--  task time = 445 millis
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- TaskSuccessEvent
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Task LptagTask finished successfully
+D/Liveperson **ConnectionStateMachine_ConnectingState**: Running next task...
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- RunTaskEvent #2
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Running task: ConfigurationFetcherTask Retry #0, After delay: 0
+D/Liveperson **ConfigurationFetcherTask**: Running configuration check task...
+D/Liveperson **HttpHandler**: header.first User-Agent header.second ANDROID
+I/Liveperson **HttpHandler**: URL: lpcdn.lpsnmedia.net
+D/Liveperson **HttpHandler**: Sending http request: https://lpcdn.lpsnmedia.net/mobile/configuration/androidConfig.json with no Pinning Keys
+I/Liveperson **HttpHandler**: onResponse from URL: https://lpcdn.lpsnmedia.net/mobile/configuration/androidConfig.json
+I/Liveperson **HttpRequest**: onSuccess! 200
+D/Liveperson **ConfigurationRequest**: configurationRequest - onCompleted {
+      "android_SDK_min_version" : "1.0.53",
+      "android_LiveChatSDK_min_version" : "1.0.0"
+    }
+W/Liveperson **ConfigurationFetcherTask**: getPhotoSharingEnabledConfiguration: photo sharing enabled parameter does not exist in configuration json
+D/Liveperson **ConfigurationFetcherTask**: onSuccess: Checking SDK version against version from lp-cdn
+D/Liveperson **VersionUtils**: versionCompare str1 3.4.0
+    versionCompare str2 1.0.53
+    isValidSdkVersion: Version check is OK
+D/Liveperson **ConfigurationFetcherTask**: Build version is OK
+D/Liveperson **AmsConnectionAnalytics**: --LOGIN_FLOW_ConfigurationFetcherTask--  task time = 425 millis
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- TaskSuccessEvent
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Task ConfigurationFetcherTask finished successfully
+D/Liveperson **ConnectionStateMachine_ConnectingState**: Running next task...
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- RunTaskEvent #3
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Running task: SiteSettingsFetcherTask Retry #0, After delay: 0
+D/Liveperson **SiteSettingsFetcherTask**: Running site settings check task...
+D/Liveperson **HttpHandler**: header.first User-Agent header.second ANDROID
+I/Liveperson **HttpHandler**: URL: accdn.lpsnmedia.net
+D/Liveperson **HttpHandler**: Sending http request: https://accdn.lpsnmedia.net/api/account/20553802/configuration/setting/accountproperties with no Pinning Keys
+I/Liveperson **HttpHandler**: onResponse from URL: https://accdn.lpsnmedia.net/api/account/20553802/configuration/setting/accountproperties
+I/Liveperson **HttpRequest**: onSuccess! 200
+D/Liveperson **SiteSettingsRequest**: siteSettingsRequest - onCompleted [{"id":"messaging.audio.sharing.enabled","createdDate":"2018-05-10 08:30:30","modifiedDate":"2018-11-15 16:36:35","type":2,"propertyValue":{"value":"false"},"deleted":false},{"id":"messaging.ios.sdk.min.version","createdDate":"2017-01-09 02:49:17","type":2,"propertyValue":{"value":"1.1.36"},"deleted":false},{"id":"messaging.audio.sharing.maxMessageLength","createdDate":"2018-05-10 08:30:30","type":1,"propertyValue":{"value":120},"deleted":false},{"id":"messaging.pending.agent.during.transfer.enabled","createdDate":"2017-05-17 02:44:16","type":2,"propertyValue":{"value":"true"},"deleted":false},{"id":"messaging.android.sdk.min.version","createdDate":"2017-01-09 03:39:32","type":2,"propertyValue":{"value":"1.0.53"},"deleted":false},{"id":"messaging.ios.logs.settings","createdDate":"2017-01-09 02:49:17","type":4,"propertyValue":{"value":{"level":"WARNING","minLogLevel":"INFO","randomFactor":1000.0,"maxEvents":50.0,"maxPendingEventsRequests":10.0}},"deleted":false},{"id":"messaging.file.sharing.enabled","createdDate":"2016-09-18 02:31:13","modifiedDate":"2018-11-15 16:36:35","type":2,"propertyValue":{"value":"false"},"deleted":false}]
+D/Liveperson **SiteSettingsFetcherTask**: parseConfigurationData: audio sharing is disabled in SiteSettings
+    onSuccess: minSdkVersion from site-settings: 1.0.53
+    parseConfigurationData: photo sharing is disabled in SiteSettings
+    onSuccess: site settings enablePhotoSharing is: false
+D/Liveperson **SiteSettingsFetcherTask**: onSuccess: Got photo sharing enable value from site settings: false
+    onSuccess: Checking SDK version against version from site-settings
+D/Liveperson **VersionUtils**: versionCompare str1 3.4.0
+    versionCompare str2 1.0.53
+    isValidSdkVersion: Version check is OK
+D/Liveperson **AmsConnectionAnalytics**: --LOGIN_FLOW_SiteSettingsFetcherTask--  task time = 405 millis
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- TaskSuccessEvent
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Task SiteSettingsFetcherTask finished successfully
+D/Liveperson **ConnectionStateMachine_ConnectingState**: Running next task...
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- RunTaskEvent #4
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Running task: DataBaseTask Retry #0, After delay: 0
+D/Liveperson **DataBaseTask**: Running Database loading task...
+D/Liveperson **AmsUsers**: Adding consumer Id  for brand 20553802
+D/Liveperson **AmsConnectionAnalytics**: --LOGIN_FLOW_DataBaseTask--  task time = 8 millis
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- TaskSuccessEvent
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Task DataBaseTask finished successfully
+D/Liveperson **ConnectionStateMachine_ConnectingState**: Running next task...
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- RunTaskEvent #5
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Running task: UnAuthGetEngagementTask Retry #0, After delay: 0
+D/Liveperson **UnAuthGetEngagementTask**: Running GetEngagment task, relevant only if auth type is UnAuth. current type: AUTH
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- TaskSuccessEvent
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Task UnAuthGetEngagementTask finished successfully
+D/Liveperson **ConnectionStateMachine_ConnectingState**: Running next task...
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- RunTaskEvent #6
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Running task: IdpTask Retry #0, After delay: 0
+D/Liveperson **IdpTask**: Running IDP task...
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- jwt exists: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2VuaWdtYXRpYy1zaGVsZi05MzQ2MC5oZXJva3VhcHAuY29tLyIsInN1YiI6Ijg0NTAyNCIsImdpdmVuX25hbWUiOiJKb25hdGhhbiIsImZhbWlseV9uYW1lIjoiSm9uZXMiLCJlbWFpbCI6ImpvbmF0aGFuLmpvbmVzQHRlLmNvbSIsImlhdCI6MTU0NDcxODEyNSwiZXhwIjoxNTQ0NzIxNzI1fQ.YjlCUnyWHq1GGKCZ09IlyrGz88bEhgzT2gQjin-WIBC2PHo3INlOT9awYr_knewveHVzB0vBsv5FyNOuEsCNzDuSVgTXSrfP-xJam52HyZfdc0ya7FdyKP1wWACyJYqCCDGuJKr2Dx7GFy81U_hG_MRWaIRG98AhUImm10LX6RxQhZeQeyWnw7XSeuBsFHq6HcQX94Hp2KILGg5Oz55VP4oIYCs4hUMiavWOJyOIlYvR43EOyO1Ux0XQ79YnhISSeoe6WntJQrtlF_vwWBqBG1BcY6QdLBmw61JGXvCycE0CTn7_cIpnfmV3yZV5hv0DQgsA_5Lw4d7TiKyrkG8e2Q checking if expired..
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- expiration = Thu Dec 13 17:22:05 GMT 2018
+    --LOGIN_FLOW-- iat = Thu Dec 13 16:22:05 GMT 2018
+    --LOGIN_FLOW-- JWT is still valid 
+D/Liveperson **IdpRequest**: Idp json body: {"id_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2VuaWdtYXRpYy1zaGVsZi05MzQ2MC5oZXJva3VhcHAuY29tLyIsInN1YiI6Ijg0NTAyNCIsImdpdmVuX25hbWUiOiJKb25hdGhhbiIsImZhbWlseV9uYW1lIjoiSm9uZXMiLCJlbWFpbCI6ImpvbmF0aGFuLmpvbmVzQHRlLmNvbSIsImlhdCI6MTU0NDcxODEyNSwiZXhwIjoxNTQ0NzIxNzI1fQ.YjlCUnyWHq1GGKCZ09IlyrGz88bEhgzT2gQjin-WIBC2PHo3INlOT9awYr_knewveHVzB0vBsv5FyNOuEsCNzDuSVgTXSrfP-xJam52HyZfdc0ya7FdyKP1wWACyJYqCCDGuJKr2Dx7GFy81U_hG_MRWaIRG98AhUImm10LX6RxQhZeQeyWnw7XSeuBsFHq6HcQX94Hp2KILGg5Oz55VP4oIYCs4hUMiavWOJyOIlYvR43EOyO1Ux0XQ79YnhISSeoe6WntJQrtlF_vwWBqBG1BcY6QdLBmw61JGXvCycE0CTn7_cIpnfmV3yZV5hv0DQgsA_5Lw4d7TiKyrkG8e2Q"}
+D/Liveperson **IdpRequest**: IDP request url : https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0
+D/Liveperson **HttpHandler**: header.first User-Agent header.second ANDROID
+    header.first sdkVersion header.second 3.4.0
+    header.first platform header.second Android
+D/Liveperson **HttpHandler**: header.first platformVer header.second 27
+    header.first device header.second Android SDK built for x86
+    header.first applicationId header.second 20553802
+I/Liveperson **HttpHandler**: URL: lo.idp.liveperson.net
+D/Liveperson **HttpHandler**: Sending http request: https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0 with no Pinning Keys
+I/Liveperson **HttpHandler**: onResponse from URL: https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0
+I/Liveperson **HttpRequest**: onResponseFailure Response{protocol=h2, code=500, message=, url=https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0}
+W/Liveperson **HttpRequest**:  Error while sending http request : Error msg: On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **IdpRequest**: Error: idp url = https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0. Exception On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+E/Liveperson **IdpRequest**: On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **Loggos**: sendMessageImmediately: Sending message
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **Loggos**: sendAllQueue: Start: 1544718131300
+    sendAllQueue: Copy message list and clear 50 messages
+    sendAllQueue: Sending all repository, 50 messages
+D/Liveperson **Loggos**: sendAllQueue: End: 1544718131306
+D/Liveperson **IdpTask**: onError: failed to connect to idp! taskType = IDP, error: On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **HttpHandler**: header.first User-Agent header.second ANDROID
+I/Liveperson **HttpHandler**: URL: z2.loggos.liveperson.net
+D/Liveperson **HttpHandler**: Sending http request: https://z2.loggos.liveperson.net/api/loggos/log/?appName=messaging_SDK_Android with no Pinning Keys
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- TaskFailedEvent
+E/Liveperson **ConnectionStateMachine_ConnectingState**: Connection task IDP failed On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **Loggos**: sendMessageImmediately: Sending message
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **Loggos**: Time from last error is less than 3600000 millis. No need to send to loggos
+    sendAllQueue: Network is not available or didn't pass enough time for next sending. Didn't send messages
+D/Liveperson **ConnectionStateMachine_ConnectingState**: Scheduling Task IdpTask in 1000 millis. retry number = 1
+I/Liveperson **HttpHandler**: onResponse from URL: https://z2.loggos.liveperson.net/api/loggos/log/?appName=messaging_SDK_Android
+I/Liveperson **HttpRequest**: onSuccess! 200
+I/Liveperson **HttpLogSender**: SendBulk onSuccess: Sent to loggos successfully {"logId":"obax5zb2"}
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- RunTaskEvent #6
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Running task: IdpTask Retry #1, After delay: 1000
+D/Liveperson **IdpTask**: Running IDP task...
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- jwt exists: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2VuaWdtYXRpYy1zaGVsZi05MzQ2MC5oZXJva3VhcHAuY29tLyIsInN1YiI6Ijg0NTAyNCIsImdpdmVuX25hbWUiOiJKb25hdGhhbiIsImZhbWlseV9uYW1lIjoiSm9uZXMiLCJlbWFpbCI6ImpvbmF0aGFuLmpvbmVzQHRlLmNvbSIsImlhdCI6MTU0NDcxODEyNSwiZXhwIjoxNTQ0NzIxNzI1fQ.YjlCUnyWHq1GGKCZ09IlyrGz88bEhgzT2gQjin-WIBC2PHo3INlOT9awYr_knewveHVzB0vBsv5FyNOuEsCNzDuSVgTXSrfP-xJam52HyZfdc0ya7FdyKP1wWACyJYqCCDGuJKr2Dx7GFy81U_hG_MRWaIRG98AhUImm10LX6RxQhZeQeyWnw7XSeuBsFHq6HcQX94Hp2KILGg5Oz55VP4oIYCs4hUMiavWOJyOIlYvR43EOyO1Ux0XQ79YnhISSeoe6WntJQrtlF_vwWBqBG1BcY6QdLBmw61JGXvCycE0CTn7_cIpnfmV3yZV5hv0DQgsA_5Lw4d7TiKyrkG8e2Q checking if expired..
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- expiration = Thu Dec 13 17:22:05 GMT 2018
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- iat = Thu Dec 13 16:22:05 GMT 2018
+    --LOGIN_FLOW-- JWT is still valid 
+D/Liveperson **IdpRequest**: Idp json body: {"id_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2VuaWdtYXRpYy1zaGVsZi05MzQ2MC5oZXJva3VhcHAuY29tLyIsInN1YiI6Ijg0NTAyNCIsImdpdmVuX25hbWUiOiJKb25hdGhhbiIsImZhbWlseV9uYW1lIjoiSm9uZXMiLCJlbWFpbCI6ImpvbmF0aGFuLmpvbmVzQHRlLmNvbSIsImlhdCI6MTU0NDcxODEyNSwiZXhwIjoxNTQ0NzIxNzI1fQ.YjlCUnyWHq1GGKCZ09IlyrGz88bEhgzT2gQjin-WIBC2PHo3INlOT9awYr_knewveHVzB0vBsv5FyNOuEsCNzDuSVgTXSrfP-xJam52HyZfdc0ya7FdyKP1wWACyJYqCCDGuJKr2Dx7GFy81U_hG_MRWaIRG98AhUImm10LX6RxQhZeQeyWnw7XSeuBsFHq6HcQX94Hp2KILGg5Oz55VP4oIYCs4hUMiavWOJyOIlYvR43EOyO1Ux0XQ79YnhISSeoe6WntJQrtlF_vwWBqBG1BcY6QdLBmw61JGXvCycE0CTn7_cIpnfmV3yZV5hv0DQgsA_5Lw4d7TiKyrkG8e2Q"}
+    IDP request url : https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0
+D/Liveperson **HttpHandler**: header.first User-Agent header.second ANDROID
+    header.first sdkVersion header.second 3.4.0
+    header.first platform header.second Android
+    header.first platformVer header.second 27
+    header.first device header.second Android SDK built for x86
+    header.first applicationId header.second 20553802
+I/Liveperson **HttpHandler**: URL: lo.idp.liveperson.net
+D/Liveperson **HttpHandler**: Sending http request: https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0 with no Pinning Keys
+I/zygote: Do full code cache collection, code=500KB, data=309KB
+I/zygote: After code cache collection, code=473KB, data=251KB
+I/Liveperson **HttpHandler**: onResponse from URL: https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0
+I/Liveperson **HttpRequest**: onResponseFailure Response{protocol=h2, code=500, message=, url=https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0}
+W/Liveperson **HttpRequest**:  Error while sending http request : Error msg: On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **IdpRequest**: Error: idp url = https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0. Exception On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+E/Liveperson **IdpRequest**: On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **Loggos**: sendMessageImmediately: Sending message
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **Loggos**: Time from last error is less than 3600000 millis. No need to send to loggos
+    sendAllQueue: Network is not available or didn't pass enough time for next sending. Didn't send messages
+D/Liveperson **IdpTask**: onError: failed to connect to idp! taskType = IDP, error: On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- TaskFailedEvent
+E/Liveperson **ConnectionStateMachine_ConnectingState**: Connection task IDP failed On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **Loggos**: sendMessageImmediately: Sending message
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+    isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **Loggos**: Time from last error is less than 3600000 millis. No need to send to loggos
+    sendAllQueue: Network is not available or didn't pass enough time for next sending. Didn't send messages
+D/Liveperson **ConnectionStateMachine_ConnectingState**: Scheduling Task IdpTask in 2000 millis. retry number = 2
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- RunTaskEvent #6
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Running task: IdpTask Retry #2, After delay: 2000
+D/Liveperson **IdpTask**: Running IDP task...
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- jwt exists: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2VuaWdtYXRpYy1zaGVsZi05MzQ2MC5oZXJva3VhcHAuY29tLyIsInN1YiI6Ijg0NTAyNCIsImdpdmVuX25hbWUiOiJKb25hdGhhbiIsImZhbWlseV9uYW1lIjoiSm9uZXMiLCJlbWFpbCI6ImpvbmF0aGFuLmpvbmVzQHRlLmNvbSIsImlhdCI6MTU0NDcxODEyNSwiZXhwIjoxNTQ0NzIxNzI1fQ.YjlCUnyWHq1GGKCZ09IlyrGz88bEhgzT2gQjin-WIBC2PHo3INlOT9awYr_knewveHVzB0vBsv5FyNOuEsCNzDuSVgTXSrfP-xJam52HyZfdc0ya7FdyKP1wWACyJYqCCDGuJKr2Dx7GFy81U_hG_MRWaIRG98AhUImm10LX6RxQhZeQeyWnw7XSeuBsFHq6HcQX94Hp2KILGg5Oz55VP4oIYCs4hUMiavWOJyOIlYvR43EOyO1Ux0XQ79YnhISSeoe6WntJQrtlF_vwWBqBG1BcY6QdLBmw61JGXvCycE0CTn7_cIpnfmV3yZV5hv0DQgsA_5Lw4d7TiKyrkG8e2Q checking if expired..
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- expiration = Thu Dec 13 17:22:05 GMT 2018
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- iat = Thu Dec 13 16:22:05 GMT 2018
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- JWT is still valid 
+D/Liveperson **IdpRequest**: Idp json body: {"id_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2VuaWdtYXRpYy1zaGVsZi05MzQ2MC5oZXJva3VhcHAuY29tLyIsInN1YiI6Ijg0NTAyNCIsImdpdmVuX25hbWUiOiJKb25hdGhhbiIsImZhbWlseV9uYW1lIjoiSm9uZXMiLCJlbWFpbCI6ImpvbmF0aGFuLmpvbmVzQHRlLmNvbSIsImlhdCI6MTU0NDcxODEyNSwiZXhwIjoxNTQ0NzIxNzI1fQ.YjlCUnyWHq1GGKCZ09IlyrGz88bEhgzT2gQjin-WIBC2PHo3INlOT9awYr_knewveHVzB0vBsv5FyNOuEsCNzDuSVgTXSrfP-xJam52HyZfdc0ya7FdyKP1wWACyJYqCCDGuJKr2Dx7GFy81U_hG_MRWaIRG98AhUImm10LX6RxQhZeQeyWnw7XSeuBsFHq6HcQX94Hp2KILGg5Oz55VP4oIYCs4hUMiavWOJyOIlYvR43EOyO1Ux0XQ79YnhISSeoe6WntJQrtlF_vwWBqBG1BcY6QdLBmw61JGXvCycE0CTn7_cIpnfmV3yZV5hv0DQgsA_5Lw4d7TiKyrkG8e2Q"}
+D/Liveperson **IdpRequest**: IDP request url : https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0
+D/Liveperson **HttpHandler**: header.first User-Agent header.second ANDROID
+D/Liveperson **HttpHandler**: header.first sdkVersion header.second 3.4.0
+    header.first platform header.second Android
+D/Liveperson **HttpHandler**: header.first platformVer header.second 27
+D/Liveperson **HttpHandler**: header.first device header.second Android SDK built for x86
+D/Liveperson **HttpHandler**: header.first applicationId header.second 20553802
+I/Liveperson **HttpHandler**: URL: lo.idp.liveperson.net
+D/Liveperson **HttpHandler**: Sending http request: https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0 with no Pinning Keys
+I/Liveperson **HttpHandler**: onResponse from URL: https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0
+I/Liveperson **HttpRequest**: onResponseFailure Response{protocol=h2, code=500, message=, url=https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0}
+W/Liveperson **HttpRequest**:  Error while sending http request : Error msg: On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **IdpRequest**: Error: idp url = https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0. Exception On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+E/Liveperson **IdpRequest**: On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **Loggos**: sendMessageImmediately: Sending message
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **Loggos**: Time from last error is less than 3600000 millis. No need to send to loggos
+D/Liveperson **Loggos**: sendAllQueue: Network is not available or didn't pass enough time for next sending. Didn't send messages
+D/Liveperson **IdpTask**: onError: failed to connect to idp! taskType = IDP, error: On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- TaskFailedEvent
+E/Liveperson **ConnectionStateMachine_ConnectingState**: Connection task IDP failed On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **Loggos**: sendMessageImmediately: Sending message
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **Loggos**: Time from last error is less than 3600000 millis. No need to send to loggos
+    sendAllQueue: Network is not available or didn't pass enough time for next sending. Didn't send messages
+D/Liveperson **ConnectionStateMachine_ConnectingState**: Scheduling Task IdpTask in 4000 millis. retry number = 3
+D/Liveperson **ConnectionStatusController**: apply state = 3 getHeight() = 95
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- RunTaskEvent #6
+I/Liveperson **ConnectionStateMachine_ConnectingState**: Running task: IdpTask Retry #3, After delay: 4000
+D/Liveperson **IdpTask**: Running IDP task...
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- jwt exists: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2VuaWdtYXRpYy1zaGVsZi05MzQ2MC5oZXJva3VhcHAuY29tLyIsInN1YiI6Ijg0NTAyNCIsImdpdmVuX25hbWUiOiJKb25hdGhhbiIsImZhbWlseV9uYW1lIjoiSm9uZXMiLCJlbWFpbCI6ImpvbmF0aGFuLmpvbmVzQHRlLmNvbSIsImlhdCI6MTU0NDcxODEyNSwiZXhwIjoxNTQ0NzIxNzI1fQ.YjlCUnyWHq1GGKCZ09IlyrGz88bEhgzT2gQjin-WIBC2PHo3INlOT9awYr_knewveHVzB0vBsv5FyNOuEsCNzDuSVgTXSrfP-xJam52HyZfdc0ya7FdyKP1wWACyJYqCCDGuJKr2Dx7GFy81U_hG_MRWaIRG98AhUImm10LX6RxQhZeQeyWnw7XSeuBsFHq6HcQX94Hp2KILGg5Oz55VP4oIYCs4hUMiavWOJyOIlYvR43EOyO1Ux0XQ79YnhISSeoe6WntJQrtlF_vwWBqBG1BcY6QdLBmw61JGXvCycE0CTn7_cIpnfmV3yZV5hv0DQgsA_5Lw4d7TiKyrkG8e2Q checking if expired..
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- expiration = Thu Dec 13 17:22:05 GMT 2018
+    --LOGIN_FLOW-- iat = Thu Dec 13 16:22:05 GMT 2018
+D/Liveperson **TokenUtils**: --LOGIN_FLOW-- JWT is still valid 
+D/Liveperson **IdpRequest**: Idp json body: {"id_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2VuaWdtYXRpYy1zaGVsZi05MzQ2MC5oZXJva3VhcHAuY29tLyIsInN1YiI6Ijg0NTAyNCIsImdpdmVuX25hbWUiOiJKb25hdGhhbiIsImZhbWlseV9uYW1lIjoiSm9uZXMiLCJlbWFpbCI6ImpvbmF0aGFuLmpvbmVzQHRlLmNvbSIsImlhdCI6MTU0NDcxODEyNSwiZXhwIjoxNTQ0NzIxNzI1fQ.YjlCUnyWHq1GGKCZ09IlyrGz88bEhgzT2gQjin-WIBC2PHo3INlOT9awYr_knewveHVzB0vBsv5FyNOuEsCNzDuSVgTXSrfP-xJam52HyZfdc0ya7FdyKP1wWACyJYqCCDGuJKr2Dx7GFy81U_hG_MRWaIRG98AhUImm10LX6RxQhZeQeyWnw7XSeuBsFHq6HcQX94Hp2KILGg5Oz55VP4oIYCs4hUMiavWOJyOIlYvR43EOyO1Ux0XQ79YnhISSeoe6WntJQrtlF_vwWBqBG1BcY6QdLBmw61JGXvCycE0CTn7_cIpnfmV3yZV5hv0DQgsA_5Lw4d7TiKyrkG8e2Q"}
+    IDP request url : https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0
+D/Liveperson **HttpHandler**: header.first User-Agent header.second ANDROID
+    header.first sdkVersion header.second 3.4.0
+    header.first platform header.second Android
+D/Liveperson **HttpHandler**: header.first platformVer header.second 27
+    header.first device header.second Android SDK built for x86
+    header.first applicationId header.second 20553802
+I/Liveperson **HttpHandler**: URL: lo.idp.liveperson.net
+D/Liveperson **HttpHandler**: Sending http request: https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0 with no Pinning Keys
+I/Liveperson **HttpHandler**: onResponse from URL: https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0
+I/Liveperson **HttpRequest**: onResponseFailure Response{protocol=h2, code=500, message=, url=https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0}
+W/Liveperson **HttpRequest**:  Error while sending http request : Error msg: On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **IdpRequest**: Error: idp url = https://lo.idp.liveperson.net/api/account/20553802/app/default/authenticate?v=2.0. Exception On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+E/Liveperson **IdpRequest**: On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **Loggos**: sendMessageImmediately: Sending message
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+    isNetworkAvailable: isConnected = true
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **Loggos**: Time from last error is less than 3600000 millis. No need to send to loggos
+    sendAllQueue: Network is not available or didn't pass enough time for next sending. Didn't send messages
+D/Liveperson **IdpTask**: onError: failed to connect to idp! taskType = IDP, error: On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- TaskFailedEvent
+E/Liveperson **ConnectionStateMachine_ConnectingState**: Connection task IDP failed On Response Error :  response code: 500 body: {"internalErrorCode":"9007"}
+D/Liveperson **Loggos**: sendMessageImmediately: Sending message
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+    isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: isConnected = true
+D/Liveperson **InternetConnectionService**: isNetworkAvailable: networkInfo = [type: MOBILE[LTE], state: CONNECTED/CONNECTED, reason: connected, extra: epc.tmobile.com, failover: false, available: true, roaming: false]
+D/Liveperson **Loggos**: Time from last error is less than 3600000 millis. No need to send to loggos
+    sendAllQueue: Network is not available or didn't pass enough time for next sending. Didn't send messages
+D/Liveperson **ConnectionStateMachine_ConnectingState**: Scheduling Task IdpTask in 8000 millis. retry number = 4
+D/Liveperson **ConversationFragment**: onPause: 
+I/Liveperson **ForegroundService**: unregister with brand 20553802
+I/Liveperson **ForegroundService**: unregister with target 20553802
+D/Liveperson **PlayingAudioManager**: Currently in list 0 items. []
+I/Liveperson **AmsConnection**: --LOGIN_FLOW-- moveToBackground for brand 20553802
+D/Liveperson **ConnectionStateMachine**: ConnectingState <-<- BackgroundEvent
+D/Liveperson **ConnectionStateMachine_ConnectingState**: Got BackgroundEvent. Disconnecting...
+    Clearing waiting delayed tasks.
+D/Liveperson **ConnectionStateMachine**: ConnectingState -> DisconnectingState
+I/Liveperson **AmsConnection**: --LOGIN_FLOW-- 20553802: disconnected!
+I/Liveperson **AmsConnection**: --LOGIN_FLOW-- Unregister socket for brand 20553802, connectionUrl = null
+D/Liveperson **AmsConnectionAnalytics**: --LOGIN_FLOW-- Disconnecting. tried to connect for -17059 millis
+D/Liveperson **ConnectionStateMachine**: DisconnectingState <-<- RunTaskEvent #0
+I/Liveperson **ConnectionStateMachine_DisconnectingState**: Running task: CloseConnectionTask Retry #0, After delay: 0
+D/Liveperson **CloseConnectionTask**: Running close socket task...
+I/Liveperson **CloseConnectionTask**: Current socket state: INIT
+D/Liveperson **ConnectionStateMachine**: DisconnectingState <-<- TaskSuccessEvent
+D/Liveperson **ConnectionStateMachine_DisconnectingState**: Task CloseConnectionTask finished successfully
+    Scheduling Task CloseConnectionTask in 1000 millis. retry number = 1
+D/LivePersonBroadcastReceiver: Got LP intent event with action LP_ON_CONVERSATION_FRAGMENT_CLOSED_INTENT_ACTION
+D/Liveperson **MessagesAsListLoader_MERGER**: isItemAtPositionVisible - firstVisibleItemPosition: -1 , lastVisibleItemPosition: -1 itemPosition: -1
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/Liveperson **ConversationFragment**: onDestroy
+D/EGL_emulation: eglMakeCurrent: 0xa4439b00: ver 3 0 (tinfo 0xa440c780)
+D/Liveperson **ConnectionStateMachine**: DisconnectingState <-<- RunTaskEvent #1
+I/Liveperson **ConnectionStateMachine_DisconnectingState**: Running task: RemoveOlderImagesTask Retry #1, After delay: 1000
+D/Liveperson **Messaging**: removeMultipleOlderFiles without service
+D/Liveperson **FileSharingManager**: removeMultipleOlderFiles: removing older files if greater than: 20. fileTypeString: 'jpg','jpeg','png'
+D/Liveperson **FileSharingManager**: removeMultipleOlderFiles: removing older files if greater than: 20. fileTypeString: 'm4a','acc','mp3'
+D/Liveperson **AmsConnectionAnalytics**: --LOGIN_FLOW_RemoveOlderImagesTask--  task time = 2 millis
+D/Liveperson **ConnectionStateMachine**: DisconnectingState <-<- TaskSuccessEvent
+D/Liveperson **ConnectionStateMachine_DisconnectingState**: Task RemoveOlderImagesTask finished successfully
+    Scheduling Task RemoveOlderImagesTask in 1000 millis. retry number = 1
+D/Liveperson **AmsFiles**: query: number of records with localUrl: 0
+D/Liveperson **FileSharingManager**: removeMultipleOlderFiles: number of localUrl exist in DB: 0 (fileTypeString = 'jpg','jpeg','png')
+D/Liveperson **AmsFiles**: query: number of records with localUrl: 0
+D/Liveperson **FileSharingManager**: removeMultipleOlderFiles: number of localUrl exist in DB: 0 (fileTypeString = 'm4a','acc','mp3')
+D/Liveperson **ConnectionStateMachine**: DisconnectingState <-<- RunTaskEvent #2
+I/Liveperson **ConnectionStateMachine_DisconnectingState**: Disconnected flow finished successfully! :)
+D/Liveperson **ConnectionStateMachine**: DisconnectingState -> DisconnectedState
+I/Liveperson **AmsConnection**: --LOGIN_FLOW-- 20553802: disconnected!
+    --LOGIN_FLOW-- Unregister socket for brand 20553802, connectionUrl = null
+D/Liveperson **MessageTimeoutQueue**: Remove all messages from queue.
+D/Liveperson **ConnectionStateMachine_DisconnectedState**: Unregister to network changes
+D/Liveperson **InternetConnectionService**: unRegisteredReceiver
