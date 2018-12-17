@@ -2,45 +2,39 @@ package com.liveperson.mobilemessagingexercise.ConversationRunners;
 
 import android.app.Activity;
 import android.util.Log;
+
 import com.liveperson.infra.ConversationViewParams;
 import com.liveperson.infra.InitLivePersonProperties;
 import com.liveperson.infra.LPAuthenticationParams;
 import com.liveperson.infra.LPConversationsHistoryStateToDisplay;
 import com.liveperson.infra.callbacks.InitLivePersonCallBack;
 import com.liveperson.messaging.sdk.api.LivePerson;
-import com.liveperson.messaging.sdk.api.model.ConsumerProfile;
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /***********************************************************************************
- * Class to run the Ask Us Screen. Provides the LivePerson initialization callback
+ * Class to run the My Account Screen. Provides the LivePerson initialization callback
  **********************************************************************************/
-public class AskUsRunner implements Runnable, InitLivePersonCallBack {
-    private static final String TAG = AskUsRunner.class.getSimpleName();
+public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
+    private static final String TAG = MyAccountRunner.class.getSimpleName();
 
     private Activity hostContext;
     private ApplicationStorage applicationStorage;
-    private ConversationViewParams conversationViewParams;
-    private ConsumerProfile consumerProfile;
     private MobileMessagingExerciseApplication applicationInstance;
 
     /**
-     * Convenience constructor
-     * @param hostContext the context of the activity in which the screen is to run
-     * @param applicationStorage the singleton holding the shared storage for the app
+     * Constructor
+     * @param hostContext the context of the activity that starts this instance
      */
-    public AskUsRunner(Activity hostContext, ApplicationStorage applicationStorage) {
+    public MyAccountRunner(Activity hostContext, ApplicationStorage applicationStorage) {
         this.hostContext = hostContext;
         this.applicationStorage = applicationStorage;
         this.applicationInstance = (MobileMessagingExerciseApplication)hostContext.getApplication();
     }
 
-    /**
-     * Run the Ask Us screen as a LivePerson conversation
-     */
     @Override
     public void run() {
-        //Set up the parameters needed for initializing LivePerson for messaging
+        //Set up the parameters needed for initializing LivePerson
         InitLivePersonProperties initLivePersonProperties =
                 new InitLivePersonProperties(applicationStorage.getBrandAccountNumber(),
                         applicationStorage.getAppId(),
@@ -59,19 +53,11 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
         Log.i(TAG, "LivePerson SDK initialize completed");
         applicationInstance.showToast("LivePerson SDK initialize completed");
 
-        //Set up the consumer profile
-        this.consumerProfile = new ConsumerProfile.Builder()
-             .setFirstName(applicationStorage.getFirstName())
-             .setLastName(applicationStorage.getLastName())
-             .setPhoneNumber(applicationStorage.getPhoneNumber())
-             .build();
-
-        LivePerson.setUserProfile(consumerProfile);
-
         //Set up the authentication parameters
-        LPAuthenticationParams authParams = new LPAuthenticationParams();
+        LPAuthenticationParams authParams = new LPAuthenticationParams(LPAuthenticationParams.LPAuthenticationType.AUTH);
         authParams.setAuthKey("");
         authParams.addCertificatePinningKey("");
+        authParams.setHostAppJWT(applicationInstance.getJwt());
 
         //Set up the conversation view parameters
         ConversationViewParams conversationViewParams = new ConversationViewParams(false);
@@ -92,5 +78,4 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
         applicationInstance.showToast("Unable to initialize LivePerson");
     }
 }
-
 

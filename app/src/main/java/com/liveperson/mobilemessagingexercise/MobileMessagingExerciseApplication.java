@@ -26,7 +26,7 @@ public class MobileMessagingExerciseApplication extends Application {
         super.onCreate();
         applicationStorage = ApplicationStorage.getInstance();
         applicationStorage.setAppId("com.liveperson.mobilemessagingexercise");
-        applicationStorage.setBrandServerBaseUrl("http://10.0.8.130:5000");
+        applicationStorage.setBrandServerBaseUrl("http://10.0.8.148:5000");
 
         //TODO - Replace with your app's LiveEngage application installation id
         applicationStorage.setAppInstallationId("2aa6228e-1edc-443a-83e9-341a8696a1d8");
