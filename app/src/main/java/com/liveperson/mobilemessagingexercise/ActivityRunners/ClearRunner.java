@@ -12,7 +12,7 @@ import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
  * Class to clear any existing conversation before running a new activity.
  * Provides the LivePerson log out callback
  *************************************************************************/
-public class ClearRunner implements LogoutLivePersonCallback{
+public class ClearRunner implements LogoutLivePersonCallback {
     private static final String TAG = ClearRunner.class.getSimpleName();
 
     private Activity hostContext;
@@ -49,7 +49,7 @@ public class ClearRunner implements LogoutLivePersonCallback{
     @Override
     public void onLogoutSucceed() {
         Log.i(TAG, "LivePerson SDK logout completed");
-        applicationInstance.showToast("LivePerson SDK logout completed");
+        showToast("LivePerson SDK logout completed");
 
         //Logout has been successful, so execute the runnable
         hostContext.runOnUiThread(runnable);
@@ -62,8 +62,18 @@ public class ClearRunner implements LogoutLivePersonCallback{
     @Override
     public void onLogoutFailed() {
         Log.e(TAG, "LivePerson SDK logout failed");
-        applicationInstance.showToast("Unable to log out from LivePerson");
+        showToast("Unable to log out from LivePerson");
     }
+
+    /**
+     * Convenience method to display a pop up toast message from any activity
+     * @param message the text of the message to be shown
+     */
+    protected void showToast(String message) {
+        //Delegate to the method in the application
+        applicationInstance.showToast(message);
+    }
+
 
 }
 
