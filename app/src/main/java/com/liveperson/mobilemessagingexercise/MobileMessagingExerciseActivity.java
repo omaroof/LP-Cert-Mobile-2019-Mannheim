@@ -85,6 +85,10 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
         clearRunner.clearAndRun(askUsRunner);
     }
 
+    /**
+     * Convenience method to retrieve the Brand Server URL
+     * @return the Brand Server URL
+     */
     protected String getBrandServerBaseUrl() {
         return applicationStorage.getBrandServerBaseUrl();
     }
