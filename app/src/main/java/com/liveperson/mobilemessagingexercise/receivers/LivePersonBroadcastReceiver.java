@@ -120,7 +120,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      */
     private void onAgentAvatarTapped(Intent intent) {
         AgentData agentData = LivePersonIntents.getAgentData(intent);
-        applicationInstance.showToast("Agent Avatar Tapped: " + agentData.mFirstName +
+        showToast("Agent Avatar Tapped: " + agentData.mFirstName +
                                       " " + agentData.mLastName);
     }
 
@@ -130,7 +130,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      */
     private void onAgentDetailsChanged(Intent intent) {
         AgentData agentData = LivePersonIntents.getAgentData(intent);
-        applicationInstance.showToast("Agent Details Changed: " + agentData);
+        showToast("Agent Details Changed: " + agentData);
     }
 
     /**
@@ -139,7 +139,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      */
     private void onAgentTyping(Intent intent) {
         boolean isTyping = LivePersonIntents.getAgentTypingValue(intent);
-        applicationInstance.showToast("Agent is typing: " + isTyping);
+        showToast("Agent is typing: " + isTyping);
     }
 
     /**
@@ -148,7 +148,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      */
     private void onConnectionChanged(Intent intent) {
         boolean isConnected = LivePersonIntents.getConnectedValue(intent);
-        applicationInstance.showToast("Connected to LiveEngage: " + isConnected);
+        showToast("Connected to LiveEngage: " + isConnected);
     }
 
     /**
@@ -156,7 +156,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      * @param intent the associated intent
      */
     private void onConversationMarkedAsNormal(Intent intent) {
-        applicationInstance.showToast("Conversation Marked As Normal");
+        showToast("Conversation Marked As Normal");
     }
 
     /**
@@ -164,7 +164,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      * @param intent the associated intent
      */
     private void onConversationMarkedAsUrgent(Intent intent) {
-        applicationInstance.showToast("Conversation Marked As Urgent");
+        showToast("Conversation Marked As Urgent");
     }
 
     /**
@@ -173,7 +173,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      */
     private void onConversationResolved(Intent intent) {
         LPConversationData conversationData = LivePersonIntents.getLPConversationData(intent);
-        applicationInstance.showToast("Conversation started " + conversationData.getId() +
+        showToast("Conversation started " + conversationData.getId() +
                 " reason " + conversationData.getCloseReason());
     }
 
@@ -183,7 +183,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      */
     private void onConversationStarted(Intent intent) {
         LPConversationData conversationData = LivePersonIntents.getLPConversationData(intent);
-        applicationInstance.showToast("Conversation started " + conversationData.getId() +
+        showToast("Conversation started " + conversationData.getId() +
                 " reason " + conversationData.getCloseReason());
     }
 
@@ -192,7 +192,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      * @param intent the associated intent
      */
     private void onCsatLaunched(Intent intent) {
-        applicationInstance.showToast("CSAT launched");
+        showToast("CSAT launched");
     }
 
     /**
@@ -200,7 +200,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      * @param intent the associated intent
      */
     private void onCsatDismissed(Intent intent) {
-        applicationInstance.showToast("CSAT skipped");
+        showToast("CSAT skipped");
     }
 
     /**
@@ -208,7 +208,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      * @param intent the associated intent
      */
     private void onCsatSkipped(Intent intent) {
-        applicationInstance.showToast("CSAT skipped");
+        showToast("CSAT skipped");
     }
 
     /**
@@ -217,7 +217,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      */
     private void onCsatSubmitted(Intent intent) {
         String conversationId = LivePersonIntents.getConversationID(intent);
-        applicationInstance.showToast("CSAT submitted for conversation: " + conversationId);
+        showToast("CSAT submitted for conversation: " + conversationId);
     }
 
     /**
@@ -227,7 +227,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
     private void onError(Intent intent) {
         TaskType type = LivePersonIntents.getOnErrorTaskType(intent);
         String message = LivePersonIntents.getOnErrorMessage(intent);
-        applicationInstance.showToast("Error: " + type.name() + " " + message);
+        showToast("Error: " + type.name() + " " + message);
     }
 
     /**
@@ -236,7 +236,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      */
     private void onOfflineHoursChanges(Intent intent) {
         boolean isOfflineHoursOn = LivePersonIntents.getOfflineHoursOn(intent);
-        applicationInstance.showToast("Offline hours changes: " + isOfflineHoursOn);
+        showToast("Offline hours changes: " + isOfflineHoursOn);
     }
 
     /**
@@ -245,7 +245,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      */
     //TODO check whether this is only for OAuth token, and not JWT
     private void onTokenExpired(Intent intent) {
-        applicationInstance.showToast("Token Expired");
+        showToast("Token Expired");
         //LivePerson.reconnect(new LPAuthenticationParams().setAuthKey(ApplicationStorage.getInstance().getAuthCode()));
 
     }
@@ -257,7 +257,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
     private void onUserDeniedPermission(Intent intent) {
         PermissionType permissionType = LivePersonIntents.getPermissionType(intent);
         boolean doNotShowAgainMarked = LivePersonIntents.getPermissionDoNotShowAgainMarked(intent);
-        applicationInstance.showToast("User Denied Permission: " + permissionType.name() +
+        showToast("User Denied Permission: " + permissionType.name() +
                 " doNotShowAgainMarked = " + doNotShowAgainMarked);
     }
 
@@ -267,7 +267,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      */
     private void onUserActionOnPreventedPermission(Intent intent) {
         PermissionType permissionType = LivePersonIntents.getPermissionType(intent);
-        applicationInstance.showToast("User Action On Prevented Permission: " + permissionType.name());
+        showToast("User Action On Prevented Permission: " + permissionType.name());
     }
 
     /**
@@ -276,7 +276,16 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      */
     private void onStructuredContentLinkClicked(Intent intent) {
         String uri = LivePersonIntents.getLinkUri(intent);
-        applicationInstance.showToast("Structured Content Link Clicked. Uri: " + uri);
+        showToast("Structured Content Link Clicked. Uri: " + uri);
+    }
+
+    /**
+     * Convenience method to display a pop up toast message
+     * @param message the text of the message to be shown
+     */
+    protected void showToast(String message) {
+        //Delegate to the method in the application
+        applicationInstance.showToast(message);
     }
 
 }

@@ -13,7 +13,8 @@ import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /***********************************************************************************
- * Class to run the Ask Us Screen. Provides the LivePerson initialization callback
+ * Class to run the Ask Us Screen.
+ * Provides the LivePerson initialization callback
  **********************************************************************************/
 public class AskUsRunner implements Runnable, InitLivePersonCallBack {
     private static final String TAG = AskUsRunner.class.getSimpleName();
@@ -52,6 +53,7 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
     }
 
     /**
+     * Set up and show the LivePerson conversation associated with the Ask Us screen
      * Invoked if initialization of LivePerson is successful
      */
     @Override
@@ -84,6 +86,7 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
     }
 
     /**
+     * Report an initialization error
      * Invoked if initialization of LivePerson fails
      * @param e the exception associated with the failure
      */

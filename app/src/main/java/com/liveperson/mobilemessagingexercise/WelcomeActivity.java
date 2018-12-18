@@ -1,14 +1,11 @@
 package com.liveperson.mobilemessagingexercise;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
@@ -22,6 +19,7 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
 
     /**
      * Android callback invoked as the activity is created
+     * @param savedInstanceState any instance state data saved in a previous execution
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,6 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
         //Set up the click listeners
         findViewById(R.id.ask_us_button).setOnClickListener(this);
         findViewById(R.id.my_account_button).setOnClickListener(this);
-
         Log.i(TAG, "Welcome activity created");
     }
 
@@ -43,6 +40,8 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
     @Override
     protected void onResume() {
         super.onResume();
+
+        //Load saved data into the controls on this screen
         ApplicationStorage applicationStorage = getApplicationStorage();
         EditText firstNameControl = findViewById(R.id.firstName);
         firstNameControl.setText(applicationStorage.getFirstName());
@@ -52,16 +51,21 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
 
     /**
      * Android callback invoked as the options menu is created
+     * @param menu the options menu in the toolbar
+     * @returns true, if the menu is to be displayed, and false otherwise
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        //Add the appropriate menu items to the toolbar menu
         getMenuInflater().inflate(R.menu.menu_welcome, menu);
+        //Ensure the menu is displayed
         return true;
     }
 
     /**
      * Android callback invoked as an option is selected from the options menu
+     * @param item the selected menu item
+     * @return true if the menu item has been processed here, and false otherwise
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -93,6 +97,7 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
                 return super.onOptionsItemSelected(item);
         }
 
+        //The selection has been processed here
         return true;
     }
 
@@ -100,31 +105,32 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
      * Handle click events for controls on the Welcome screen
      * @param view the control on which the event occurred
      */
-    public void onClick(View view) { switch(view.getId()) {
-            //Process clicks on the My Account button
-            case R.id.my_account_button:
-                if (getApplicationStorage().isLoggedIn()) {
-                    //User already logged in, so start the My Account screen
-                    startMyAccount();
-                }
-                else {
-                    //Not logged in, so start the Login screen
-                    startLogin();
-                }
-                break;
+    public void onClick(View view) {
+        switch(view.getId()) {
+        //Process clicks on the My Account button
+        case R.id.my_account_button:
+            if (getApplicationStorage().isLoggedIn()) {
+                //User already logged in, so start the My Account screen
+                startMyAccount();
+            }
+            else {
+                //Use not logged in, so start the Login screen
+                startLogin();
+            }
+            break;
 
-            //Process clicks on the Ask Us button
-            case R.id.ask_us_button:
-                //Start the Ask Us screen
-                startAskUs();
-                break;
+        //Process clicks on the Ask Us button
+        case R.id.ask_us_button:
+            //Start the Ask Us screen
+            startAskUs();
+            break;
         }
-        startAskUs();
     }
 
     /**
      * Start the Ask Us activity using any data entered on the Welcome screen
      */
+    @Override
     protected void startAskUs() {
         //Capture any user input from the Welcome screen
         EditText firstNameControl = findViewById(R.id.firstName);

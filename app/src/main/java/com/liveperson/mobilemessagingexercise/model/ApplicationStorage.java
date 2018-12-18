@@ -2,13 +2,12 @@ package com.liveperson.mobilemessagingexercise.model;
 
 import android.util.Log;
 
-/**
+/****************************************************************
  * Singleton to hold data shared across the entire application.
- */
+ ***************************************************************/
 public class ApplicationStorage {
 
     private static final String TAG = ApplicationStorage.class.getSimpleName();
-
     private static volatile ApplicationStorage applicationStorage = null;
 
     private String brandServerBaseUrl = "";
@@ -27,10 +26,11 @@ public class ApplicationStorage {
     private boolean loggedIn = false;
 
     /*
-     * Private constructor to ensure no-one can instantiate additional instances
+     * Private constructor to protect against creation of additional instances
      */
     private ApplicationStorage() {
         if (applicationStorage != null) {
+            //Allow only a single instance
             throw new RuntimeException("It's not possible to construct instances of this class." +
                     "Use the getInstance() method instead.");
         }
@@ -154,9 +154,11 @@ public class ApplicationStorage {
     public void setInteractionContextId(String interactionContextId) {
         this.interactionContextId = interactionContextId;
     }
+
     public boolean isLoggedIn() {
         return loggedIn;
     }
+
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
     }

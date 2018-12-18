@@ -13,7 +13,8 @@ import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /**************************************************************************************
- * Class to run the My Account Screen. Provides the LivePerson initialization callback
+ * Class to run the My Account Screen.
+ * Provides the LivePerson initialization callback
  *************************************************************************************/
 public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
     private static final String TAG = MyAccountRunner.class.getSimpleName();
@@ -23,8 +24,9 @@ public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
     private MobileMessagingExerciseApplication applicationInstance;
 
     /**
-     * Constructor
-     * @param hostContext the context of the activity that starts this instance
+     * Convenience constructor
+     * @param hostContext the context of the activity in which the screen is to run
+     * @param applicationStorage the singleton holding the shared storage for the app
      */
     public MyAccountRunner(Activity hostContext, ApplicationStorage applicationStorage) {
         this.hostContext = hostContext;
@@ -33,7 +35,7 @@ public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
     }
 
     /**
-     * Start the My Account screen
+     * Run the My Account screen as a LivePerson conversation
      */
     @Override
     public void run() {
@@ -49,6 +51,7 @@ public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
     }
 
     /**
+     * Set up and show the LivePerson conversation associated with the My Account screen
      * Invoked if initialization of LivePerson is successful
      */
     @Override
@@ -72,6 +75,7 @@ public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
     }
 
     /**
+     * Report an initialization error
      * Invoked if initialization of LivePerson fails
      * @param e the exception associated with the failure
      */

@@ -15,6 +15,14 @@ import com.liveperson.mobilemessagingexercise.receivers.LivePersonBroadcastRecei
 public class MobileMessagingExerciseApplication extends Application {
 
     private static final String TAG = MobileMessagingExerciseApplication.class.getSimpleName();
+    private static final String BRAND_SERVER_URL = "http://10.0.8.148:5000";
+    private static final String LIVE_PERSON_APP_ID = "com.liveperson.mobilemessagingexercise";
+
+    //TODO - Replace with your app's LiveEngage account number
+    private static final String LIVE_PERSON_APP_ACCOUNT_NUMBER = "20553802";
+
+    //TODO - Replace with your app's LiveEngage application installation id
+    private static final String LIVE_PERSON_APP_INSTALLATION_ID = "2aa6228e-1edc-443a-83e9-341a8696a1d8";
 
     private static boolean showToastOnCallback = true;
     private ApplicationStorage applicationStorage;
@@ -29,14 +37,10 @@ public class MobileMessagingExerciseApplication extends Application {
     public void onCreate () {
         super.onCreate();
         applicationStorage = ApplicationStorage.getInstance();
-        applicationStorage.setAppId("com.liveperson.mobilemessagingexercise");
-        applicationStorage.setBrandServerBaseUrl("http://10.0.8.148:5000");
-
-        //TODO - Replace with your app's LiveEngage application installation id
-        applicationStorage.setAppInstallationId("2aa6228e-1edc-443a-83e9-341a8696a1d8");
-
-        /* TODO - Replace with your LiveEngage Account Number */
-        applicationStorage.setBrandAccountNumber("20553802");
+        applicationStorage.setAppId(LIVE_PERSON_APP_ID);
+        applicationStorage.setBrandServerBaseUrl(BRAND_SERVER_URL);
+        applicationStorage.setAppInstallationId(LIVE_PERSON_APP_INSTALLATION_ID);
+        applicationStorage.setBrandAccountNumber(LIVE_PERSON_APP_ACCOUNT_NUMBER);
 
         //Register the app to receive events from LivePerson
         registerForLivePersonEvents();

@@ -15,19 +15,22 @@ import com.liveperson.mobilemessagingexercise.ConversationRunners.MyAccountRunne
  * in the Mobile Messaging Exercise
  *****************************************************************/
 public class MobileMessagingExerciseActivity extends AppCompatActivity {
-
     private static final String TAG = MobileMessagingExerciseActivity.class.getSimpleName();
+
     private ApplicationStorage applicationStorage;
     private MobileMessagingExerciseApplication applicationInstance;
     private ClearRunner clearRunner;
 
     /**
      * Android callback invoked as the activity is created
+     * @param savedInstanceState any instance state data saved in a previous execution
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         applicationInstance = (MobileMessagingExerciseApplication)getApplication();
         applicationStorage = ApplicationStorage.getInstance();
+
+        //Create an instance of the class that clears conversations and runs an activity
         clearRunner = new ClearRunner(this, applicationStorage);
 
         Log.i(TAG, "MobileMessagingActivity created");
@@ -41,7 +44,7 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
     }
 
     /**
-     * Display a pop up toast message
+     * Convenience method to display a pop up toast message from any activity
      * @param message the text of the message to be shown
      */
     protected void showToast(String message) {

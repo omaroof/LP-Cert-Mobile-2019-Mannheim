@@ -18,17 +18,18 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
-/******************************************************************************
+/********************************************************************************
  * Class for the activity associated with the application Login screen
- * NOTE: This class also provides the listeners for click events on the screen
- * and for the response of the authentication
- *****************************************************************************/
+ * NOTE: This class also provides the listeners for click events for the controls
+ * on the screen and for the response from the authentication process
+ *******************************************************************************/
 public class LoginActivity extends MobileMessagingExerciseActivity
         implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
     private static final String TAG = LoginActivity.class.getSimpleName();
 
     /**
      * Android callback invoked as the activity is created
+     * @param savedInstanceState any instance state data saved in a previous execution
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +44,21 @@ public class LoginActivity extends MobileMessagingExerciseActivity
 
     /**
      * Android callback invoked as the options menu is created
+     * @param menu the options menu in the toolbar
+     * @returns true, if the menu is to be displayed, and false otherwise
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        //Add the appropriate menu items to the toolbar menu
         getMenuInflater().inflate(R.menu.menu_ask_us, menu);
+        //Ensure the menu is displayed
         return true;
     }
 
     /**
      * Android callback invoked as an option is selected from the options menu
+     * @param item the selected menu item
+     * @return true if the menu item has been processed here, and false otherwise
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -105,7 +111,7 @@ public class LoginActivity extends MobileMessagingExerciseActivity
     }
 
     /**
-     * Handle click events for controls on the Welcome screen
+     * Handle click events for controls on the Login screen
      * @param view the control on which the event occurred
      */
     public void onClick(View view) {
@@ -115,6 +121,8 @@ public class LoginActivity extends MobileMessagingExerciseActivity
                 EditText userIdControl = findViewById(R.id.userId);
                 EditText passwordControl = findViewById(R.id.password);
                 logUserIn(userIdControl.getText().toString(), passwordControl.getText().toString());
+                break;
+            default:
                 break;
         }
     }

@@ -9,7 +9,8 @@ import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /**************************************************************************
- * Class to clear any existing conversation before running a new activity
+ * Class to clear any existing conversation before running a new activity.
+ * Provides the LivePerson log out callback
  *************************************************************************/
 public class ClearRunner implements LogoutLivePersonCallback{
     private static final String TAG = ClearRunner.class.getSimpleName();
@@ -20,7 +21,7 @@ public class ClearRunner implements LogoutLivePersonCallback{
     private Runnable runnable;
 
     /**
-     * Constructor
+     * Convenience constructor
      * @param hostContext the context of the activity that starts this instance
      * @param applicationStorage the singleton holding the shared storage for the app
      */
@@ -42,6 +43,7 @@ public class ClearRunner implements LogoutLivePersonCallback{
     }
 
     /**
+     * Run the specified activity
      * Invoked if logout from LivePerson is successful
      */
     @Override
@@ -54,6 +56,7 @@ public class ClearRunner implements LogoutLivePersonCallback{
     }
 
     /**
+     * Report the failure to log out
      * Invoked if logout from LivePerson fails
      */
     @Override
