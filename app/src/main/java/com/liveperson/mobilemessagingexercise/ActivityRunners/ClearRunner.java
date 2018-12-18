@@ -38,8 +38,7 @@ public class ClearRunner implements LogoutLivePersonCallback {
     public void clearAndRun(Runnable runnable) {
         this.runnable = runnable;
         //Log out from LivePerson, clearing any existing conversation
-        LivePerson.logOut(hostContext, applicationStorage.getBrandAccountNumber(),
-                applicationStorage.getAppId(), this) ;
+        //TODO Phase 1: Implement logout from LivePerson
     }
 
     /**
@@ -73,7 +72,6 @@ public class ClearRunner implements LogoutLivePersonCallback {
         //Delegate to the method in the application
         applicationInstance.showToast(message);
     }
-
 
 }
 

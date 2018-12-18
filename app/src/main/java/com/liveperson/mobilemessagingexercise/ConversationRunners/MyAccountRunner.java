@@ -40,14 +40,10 @@ public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
     @Override
     public void run() {
         //Set up the parameters needed for initializing LivePerson
-        InitLivePersonProperties initLivePersonProperties =
-                new InitLivePersonProperties(applicationStorage.getBrandAccountNumber(),
-                        applicationStorage.getAppId(),
-                        null,
-                        this);
+        //TODO Phase 3: Set up the properties needed by LivePerson initialization
 
         //Initialize LivePerson for the My Account screen
-        LivePerson.initialize(this.hostContext, initLivePersonProperties);
+        //TODO Phase 3: Implement initialization of LivePerson
     }
 
     /**
@@ -61,17 +57,13 @@ public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
         applicationInstance.showToast("LivePerson SDK initialize completed");
 
         //Set up the authentication parameters
-        LPAuthenticationParams authParams = new LPAuthenticationParams(LPAuthenticationParams.LPAuthenticationType.AUTH);
-        authParams.setAuthKey("");
-        authParams.addCertificatePinningKey("");
-        authParams.setHostAppJWT(applicationInstance.getJwt());
+        //TODO Phase 3: Set up the authentication parameters for an authenticated conversation
 
         //Set up the conversation view parameters
-        ConversationViewParams conversationViewParams = new ConversationViewParams(false);
-        conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
+        //TODO Phase 3: Set up the parameters controlling the conversation view
 
         //Start the conversation
-        LivePerson.showConversation(hostContext, authParams, conversationViewParams);
+        //TODO Phase 3: Show the specified conversation
     }
 
     /**
