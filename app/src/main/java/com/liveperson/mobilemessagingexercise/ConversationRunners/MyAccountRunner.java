@@ -58,7 +58,7 @@ public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
     public void onInitSucceed() {
         //Display and log a confirmation message
         Log.i(TAG, "LivePerson SDK initialize completed");
-        applicationInstance.showToast("LivePerson SDK initialize completed");
+        showToast("LivePerson SDK initialize completed");
 
         //Set up the authentication parameters
         LPAuthenticationParams authParams = new LPAuthenticationParams(LPAuthenticationParams.LPAuthenticationType.AUTH);
@@ -83,7 +83,16 @@ public class MyAccountRunner implements Runnable, InitLivePersonCallBack {
     public void onInitFailed(Exception e) {
         //Display and log the error
         Log.e(TAG, "LivePerson SDK initialize failed", e);
-        applicationInstance.showToast("Unable to initialize LivePerson");
+        showToast("Unable to initialize LivePerson");
+    }
+
+    /**
+     * Convenience method to display a pop up toast message from any activity
+     * @param message the text of the message to be shown
+     */
+    protected void showToast(String message) {
+        //Delegate to the method in the application
+        applicationInstance.showToast(message);
     }
 }
 
