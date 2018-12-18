@@ -243,7 +243,7 @@ public class LivePersonBroadcastReceiver extends BroadcastReceiver {
      * Process the Token Expired Event
      * @param intent the associated event
      */
-    //TODO check whether this is only for OAuth token, and not JWT
+    //TODO Skillset: check whether this is only for OAuth token, and not JWT
     private void onTokenExpired(Intent intent) {
         showToast("Token Expired");
         //LivePerson.reconnect(new LPAuthenticationParams().setAuthKey(ApplicationStorage.getInstance().getAuthCode()));

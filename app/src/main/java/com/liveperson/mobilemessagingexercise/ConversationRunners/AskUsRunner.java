@@ -42,14 +42,10 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
     @Override
     public void run() {
         //Set up the parameters needed for initializing LivePerson for messaging
-        InitLivePersonProperties initLivePersonProperties =
-                new InitLivePersonProperties(applicationStorage.getBrandAccountNumber(),
-                        applicationStorage.getAppId(),
-                        null,
-                        this);
+        //TODO Phase 1: Set up the properties needed by LivePerson initialization
 
         //Initialize LivePerson
-        LivePerson.initialize(this.hostContext, initLivePersonProperties);
+        //TODO Phase 1: Implement initialization of LivePerson
     }
 
     /**
@@ -60,29 +56,22 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
     public void onInitSucceed() {
         //Display and log a confirmation message
         Log.i(TAG, "LivePerson SDK initialize completed");
-        applicationInstance.showToast("LivePerson SDK initialize completed");
+        showToast("LivePerson SDK initialize completed");
 
         //Set up the consumer profile from data in application storage
-        this.consumerProfile = new ConsumerProfile.Builder()
-             .setFirstName(applicationStorage.getFirstName())
-             .setLastName(applicationStorage.getLastName())
-             .setPhoneNumber(applicationStorage.getPhoneNumber())
-             .build();
+        //TODO Phase 1: Initialize the LivePerson consumer profile
 
         //Set up the user profile
-        LivePerson.setUserProfile(consumerProfile);
+        //TODO Phase 1: Configure LivePerson with the consumer profile
 
         //Set up the authentication parameters
-        LPAuthenticationParams authParams = new LPAuthenticationParams();
-        authParams.setAuthKey("");
-        authParams.addCertificatePinningKey("");
+        //TODO Phase 1: Set up the authentication parameters for an anonymous conversation
 
         //Set up the conversation view parameters
-        ConversationViewParams conversationViewParams = new ConversationViewParams(false);
-        conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
+        //TODO Phase 1: Set up the parameters controlling the conversation view
 
         //Start the conversation
-        LivePerson.showConversation(hostContext, authParams, conversationViewParams);
+        //TODO Phase 1: Show the specified conversation
     }
 
     /**
@@ -94,7 +83,16 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
     public void onInitFailed(Exception e) {
         //Display and log the error
         Log.e(TAG, "LivePerson SDK initialize failed", e);
-        applicationInstance.showToast("Unable to initialize LivePerson");
+        showToast("Unable to initialize LivePerson");
+    }
+
+    /**
+     * Convenience method to display a pop up toast message from any activity
+     * @param message the text of the message to be shown
+     */
+    protected void showToast(String message) {
+        //Delegate to the method in the application
+        applicationInstance.showToast(message);
     }
 }
 

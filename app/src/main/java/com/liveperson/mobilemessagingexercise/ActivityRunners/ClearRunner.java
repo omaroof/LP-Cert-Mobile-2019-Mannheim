@@ -51,7 +51,7 @@ public class ClearRunner implements LogoutLivePersonCallback {
         showToast("LivePerson SDK logout completed");
 
         //Logout has been successful, so execute the runnable
-        hostContext.runOnUiThread(runnable);
+        //TODO Phase 1: Execute the runnable on the UI thread
     }
 
     /**
