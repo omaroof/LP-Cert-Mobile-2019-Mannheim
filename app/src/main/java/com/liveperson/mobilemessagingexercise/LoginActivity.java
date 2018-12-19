@@ -88,13 +88,18 @@ public class LoginActivity extends MobileMessagingExerciseActivity
         JSONObject credentials = new JSONObject();
         try {
             //Set up the body for the POST request to the authentication API
-            //TODO Phase 2: Set up the body of the HTTP request to log the user in to the Brand Server
-
+            credentials.put("userId", userId);
+            credentials.put("password", password);
             //Create the authentication POST request
-            //TODO Phase 2: Create the HTTP request to send to the Brand Server
-
+            JsonObjectRequest authenticationRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    getBrandServerBaseUrl() + "/authenticate",
+                    credentials,
+                    this,
+                    this
+            );
             //Send the authentication POST request
-            //TODO Phase 2: Send the HTTP request to log the user in to the Brand Server
+            authenticationQueue.add(authenticationRequest);
         }
         catch(Exception e) {
             Log.e(TAG, e.getMessage());
@@ -130,7 +135,8 @@ public class LoginActivity extends MobileMessagingExerciseActivity
     public void onResponse(JSONObject authenticationResponse) {
         try {
             //Save the results of the login attempt
-            //TODO Phase 2: Save the results of the login request
+            getApplicationInstance().setLoggedIn(authenticationResponse.getBoolean("loginSuccessful"));
+            getApplicationInstance().setJwt(authenticationResponse.getString("jwt"));
 
             if (getApplicationInstance().isLoggedIn()) {
                 startMyAccount();
