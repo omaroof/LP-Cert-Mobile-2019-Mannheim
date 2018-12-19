@@ -50,9 +50,7 @@ public class MobileMessagingExerciseApplication extends Application {
      * Register to receive events from LivePerson within this application
      */
     private void registerForLivePersonEvents() {
-        livePersonBroadcastReceiver = new LivePersonBroadcastReceiver(this);
-        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getApplicationContext());
-        localBroadcastManager.registerReceiver(livePersonBroadcastReceiver, LivePersonIntents.getIntentFilterForAllEvents());
+        //TODO Phase 1: Register for LivePerson events
     }
 
     /**
