@@ -42,10 +42,14 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
     @Override
     public void run() {
         //Set up the parameters needed for initializing LivePerson for messaging
-        //TODO Phase 1: Set up the properties needed by LivePerson initialization
+        InitLivePersonProperties initLivePersonProperties =
+                new InitLivePersonProperties(applicationStorage.getBrandAccountNumber(),
+                        applicationStorage.getAppId(),
+                        null,
+                        this);
 
         //Initialize LivePerson
-        //TODO Phase 1: Implement initialization of LivePerson
+        LivePerson.initialize(this.hostContext, initLivePersonProperties);
     }
 
     /**
@@ -59,19 +63,26 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
         showToast("LivePerson SDK initialize completed");
 
         //Set up the consumer profile from data in application storage
-        //TODO Phase 1: Initialize the LivePerson consumer profile
+        this.consumerProfile = new ConsumerProfile.Builder()
+             .setFirstName(applicationStorage.getFirstName())
+             .setLastName(applicationStorage.getLastName())
+             .setPhoneNumber(applicationStorage.getPhoneNumber())
+             .build();
 
         //Set up the user profile
-        //TODO Phase 1: Configure LivePerson with the consumer profile
+        LivePerson.setUserProfile(consumerProfile);
 
         //Set up the authentication parameters
-        //TODO Phase 1: Set up the authentication parameters for an anonymous conversation
+        LPAuthenticationParams authParams = new LPAuthenticationParams();
+        authParams.setAuthKey("");
+        authParams.addCertificatePinningKey("");
 
         //Set up the conversation view parameters
-        //TODO Phase 1: Set up the parameters controlling the conversation view
+        ConversationViewParams conversationViewParams = new ConversationViewParams(false);
+        conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
 
         //Start the conversation
-        //TODO Phase 1: Show the specified conversation
+        LivePerson.showConversation(hostContext, authParams, conversationViewParams);
     }
 
     /**
