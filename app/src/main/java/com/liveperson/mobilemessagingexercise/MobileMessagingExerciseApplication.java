@@ -15,7 +15,7 @@ import com.liveperson.mobilemessagingexercise.receivers.LivePersonBroadcastRecei
 public class MobileMessagingExerciseApplication extends Application {
 
     private static final String TAG = MobileMessagingExerciseApplication.class.getSimpleName();
-    private static final String BRAND_SERVER_URL = "http://10.0.0.29:5000";
+    private static final String BRAND_SERVER_URL = "https://gdr3xb81x4.execute-api.eu-west-1.amazonaws.com/prod";
     private static final String LIVE_PERSON_APP_ID = "com.liveperson.mobilemessagingexercise";
 
     //TODO - Replace with your app's LiveEngage account number
