@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "0aa1f6ee-5f53-4ba6-bcd6-02b921fbe31b",
+		"name": "LivePerson",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get the keys",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/keys",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"keys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate Jonathan Jones",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": \"jonathan.jones@te.com\",\n\t\"password\": \"jonathanjones\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/authenticate",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User 982373",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/users/982373",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"982373"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
