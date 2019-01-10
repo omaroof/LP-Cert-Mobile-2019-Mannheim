@@ -139,7 +139,7 @@ public class LoginActivity extends MobileMessagingExerciseActivity
             getApplicationStorage().setJwt(authenticationResponse.getString("jwt"));
 
             if (getApplicationStorage().isLoggedIn()) {
-                showToast("Successfully logged in   ");
+                showToast("Successfully logged in");
                 startMyAccount();
             }
             else {
