@@ -140,7 +140,7 @@ public class LoginActivity extends MobileMessagingExerciseActivity
 
             if (getApplicationStorage().isLoggedIn()) {
                 startMyAccount();
-                showToast("Successfully logged in   ");
+                showToast("Successfully logged in");
             }
             else {
                 showToast("Unable to log in");
