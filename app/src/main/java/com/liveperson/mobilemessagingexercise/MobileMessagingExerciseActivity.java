@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.liveperson.mobilemessagingexercise.ActivityRunners.ClearRunner;
-import com.liveperson.mobilemessagingexercise.ConversationRunners.AskUsRunner;
+import com.liveperson.mobilemessagingexercise.Conversations.AskUsConversation;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
-import com.liveperson.mobilemessagingexercise.ConversationRunners.MyAccountRunner;
+import com.liveperson.mobilemessagingexercise.Conversations.MyAccountConversation;
 
 /******************************************************************
  * Parent class providing common capabilities for the activities
@@ -72,17 +72,17 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
      * Transfer control to the My Account activity
      */
     protected void startMyAccount() {
-        MyAccountRunner myAccountRunner = new MyAccountRunner(this, applicationStorage);
+        MyAccountConversation myAccountConversation = new MyAccountConversation(this, applicationStorage);
         //Clear any previous conversation, and start My Account
-        clearRunner.clearAndRun(myAccountRunner);
+        clearRunner.clearAndRun(myAccountConversation);
     }
 
     /**
      * Transfer control to the Ask Us activity
      */
     protected void startAskUs() {
-        AskUsRunner askUsRunner = new AskUsRunner(this, applicationStorage);
-        clearRunner.clearAndRun(askUsRunner);
+        AskUsConversation askUsConversation = new AskUsConversation(this, applicationStorage);
+        clearRunner.clearAndRun(askUsConversation);
     }
 
     /**

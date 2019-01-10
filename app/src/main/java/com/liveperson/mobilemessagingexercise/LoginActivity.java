@@ -135,10 +135,10 @@ public class LoginActivity extends MobileMessagingExerciseActivity
     public void onResponse(JSONObject authenticationResponse) {
         try {
             //Save the results of the login attempt
-            getApplicationInstance().setLoggedIn(authenticationResponse.getBoolean("loginSuccessful"));
-            getApplicationInstance().setJwt(authenticationResponse.getString("jwt"));
+            getApplicationStorage().setLoggedIn(authenticationResponse.getBoolean("loginSuccessful"));
+            getApplicationStorage().setJwt(authenticationResponse.getString("jwt"));
 
-            if (getApplicationInstance().isLoggedIn()) {
+            if (getApplicationStorage().isLoggedIn()) {
                 startMyAccount();
             }
             else {
