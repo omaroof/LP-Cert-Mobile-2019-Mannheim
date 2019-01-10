@@ -8,7 +8,7 @@ import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /**************************************************************************************
- * Class to run the My Account Screen.
+ * Class to display the My Account Screen.
  * Provides the LivePerson initialization callback
  *************************************************************************************/
 public class MyAccountConversation implements Runnable, InitLivePersonCallBack {

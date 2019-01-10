@@ -73,6 +73,5 @@ public class ClearRunner implements LogoutLivePersonCallback {
         //Delegate to the method in the application
         applicationInstance.showToast(message);
     }
-
 }
 
