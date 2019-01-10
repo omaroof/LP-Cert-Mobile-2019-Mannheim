@@ -27,8 +27,6 @@ public class MobileMessagingExerciseApplication extends Application {
     private static boolean showToastOnCallback = true;
     private ApplicationStorage applicationStorage;
     private LivePersonBroadcastReceiver livePersonBroadcastReceiver;
-    private boolean isLoggedIn = false;
-    private String jwt;
 
     /**
      * Android callback invoked as the application is created
@@ -70,22 +68,4 @@ public class MobileMessagingExerciseApplication extends Application {
         }
     }
 
-    /******************************************
-     * Bean methods
-     *****************************************/
-    public boolean isLoggedIn() {
-        return isLoggedIn;
-    }
-
-    public void setLoggedIn(boolean loggedIn) {
-        isLoggedIn = loggedIn;
-    }
-
-    public String getJwt() {
-        return jwt;
-    }
-
-    public void setJwt(String jwt) {
-        this.jwt = jwt;
-    }
 }

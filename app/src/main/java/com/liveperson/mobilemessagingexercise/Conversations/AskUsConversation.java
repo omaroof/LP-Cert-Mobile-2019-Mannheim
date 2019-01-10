@@ -1,13 +1,9 @@
-package com.liveperson.mobilemessagingexercise.ConversationRunners;
+package com.liveperson.mobilemessagingexercise.Conversations;
 
 import android.app.Activity;
 import android.util.Log;
 import com.liveperson.infra.ConversationViewParams;
-import com.liveperson.infra.InitLivePersonProperties;
-import com.liveperson.infra.LPAuthenticationParams;
-import com.liveperson.infra.LPConversationsHistoryStateToDisplay;
 import com.liveperson.infra.callbacks.InitLivePersonCallBack;
-import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.messaging.sdk.api.model.ConsumerProfile;
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
@@ -16,8 +12,8 @@ import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
  * Class to run the Ask Us Screen.
  * Provides the LivePerson initialization callback
  **********************************************************************************/
-public class AskUsRunner implements Runnable, InitLivePersonCallBack {
-    private static final String TAG = AskUsRunner.class.getSimpleName();
+public class AskUsConversation implements Runnable, InitLivePersonCallBack {
+    private static final String TAG = AskUsConversation.class.getSimpleName();
 
     private Activity hostContext;
     private ApplicationStorage applicationStorage;
@@ -30,7 +26,7 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
      * @param hostContext the context of the activity in which the screen is to run
      * @param applicationStorage the singleton holding the shared storage for the app
      */
-    public AskUsRunner(Activity hostContext, ApplicationStorage applicationStorage) {
+    public AskUsConversation(Activity hostContext, ApplicationStorage applicationStorage) {
         this.hostContext = hostContext;
         this.applicationStorage = applicationStorage;
         this.applicationInstance = (MobileMessagingExerciseApplication)hostContext.getApplication();
