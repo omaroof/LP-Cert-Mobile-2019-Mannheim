@@ -23,7 +23,8 @@ public class ApplicationStorage {
     private String sessionId = "";
     private String visitorId = "";
     private String interactionContextId = "";
-    private boolean loggedIn = false;
+    private boolean isLoggedIn = false;
+    private String jwt;
 
     /*
      * Private constructor to protect against creation of additional instances
@@ -156,11 +157,19 @@ public class ApplicationStorage {
     }
 
     public boolean isLoggedIn() {
-        return loggedIn;
+        return isLoggedIn;
     }
 
     public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
+        isLoggedIn = loggedIn;
+    }
+
+    public String getJwt() {
+        return jwt;
+    }
+
+    public void setJwt(String jwt) {
+        this.jwt = jwt;
     }
 }
 
