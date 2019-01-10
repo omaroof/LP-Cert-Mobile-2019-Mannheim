@@ -1,4 +1,4 @@
-package com.liveperson.mobilemessagingexercise.ConversationRunners;
+package com.liveperson.mobilemessagingexercise.Conversations;
 
 import android.app.Activity;
 import android.util.Log;
@@ -16,8 +16,8 @@ import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
  * Class to run the Ask Us Screen.
  * Provides the LivePerson initialization callback
  **********************************************************************************/
-public class AskUsRunner implements Runnable, InitLivePersonCallBack {
-    private static final String TAG = AskUsRunner.class.getSimpleName();
+public class AskUsConversation implements Runnable, InitLivePersonCallBack {
+    private static final String TAG = AskUsConversation.class.getSimpleName();
 
     private Activity hostContext;
     private ApplicationStorage applicationStorage;
@@ -30,7 +30,7 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
      * @param hostContext the context of the activity in which the screen is to run
      * @param applicationStorage the singleton holding the shared storage for the app
      */
-    public AskUsRunner(Activity hostContext, ApplicationStorage applicationStorage) {
+    public AskUsConversation(Activity hostContext, ApplicationStorage applicationStorage) {
         this.hostContext = hostContext;
         this.applicationStorage = applicationStorage;
         this.applicationInstance = (MobileMessagingExerciseApplication)hostContext.getApplication();
@@ -45,7 +45,6 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
         InitLivePersonProperties initLivePersonProperties =
                 new InitLivePersonProperties(applicationStorage.getBrandAccountNumber(),
                         applicationStorage.getAppId(),
-                        null,
                         this);
 
         //Initialize LivePerson
@@ -66,7 +65,6 @@ public class AskUsRunner implements Runnable, InitLivePersonCallBack {
         this.consumerProfile = new ConsumerProfile.Builder()
              .setFirstName(applicationStorage.getFirstName())
              .setLastName(applicationStorage.getLastName())
-             .setPhoneNumber(applicationStorage.getPhoneNumber())
              .build();
 
         //Set up the user profile
