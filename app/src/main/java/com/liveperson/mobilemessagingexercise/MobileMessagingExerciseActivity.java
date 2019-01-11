@@ -7,8 +7,8 @@ import android.util.Log;
 
 import com.liveperson.mobilemessagingexercise.ActivityRunners.ClearRunner;
 import com.liveperson.mobilemessagingexercise.Conversations.AskUsConversation;
-import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 import com.liveperson.mobilemessagingexercise.Conversations.MyAccountConversation;
+import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /******************************************************************
  * Parent class providing common capabilities for the activities
