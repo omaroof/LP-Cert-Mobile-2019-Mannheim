@@ -94,7 +94,7 @@ public class AskUsConversation implements Runnable, InitLivePersonCallBack {
         Log.e(TAG, "LivePerson SDK initialize failed", e);
         showToast("Unable to initialize LivePerson");
     }
-    
+
     /**
      * Convenience method to display a pop up toast message from any activity
      * @param message the text of the message to be shown
