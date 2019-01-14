@@ -3,12 +3,17 @@ package com.liveperson.mobilemessagingexercise.Conversations;
 import android.app.Activity;
 import android.util.Log;
 
+import com.liveperson.infra.ConversationViewParams;
+import com.liveperson.infra.InitLivePersonProperties;
+import com.liveperson.infra.LPAuthenticationParams;
+import com.liveperson.infra.LPConversationsHistoryStateToDisplay;
 import com.liveperson.infra.callbacks.InitLivePersonCallBack;
+import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /**************************************************************************************
- * Class to run the My Account Screen.
+ * Class to display the My Account Screen.
  * Provides the LivePerson initialization callback
  *************************************************************************************/
 public class MyAccountConversation implements Runnable, InitLivePersonCallBack {
