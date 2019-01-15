@@ -12,7 +12,6 @@ public class ApplicationStorage {
 
     private String brandServerBaseUrl = "";
     private String appId = "";
-    private String appInstallationId = "";
     private String firstName = "";
     private String lastName = "";
     private String phoneNumber = "";
@@ -66,14 +65,6 @@ public class ApplicationStorage {
 
     public void setAppId(String appId) {
         this.appId = appId;
-    }
-
-    public String getAppInstallationId() {
-        return appInstallationId;
-    }
-
-    public void setAppInstallationId(String appInstallationId) {
-        this.appInstallationId = appInstallationId;
     }
 
     public String getFirstName() {
