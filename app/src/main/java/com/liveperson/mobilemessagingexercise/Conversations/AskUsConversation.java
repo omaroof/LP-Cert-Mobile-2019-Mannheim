@@ -9,7 +9,7 @@ import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /***********************************************************************************
- * Class to run the Ask Us Screen.
+ * Class to display the Ask Us Screen.
  * Provides the LivePerson initialization callback
  **********************************************************************************/
 public class AskUsConversation implements Runnable, InitLivePersonCallBack {
