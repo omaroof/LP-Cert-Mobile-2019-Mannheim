@@ -133,6 +133,7 @@ public class LoginActivity extends MobileMessagingExerciseActivity
             //TODO Phase 2: Save the results of the login request
 
             if (getApplicationStorage().isLoggedIn()) {
+                showToast("Successfully logged in");
                 startMyAccount();
             }
             else {
