@@ -28,7 +28,7 @@
         android:id="@+id/userId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:inputType="text|textEmailAddress"
         android:layout_marginLeft="24sp"
         android:layout_marginRight="24sp"
         />
