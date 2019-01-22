@@ -3,8 +3,19 @@ package com.liveperson.mobilemessagingexercise.Conversations;
 import android.app.Activity;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.liveperson.infra.ConversationViewParams;
+import com.liveperson.infra.ICallback;
+import com.liveperson.infra.InitLivePersonProperties;
+import com.liveperson.infra.LPAuthenticationParams;
+import com.liveperson.infra.LPConversationsHistoryStateToDisplay;
 import com.liveperson.infra.callbacks.InitLivePersonCallBack;
+import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
+import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /**************************************************************************************
@@ -17,6 +28,8 @@ public class MyAccountConversation implements Runnable, InitLivePersonCallBack {
     private Activity hostContext;
     private ApplicationStorage applicationStorage;
     private MobileMessagingExerciseApplication applicationInstance;
+    private LPAuthenticationParams authParams;
+    private ConversationViewParams conversationViewParams;
 
     /**
      * Convenience constructor
