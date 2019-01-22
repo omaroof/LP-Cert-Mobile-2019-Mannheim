@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.liveperson.mobilemessagingexercise.ActivityRunners.ClearRunner;
 import com.liveperson.mobilemessagingexercise.Conversations.AskUsConversation;
+import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 import com.liveperson.mobilemessagingexercise.Conversations.MyAccountConversation;
 
@@ -90,7 +91,7 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
      * @return the Brand Server URL
      */
     protected String getBrandServerBaseUrl() {
-        return applicationStorage.getBrandServerBaseUrl();
+        return ApplicationConstants.getBrandServerUrl();
     }
 
     /*************************

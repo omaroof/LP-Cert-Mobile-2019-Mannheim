@@ -10,13 +10,10 @@ public class ApplicationStorage {
     private static final String TAG = ApplicationStorage.class.getSimpleName();
     private static volatile ApplicationStorage applicationStorage = null;
 
-    private String brandServerBaseUrl = "";
-    private String appId = "";
     private String firstName = "";
     private String lastName = "";
     private String phoneNumber = "";
     private String authCode = "";
-    private String brandAccountNumber = "";
     private Long campaignId;
     private Long engagementId;
     private String sessionId = "";
@@ -51,21 +48,6 @@ public class ApplicationStorage {
     /*****************************************************
      * Bean Methods
      ****************************************************/
-    public String getBrandServerBaseUrl() {
-        return brandServerBaseUrl;
-    }
-
-    public void setBrandServerBaseUrl(String brandServerBaseUrl) {
-        this.brandServerBaseUrl = brandServerBaseUrl;
-    }
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -97,14 +79,6 @@ public class ApplicationStorage {
 
     public void setAuthCode(String authCode) {
         this.authCode = authCode;
-    }
-
-    public String getBrandAccountNumber() {
-        return brandAccountNumber;
-    }
-
-    public void setBrandAccountNumber(String brandAccountNumber) {
-        this.brandAccountNumber = brandAccountNumber;
     }
 
     public Long getCampaignId() {

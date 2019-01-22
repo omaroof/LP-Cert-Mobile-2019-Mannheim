@@ -8,6 +8,9 @@
     <!-- Permissions for photo sharing -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- Permissions for push messaging -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <application
         android:name=".MobileMessagingExerciseApplication"
         android:allowBackup="true"
@@ -28,6 +31,17 @@
             android:label="@string/login"
             android:launchMode="singleTop"
         />
+        <service
+            android:name="com.liveperson.mobilemessagingexercise.services.LpFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <receiver android:name=".push.NotificationUI$BadgeBroadcastReceiver">
+            <intent-filter>
+                <action android:name="ACTION_LP_UPDATE_NUM_UNREAD_MESSAGES_ACTION"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
