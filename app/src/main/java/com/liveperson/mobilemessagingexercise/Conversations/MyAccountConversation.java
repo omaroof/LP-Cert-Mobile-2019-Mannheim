@@ -5,8 +5,6 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.liveperson.infra.ConversationViewParams;
 import com.liveperson.infra.ICallback;
 import com.liveperson.infra.InitLivePersonProperties;
