@@ -15,11 +15,6 @@ import com.liveperson.mobilemessagingexercise.receivers.LivePersonBroadcastRecei
 public class MobileMessagingExerciseApplication extends Application {
 
     private static final String TAG = MobileMessagingExerciseApplication.class.getSimpleName();
-    private static final String BRAND_SERVER_URL = "https://gdr3xb81x4.execute-api.eu-west-1.amazonaws.com/prod";
-    private static final String LIVE_PERSON_APP_ID = "com.liveperson.mobilemessagingexercise";
-
-    //TODO - Replace with your app's LiveEngage account number
-    private static final String LIVE_PERSON_APP_ACCOUNT_NUMBER = "20553802";
 
     private static boolean showToastOnCallback = true;
     private ApplicationStorage applicationStorage;
@@ -32,9 +27,6 @@ public class MobileMessagingExerciseApplication extends Application {
     public void onCreate () {
         super.onCreate();
         applicationStorage = ApplicationStorage.getInstance();
-        applicationStorage.setAppId(LIVE_PERSON_APP_ID);
-        applicationStorage.setBrandServerBaseUrl(BRAND_SERVER_URL);
-        applicationStorage.setBrandAccountNumber(LIVE_PERSON_APP_ACCOUNT_NUMBER);
 
         //Register the app to receive events from LivePerson
         registerForLivePersonEvents();

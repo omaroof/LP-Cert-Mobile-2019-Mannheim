@@ -6,6 +6,7 @@ import android.util.Log;
 import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.messaging.sdk.api.callbacks.LogoutLivePersonCallback;
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
+import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /**************************************************************************
@@ -38,8 +39,8 @@ public class ClearRunner implements LogoutLivePersonCallback {
     public void clearAndRun(Runnable runnable) {
         this.runnable = runnable;
         //Log out from LivePerson, clearing any existing conversation
-        LivePerson.logOut(hostContext, applicationStorage.getBrandAccountNumber(),
-                applicationStorage.getAppId(), this) ;
+        LivePerson.logOut(hostContext, ApplicationConstants.getLivePersonAccountNumber(),
+                ApplicationConstants.getLivePersonAppId(), this) ;
     }
 
     /**

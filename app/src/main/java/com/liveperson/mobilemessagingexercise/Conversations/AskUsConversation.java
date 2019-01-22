@@ -10,6 +10,7 @@ import com.liveperson.infra.callbacks.InitLivePersonCallBack;
 import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.messaging.sdk.api.model.ConsumerProfile;
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
+import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /***********************************************************************************
@@ -43,8 +44,8 @@ public class AskUsConversation implements Runnable, InitLivePersonCallBack {
     public void run() {
         //Set up the parameters needed for initializing LivePerson for messaging
         InitLivePersonProperties initLivePersonProperties =
-                new InitLivePersonProperties(applicationStorage.getBrandAccountNumber(),
-                        applicationStorage.getAppId(),
+                new InitLivePersonProperties(ApplicationConstants.getLivePersonAccountNumber(),
+                        ApplicationConstants.getLivePersonAppId(),
                         this);
 
         //Initialize LivePerson
