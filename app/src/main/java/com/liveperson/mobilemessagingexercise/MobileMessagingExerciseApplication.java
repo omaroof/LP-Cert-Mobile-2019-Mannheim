@@ -1,6 +1,7 @@
 package com.liveperson.mobilemessagingexercise;
 
 import android.app.Application;
+import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -8,6 +9,7 @@ import android.widget.Toast;
 import com.liveperson.api.LivePersonIntents;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 import com.liveperson.mobilemessagingexercise.receivers.LivePersonBroadcastReceiver;
+import com.liveperson.mobilemessagingexercise.services.LpFirebaseMessagingService;
 
 /******************************************************************
  * The main application class for the Mobile Messaging Exercise
@@ -30,6 +32,9 @@ public class MobileMessagingExerciseApplication extends Application {
 
         //Register the app to receive events from LivePerson
         registerForLivePersonEvents();
+
+        //Start the Firebase messaging service
+        startMessagingService();
     }
 
     /**
@@ -39,6 +44,14 @@ public class MobileMessagingExerciseApplication extends Application {
         livePersonBroadcastReceiver = new LivePersonBroadcastReceiver(this);
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getApplicationContext());
         localBroadcastManager.registerReceiver(livePersonBroadcastReceiver, LivePersonIntents.getIntentFilterForAllEvents());
+    }
+
+    /**
+     * Start the messaging service to field Firebase messages
+     */
+    private void startMessagingService() {
+        Intent messagingIntent = new Intent(this, LpFirebaseMessagingService.class);
+        startService(messagingIntent);
     }
 
     /**

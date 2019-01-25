@@ -1,12 +1,12 @@
 package com.liveperson.mobilemessagingexercise.Conversations;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.liveperson.infra.ConversationViewParams;
 import com.liveperson.infra.ICallback;
 import com.liveperson.infra.InitLivePersonProperties;
@@ -17,13 +17,13 @@ import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
 import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
+import com.liveperson.mobilemessagingexercise.services.LpFirebaseRegistrationIntentService;
 
 /**************************************************************************************
  * Class to display the My Account Screen.
  * Provides the LivePerson initialization callback
  *************************************************************************************/
-public class MyAccountConversation implements Runnable, InitLivePersonCallBack,
-        OnCompleteListener<InstanceIdResult>, ICallback<Void, Exception> {
+public class MyAccountConversation implements Runnable, InitLivePersonCallBack {
     private static final String TAG = MyAccountConversation.class.getSimpleName();
 
     private Activity hostContext;
@@ -50,8 +50,8 @@ public class MyAccountConversation implements Runnable, InitLivePersonCallBack,
     public void run() {
         //Set up the parameters needed for initializing LivePerson
         InitLivePersonProperties initLivePersonProperties =
-                new InitLivePersonProperties(ApplicationConstants.getLivePersonAccountNumber(),
-                        ApplicationConstants.getLivePersonAppId(),
+                new InitLivePersonProperties(ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER,
+                        ApplicationConstants.LIVE_PERSON_APP_ID,
                         null,
                         this);
 
@@ -79,44 +79,13 @@ public class MyAccountConversation implements Runnable, InitLivePersonCallBack,
         conversationViewParams = new ConversationViewParams(false);
         conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
 
-        //Retrieve the Firebase token to use
-        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(this);
-
         //Start the conversation
         LivePerson.showConversation(hostContext, authParams, conversationViewParams);
 
-    }
+        //Start or restart the registration intent service
+        Intent registrationIntent = new Intent(hostContext, LpFirebaseRegistrationIntentService.class);
+        hostContext.startService(registrationIntent);
 
-    /**
-     * Process the result of retrieving the FCM token for this app
-     * @param task the task whose completion triggered this method being called
-     */
-    @Override
-    public void onComplete(Task<InstanceIdResult> task) {
-        if (!task.isSuccessful()) {
-            Log.w(TAG, "getInstanceId failed", task.getException());
-            return;
-        }
-
-        // Get new Instance ID token
-        String fcmToken = task.getResult().getToken();
-
-        // Log and toast the token value
-        Log.d(TAG, fcmToken);
-        showToast(fcmToken);
-
-        //Register to receive push messages with the new token
-        LivePerson.registerLPPusher(ApplicationConstants.getLivePersonAccountNumber(), ApplicationConstants.getLivePersonAppId(),
-                fcmToken, authParams, this);
-    }
-
-    @Override
-    public void onSuccess(Void aVoid) {
-        Log.d(TAG, "Registered for push notifications");
-    }
-
-    public void onError(Exception e) {
-        Log.d(TAG, "Unable to register for push notifications");
     }
 
     /**

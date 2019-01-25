@@ -6,13 +6,21 @@ import com.google.firebase.messaging.RemoteMessage;
 import android.content.Intent;
 import android.util.Log;
 
-import com.liveperson.infra.model.PushMessage;
-import com.liveperson.messaging.sdk.api.LivePerson;
-
 import java.util.Map;
 
 public class LpFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = LpFirebaseMessagingService.class.getSimpleName();
+
+    public LpFirebaseMessagingService() {
+        super();
+        Log.d(TAG, "Constructor called");
+    }
+
+    @Override
+    public void onCreate() {
+        Log.d(TAG, "onCreate called");
+        super.onCreate();
+    }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -42,14 +50,6 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
-    }
-
-    @Override
-    public void onNewToken(String s) {
-        // Get updated InstanceID token.
-        Intent intent = new Intent(this, LpFirebaseMessagingService.class);
-        startService(intent);
-        Log.d("NEW_TOKEN",s);
     }
 
 }
