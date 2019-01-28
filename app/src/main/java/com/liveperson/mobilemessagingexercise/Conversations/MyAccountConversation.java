@@ -64,7 +64,7 @@ public class MyAccountConversation implements Runnable, InitLivePersonCallBack {
 
         //Set up the authentication parameters
         //TODO Phase 3: Set up the authentication parameters for an authenticated conversation
-
+    //BOO!
         //Set up the conversation view parameters
         //TODO Phase 3: Set up the parameters controlling the conversation view
 
