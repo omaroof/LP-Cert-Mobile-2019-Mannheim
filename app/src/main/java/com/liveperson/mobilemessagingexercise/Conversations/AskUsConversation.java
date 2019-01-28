@@ -44,8 +44,8 @@ public class AskUsConversation implements Runnable, InitLivePersonCallBack {
     public void run() {
         //Set up the parameters needed for initializing LivePerson for messaging
         InitLivePersonProperties initLivePersonProperties =
-                new InitLivePersonProperties(ApplicationConstants.getLivePersonAccountNumber(),
-                        ApplicationConstants.getLivePersonAppId(),
+                new InitLivePersonProperties(ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER,
+                        ApplicationConstants.LIVE_PERSON_APP_ID,
                         this);
 
         //Initialize LivePerson
