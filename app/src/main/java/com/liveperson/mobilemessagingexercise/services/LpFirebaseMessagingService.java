@@ -52,6 +52,14 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
 
     }
 
+    @Override
+    public void onNewToken(String s) {
+        // Get updated InstanceID token.
+        Intent intent = new Intent(this, LpFirebaseMessagingService.class);
+        startService(intent);
+        Log.d("NEW_TOKEN",s);
+    }
+
 }
 
 
