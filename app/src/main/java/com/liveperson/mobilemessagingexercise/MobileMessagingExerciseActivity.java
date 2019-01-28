@@ -91,7 +91,7 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
      * @return the Brand Server URL
      */
     protected String getBrandServerBaseUrl() {
-        return ApplicationConstants.getBrandServerUrl();
+        return ApplicationConstants.BRAND_SERVER_URL;
     }
 
     /*************************
