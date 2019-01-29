@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.liveperson.mobilemessagingexercise.ActivityRunners.ClearRunner;
 import com.liveperson.mobilemessagingexercise.Conversations.AskUsConversation;
+import com.liveperson.mobilemessagingexercise.Fragments.MyAccountFragment;
 import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 import com.liveperson.mobilemessagingexercise.Conversations.MyAccountConversation;
@@ -73,9 +74,8 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
      * Transfer control to the My Account activity
      */
     protected void startMyAccount() {
-        MyAccountConversation myAccountConversation = new MyAccountConversation(this, applicationStorage);
-        //Clear any previous conversation, and start My Account
-        clearRunner.clearAndRun(myAccountConversation);
+        Intent intentMyAccount = new Intent(this, MyAccountFragment.class);
+        this.startActivity(intentMyAccount);
     }
 
     /**
