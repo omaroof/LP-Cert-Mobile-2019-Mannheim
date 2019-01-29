@@ -104,4 +104,8 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
     public MobileMessagingExerciseApplication getApplicationInstance() {
         return applicationInstance;
     }
+
+    public ClearRunner getClearRunner() {
+        return clearRunner;
+    }
 }
