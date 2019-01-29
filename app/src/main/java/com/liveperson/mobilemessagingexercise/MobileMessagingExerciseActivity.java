@@ -10,7 +10,6 @@ import com.liveperson.mobilemessagingexercise.Conversations.AskUsConversation;
 import com.liveperson.mobilemessagingexercise.Fragments.MyAccountFragment;
 import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
-import com.liveperson.mobilemessagingexercise.Conversations.MyAccountConversation;
 
 /******************************************************************
  * Parent class providing common capabilities for the activities

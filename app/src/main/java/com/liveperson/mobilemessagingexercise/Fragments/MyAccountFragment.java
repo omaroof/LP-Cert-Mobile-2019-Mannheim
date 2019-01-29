@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.liveperson.infra.ConversationViewParams;
 import com.liveperson.infra.InitLivePersonProperties;
@@ -44,12 +46,51 @@ public class MyAccountFragment extends MobileMessagingExerciseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_acount);
+        Toolbar toolbar = findViewById(R.id.toolbar_main);
+        setSupportActionBar(toolbar);
+
+
         myAccountFragmentConversation = new MyAccountFragmentConversation(this, getApplicationStorage());
         //Run the fragment conversation
         getClearRunner().clearAndRun(myAccountFragmentConversation);
 
     }
 
+    /**
+     * Android callback invoked as the options menu is created
+     * @param menu the options menu in the toolbar
+     * @returns true, if the menu is to be displayed, and false otherwise
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Add the appropriate menu items to the toolbar menu
+        getMenuInflater().inflate(R.menu.menu_my_account, menu);
+        //Ensure the menu is displayed
+        return true;
+    }
+
+    /**
+     * Android callback invoked as an option is selected from the options menu
+     * @param item the selected menu item
+     * @return true if the menu item has been processed here, and false otherwise
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            //Process selection of the Welcome item
+            case R.id.welcome:
+                startWelcome();
+                break;
+
+            //Process selection of any other items
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+        return true;
+    }
 
 }
 

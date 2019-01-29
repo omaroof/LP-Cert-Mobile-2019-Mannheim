@@ -36,10 +36,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        />
-
         <service
-            android:name="com.liveperson.mobilemessagingexercise.services.LpFirebaseMessagingService">
+            android:name=".services.LpFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>

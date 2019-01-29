@@ -122,7 +122,7 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
      * Convenience method to display a pop up toast message from any activity
      * @param message the text of the message to be shown
      */
-    protected void showToast(String message) {
+    private void showToast(String message) {
         //Delegate to the method in the application
         applicationInstance.showToast(message);
     }
