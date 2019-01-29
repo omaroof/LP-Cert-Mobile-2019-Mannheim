@@ -49,9 +49,8 @@ public class MyAccountFragment extends MobileMessagingExerciseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
-
-        myAccountFragmentConversation = new MyAccountFragmentConversation(this, getApplicationStorage());
         //Run the fragment conversation
+        myAccountFragmentConversation = new MyAccountFragmentConversation(this, getApplicationStorage());
         getClearRunner().clearAndRun(myAccountFragmentConversation);
 
     }

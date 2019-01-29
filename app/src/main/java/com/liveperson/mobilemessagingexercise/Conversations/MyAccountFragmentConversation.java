@@ -96,6 +96,7 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
         Intent registrationIntent = new Intent(myAccountFragment, LpFirebaseRegistrationIntentService.class);
         myAccountFragment.startService(registrationIntent);
 
+
     }
 
     /**
