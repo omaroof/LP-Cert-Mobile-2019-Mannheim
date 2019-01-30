@@ -2,6 +2,7 @@ package com.liveperson.mobilemessagingexercise.services;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.liveperson.infra.ICallback;
 import com.liveperson.infra.model.PushMessage;
 import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.mobilemessagingexercise.Fragments.MyAccountFragment;
@@ -23,8 +24,9 @@ import java.util.Map;
 
 import static com.liveperson.mobilemessagingexercise.model.ApplicationConstants.LP_IS_FROM_PUSH;
 
-public class LpFirebaseMessagingService extends FirebaseMessagingService {
+public class LpFirebaseMessagingService extends FirebaseMessagingService implements ICallback<Integer, Exception> {
     private static final String TAG = LpFirebaseMessagingService.class.getSimpleName();
+    private PushMessage pushMessage;
 
     public LpFirebaseMessagingService() {
         super();
@@ -50,11 +52,11 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
             }
 
             // Pass the data from the message into the SDK
-            PushMessage pushMessage = LivePerson.handlePushMessage(this, remoteMessage.getData(),
+            pushMessage = LivePerson.handlePushMessage(this, remoteMessage.getData(),
                     ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER, false);
 
             if (pushMessage != null) {
-                showPushNotification(this, pushMessage);
+                showPushNotification(pushMessage);
             }
 
         }
@@ -74,41 +76,69 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
         Log.d("NEW_TOKEN",s);
     }
 
-    private void showPushNotification(Context ctx, PushMessage pushMessage) {
-
-        Notification.Builder builder = createNotificationBuilder(ctx, ApplicationConstants.LP_PUSH_NOTIFICATION_CHANNNEL_ID, "Push Notification", true);
-        int unreadMessageCount = LivePerson.getNumUnreadMessages(pushMessage.getBrandId());
-
-        builder.setContentIntent(createPendingIntent(ctx))
-            .setContentTitle(pushMessage.getFrom() + getLeString(R.string.said))
-            .setAutoCancel(true)
-            .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS)
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setNumber(pushMessage.getCurrentUnreadMessgesCounter())
-            .setCategory(Notification.CATEGORY_MESSAGE)
-            .setPriority(Notification.PRIORITY_HIGH)
-            .setStyle(new Notification.InboxStyle()
-                .addLine(pushMessage.getMessage())
-                .addLine(createUnreadMessageText(unreadMessageCount - 1)));
-
-         getNotificationManager(ctx).notify(ApplicationConstants.LP_PUSH_NOTIFICATION_ID, builder.build());
+    /**
+     * Notify the consumer of the arrival of the push message from LiveEngage
+     * @param pushMessage The LivePerson push message
+     */
+    private void showPushNotification(PushMessage pushMessage) {
+        //Get the count of unread messages
+        LivePerson.getNumUnreadMessages(ApplicationConstants.LIVE_PERSON_APP_ID, this);
     }
 
-    private String createUnreadMessageText(int unreadMessageCount) {
-        String unreadMessageCountStr;
+    /**
+     * Create the notification and show it to the consumer, once the count of unread messages is known
+     * @param unreadMessageCount the number of unread messages.
+     */
+    @Override
+    public void onSuccess(Integer unreadMessageCount) {
+        Notification.Builder builder = createNotificationBuilder(this,
+                ApplicationConstants.LP_PUSH_NOTIFICATION_CHANNNEL_ID, "Push Notification", true);
+
+        builder.setContentIntent(createPendingIntent(this))
+                .setContentTitle(pushMessage.getFrom() + getLeString(R.string.said))
+                .setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setNumber(pushMessage.getCurrentUnreadMessgesCounter())
+                .setCategory(Notification.CATEGORY_MESSAGE)
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setStyle(new Notification.InboxStyle()
+                        .addLine(pushMessage.getMessage())
+                        .addLine(createUnreadMessageText(unreadMessageCount.intValue() - 1)));
+
+        getNotificationManager(this).notify(ApplicationConstants.LP_PUSH_NOTIFICATION_ID, builder.build());
+    }
+
+    /**
+     * Can't get the number of unread messages
+     * @param e
+     */
+    @Override
+    public void onError(Exception e) {
+        Log.e(TAG, "Unable to get count of unread messages", e);
+    }
+
+
+    /**
+     * Create the text for the count of unread messages
+     * @param messageNumber the number of unread messages
+     * @return a message about the unread messages, suitable for the consumer
+     */
+    private String createUnreadMessageText(int messageNumber) {
+        String messageNumberStr;
         String unreadText = getLeString(R.string.unreadMessages);
-        switch(unreadMessageCount) {
+        switch(messageNumber) {
             case 0:
-                unreadMessageCountStr = getLeString(R.string.no);
+                messageNumberStr = getLeString(R.string.no);
                 break;
             case 1:
                 unreadText = getLeString(R.string.unreadMessage);
             default:
-                unreadMessageCountStr = Integer.toString(unreadMessageCount);
+                messageNumberStr = Integer.toString(messageNumber);
                 break;
         }
 
-        return(getLeString(R.string.youHave) + unreadMessageCountStr + unreadText);
+        return(getLeString(R.string.youHave) + messageNumberStr + unreadText);
     }
 
     private String getLeString(int id) {
@@ -154,8 +184,6 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
     private NotificationManager getNotificationManager(Context ctx) {
         return (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
     }
-
-
 }
 
 
