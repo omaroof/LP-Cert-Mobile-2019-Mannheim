@@ -1,5 +1,6 @@
 package com.liveperson.mobilemessagingexercise;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -32,6 +33,20 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
         findViewById(R.id.ask_us_button).setOnClickListener(this);
         findViewById(R.id.my_account_button).setOnClickListener(this);
         Log.i(TAG, "Welcome activity created");
+
+        if (startedByLEPushMessage(getIntent())) {
+            processLePushMessage(getIntent());
+        }
+    }
+
+    /**
+     * Android callback invoked as the activity is re-started by a new intent
+     * @param intent the intent associated with the action
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        processLePushMessage(intent);
     }
 
     /**
@@ -124,6 +139,16 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
             //Start the Ask Us screen
             startAskUs();
             break;
+        }
+    }
+
+    private void processLePushMessage(Intent intent) {
+        if (getApplicationStorage().isLoggedIn()) {
+            //User already logged in, so go straight there
+            startMyAccount();
+        } else {
+            //Not logged in, so need to do that first
+            startLogin();
         }
     }
 

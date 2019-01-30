@@ -93,6 +93,15 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
         return ApplicationConstants.BRAND_SERVER_URL;
     }
 
+    /**
+     * Determine whether or not the activity was started by a Live Engage push message
+     * @param intent the intent associated with starting the activity
+     * @return true if the activity was started by a Live Engage push message and false otherwise
+     */
+    protected boolean startedByLEPushMessage(Intent intent) {
+        return intent.getBooleanExtra(ApplicationConstants.LP_IS_FROM_PUSH, false);
+    }
+
     /*************************
      * Bean methods
      ************************/

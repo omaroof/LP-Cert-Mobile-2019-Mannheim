@@ -4,12 +4,24 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.liveperson.infra.model.PushMessage;
 import com.liveperson.messaging.sdk.api.LivePerson;
+import com.liveperson.mobilemessagingexercise.Fragments.MyAccountFragment;
+import com.liveperson.mobilemessagingexercise.R;
+import com.liveperson.mobilemessagingexercise.WelcomeActivity;
 import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import java.util.Map;
+
+import static com.liveperson.mobilemessagingexercise.model.ApplicationConstants.LP_IS_FROM_PUSH;
 
 public class LpFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = LpFirebaseMessagingService.class.getSimpleName();
@@ -27,7 +39,6 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        // TODO(developer): Handle FCM messages here.
         Log.d(TAG, "From: " + remoteMessage.getFrom());
         // Check if message contains a data payload.
         Map<String, String> messageData = remoteMessage.getData();
@@ -38,11 +49,16 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
                 Log.d(TAG, "  " + entry.getKey() + " : " + entry.getValue());
             }
 
-            // Send the data into the SDK
-            PushMessage message = LivePerson.handlePushMessage(this, remoteMessage.getData(),
-                    ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER, true);
+            // Pass the data from the message into the SDK
+            PushMessage pushMessage = LivePerson.handlePushMessage(this, remoteMessage.getData(),
+                    ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER, false);
+
+            if (pushMessage != null) {
+                showPushNotification(this, pushMessage);
+            }
 
         }
+
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
@@ -57,6 +73,69 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
         startService(intent);
         Log.d("NEW_TOKEN",s);
     }
+
+    private void showPushNotification(Context ctx, PushMessage pushMessage) {
+        Notification.Builder builder = createNotificationBuilder(ctx, ApplicationConstants.LP_PUSH_NOTIFICATION_CHANNNEL_ID, "Push Notification", true);
+
+        builder.setContentIntent(createPendingIntent(ctx))
+            .setContentTitle(pushMessage.getMessage())
+            .setAutoCancel(true)
+            .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setNumber(pushMessage.getCurrentUnreadMessgesCounter())
+            .setCategory(Notification.CATEGORY_MESSAGE)
+            .setPriority(Notification.PRIORITY_HIGH)
+            .setStyle(new Notification.InboxStyle()
+                    .addLine(pushMessage.getFrom())
+                    .addLine(pushMessage.getBrandId())
+                    .addLine(pushMessage.getConversationId())
+                    .addLine(pushMessage.getBackendService())
+                    .addLine(pushMessage.getCollapseKey())
+                    .addLine("Unread messages : " + LivePerson.getNumUnreadMessages(pushMessage.getBrandId()))
+        );
+
+         getNotificationManager(ctx).notify(ApplicationConstants.LP_PUSH_NOTIFICATION_ID, builder.build());
+    }
+
+    /**
+     * Create notification builder according to platform level.
+     */
+    private Notification.Builder createNotificationBuilder(Context ctx, String channelId, String channelName, boolean isHighImportance) {
+        Notification.Builder builder;
+        if (Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) {
+            builder = new Notification.Builder(ctx);
+        } else {
+            //Create a channel for the notification.
+            createNotificationChannel(ctx, channelId, channelName, isHighImportance);
+            builder = new Notification.Builder(ctx, channelId);
+        }
+
+        return builder;
+    }
+
+    /**
+     * Creates a notification channel with the given parameters.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void createNotificationChannel(Context context, String channelId, String channelName, boolean isHighImportance) {
+        NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+        if (isHighImportance) {
+            notificationChannel.setImportance(NotificationManager.IMPORTANCE_HIGH);
+        }
+        getNotificationManager(context).createNotificationChannel(notificationChannel);
+    }
+
+    private PendingIntent createPendingIntent(Context ctx) {
+        Intent showIntent = new Intent(ctx, WelcomeActivity.class);
+        showIntent.putExtra(LP_IS_FROM_PUSH, true);
+
+        return PendingIntent.getActivity(ctx, 0, showIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    private NotificationManager getNotificationManager(Context ctx) {
+        return (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
+    }
+
 
 }
 

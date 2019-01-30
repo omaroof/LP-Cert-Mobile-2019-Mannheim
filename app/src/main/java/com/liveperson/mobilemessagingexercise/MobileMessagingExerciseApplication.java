@@ -33,8 +33,6 @@ public class MobileMessagingExerciseApplication extends Application {
         //Register the app to receive events from LivePerson
         registerForLivePersonEvents();
 
-        //Start the Firebase messaging service
-        //startMessagingService();
     }
 
     /**

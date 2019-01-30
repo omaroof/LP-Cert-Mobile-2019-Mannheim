@@ -13,5 +13,6 @@ public class ApplicationConstants {
 
     public static final int LP_PUSH_NOTIFICATION_ID = 42;
     public static final String LP_PUSH_NOTIFICATION_CHANNNEL_ID = "lp_push_notification_channel";
+    public static final String LP_IS_FROM_PUSH = "lp_is_from_push";
 
 }
