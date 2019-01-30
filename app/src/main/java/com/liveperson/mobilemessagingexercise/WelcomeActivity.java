@@ -41,7 +41,7 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
 
     /**
      * Android callback invoked as the activity is re-started by a new intent
-     * @param intent the intent associated with the action
+     * @param intent the intent associated with the restart action
      */
     @Override
     protected void onNewIntent(Intent intent) {
@@ -55,7 +55,6 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
     @Override
     protected void onResume() {
         super.onResume();
-
         //Load saved data into the controls on this screen
         ApplicationStorage applicationStorage = getApplicationStorage();
         EditText firstNameControl = findViewById(R.id.firstName);
@@ -142,6 +141,10 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
         }
     }
 
+    /**
+     * Process a creation or restart triggered by a push message
+     * @param intent the intent associated with the push message
+     */
     private void processLePushMessage(Intent intent) {
         if (getApplicationStorage().isLoggedIn()) {
             //User already logged in, so go straight there

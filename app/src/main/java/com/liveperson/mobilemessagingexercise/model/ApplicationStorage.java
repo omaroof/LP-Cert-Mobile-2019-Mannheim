@@ -12,6 +12,7 @@ public class ApplicationStorage {
 
     private String firstName = "";
     private String lastName = "";
+    private String authenticatingUserId = "";
     private String phoneNumber = "";
     private String authCode = "";
     private Long campaignId;
@@ -63,6 +64,14 @@ public class ApplicationStorage {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getAuthenticatingUserId() {
+        return authenticatingUserId;
+    }
+
+    public void setAuthenticatingUserId(String authenticatingUserId) {
+        this.authenticatingUserId = authenticatingUserId;
     }
 
     public String getPhoneNumber() {

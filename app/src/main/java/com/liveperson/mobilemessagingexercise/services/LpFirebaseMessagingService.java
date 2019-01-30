@@ -75,10 +75,12 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void showPushNotification(Context ctx, PushMessage pushMessage) {
+
         Notification.Builder builder = createNotificationBuilder(ctx, ApplicationConstants.LP_PUSH_NOTIFICATION_CHANNNEL_ID, "Push Notification", true);
+        int unreadMessageCount = LivePerson.getNumUnreadMessages(pushMessage.getBrandId());
 
         builder.setContentIntent(createPendingIntent(ctx))
-            .setContentTitle(pushMessage.getMessage())
+            .setContentTitle(pushMessage.getFrom() + getLeString(R.string.said))
             .setAutoCancel(true)
             .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS)
             .setSmallIcon(R.mipmap.ic_launcher)
@@ -86,15 +88,32 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
             .setCategory(Notification.CATEGORY_MESSAGE)
             .setPriority(Notification.PRIORITY_HIGH)
             .setStyle(new Notification.InboxStyle()
-                    .addLine(pushMessage.getFrom())
-                    .addLine(pushMessage.getBrandId())
-                    .addLine(pushMessage.getConversationId())
-                    .addLine(pushMessage.getBackendService())
-                    .addLine(pushMessage.getCollapseKey())
-                    .addLine("Unread messages : " + LivePerson.getNumUnreadMessages(pushMessage.getBrandId()))
-        );
+                .addLine(pushMessage.getMessage())
+                .addLine(createUnreadMessageText(unreadMessageCount - 1)));
 
          getNotificationManager(ctx).notify(ApplicationConstants.LP_PUSH_NOTIFICATION_ID, builder.build());
+    }
+
+    private String createUnreadMessageText(int unreadMessageCount) {
+        String unreadMessageCountStr;
+        String unreadText = getLeString(R.string.unreadMessages);
+        switch(unreadMessageCount) {
+            case 0:
+                unreadMessageCountStr = getLeString(R.string.no);
+                break;
+            case 1:
+                unreadText = getLeString(R.string.unreadMessage);
+            default:
+                unreadMessageCountStr = Integer.toString(unreadMessageCount);
+                break;
+        }
+
+        return(getLeString(R.string.youHave) + unreadMessageCountStr + unreadText);
+    }
+
+    private String getLeString(int id) {
+        String baseString = getString(id);
+        return baseString.replace('_', ' ');
     }
 
     /**
