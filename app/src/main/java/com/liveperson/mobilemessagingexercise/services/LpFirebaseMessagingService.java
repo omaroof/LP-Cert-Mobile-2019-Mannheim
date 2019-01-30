@@ -2,6 +2,9 @@ package com.liveperson.mobilemessagingexercise.services;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.liveperson.infra.model.PushMessage;
+import com.liveperson.messaging.sdk.api.LivePerson;
+import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 
 import android.content.Intent;
 import android.util.Log;
@@ -36,13 +39,8 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
             }
 
             // Send the data into the SDK
-            //String account = "82055668";
-            //PushMessage message = LivePerson.handlePushMessage(this, remoteMessage.getData(), account, false);
-
-            //Code snippet to add push UI notification
-            //if (message != null){
-            // We'll work this out later NotificationUI.showNotification(this, message);
-            //}
+            PushMessage message = LivePerson.handlePushMessage(this, remoteMessage.getData(),
+                    ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER, true);
 
         }
         // Check if message contains a notification payload.

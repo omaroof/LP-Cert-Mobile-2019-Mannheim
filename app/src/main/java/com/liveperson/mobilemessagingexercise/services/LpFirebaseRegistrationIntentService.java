@@ -55,7 +55,7 @@ public class LpFirebaseRegistrationIntentService extends IntentService implement
         String fcmToken = task.getResult().getToken();
 
         // Log and toast the token value
-        Log.d(TAG, fcmToken);
+        Log.d(TAG +  " Firebase token: ", fcmToken);
 
         //Register to receive push messages with the new token
         LivePerson.registerLPPusher(ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER, ApplicationConstants.LIVE_PERSON_APP_ID,
