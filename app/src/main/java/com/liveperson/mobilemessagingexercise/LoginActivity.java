@@ -144,7 +144,7 @@ public class LoginActivity extends MobileMessagingExerciseActivity
         catch (Exception e) {
             //There was a problem parsing the response from the server
             Log.e(TAG, e.getMessage());
-            showToast(e.getMessage());
+            showToast("Unable to log in");
         }
     }
 
