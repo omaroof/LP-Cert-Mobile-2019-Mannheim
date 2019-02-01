@@ -338,6 +338,43 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Widget page for 982373",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/widgetPage?userAccountNumber=982373",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"widgetPage"
+					],
+					"query": [
+						{
+							"key": "userAccountNumber",
+							"value": "982373"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
