@@ -113,7 +113,7 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService impleme
                 .setCategory(Notification.CATEGORY_MESSAGE)
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setStyle(new Notification.InboxStyle()
-                    //Add a line containing the message text itself
+                    //TODO Phase 5: Add a line containing the message text itself
 
                     .addLine(createUnreadMessageText(unreadMessageCount.intValue() - 1)));
 

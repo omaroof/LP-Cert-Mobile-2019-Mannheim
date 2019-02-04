@@ -98,7 +98,7 @@ public class MobileMessagingExerciseActivity extends AppCompatActivity {
      * @param intent the intent associated with starting the activity
      * @return true if the activity was started by a Live Engage push message and false otherwise
      */
-    protected boolean startedByLEPushMessage(Intent intent) {
+    protected boolean startedByLePushMessage(Intent intent) {
         return intent.getBooleanExtra(ApplicationConstants.LP_IS_FROM_PUSH, false);
     }
 
