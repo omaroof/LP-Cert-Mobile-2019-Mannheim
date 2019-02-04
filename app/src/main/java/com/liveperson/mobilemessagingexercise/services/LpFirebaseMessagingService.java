@@ -59,7 +59,7 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService impleme
                 Log.d(TAG, "  " + entry.getKey() + " : " + entry.getValue());
             }
 
-            // Pass the data from the message into the SDK
+            ///Retrieve the PushMessage instance from the Firebase message
             pushMessage = LivePerson.handlePushMessage(this, remoteMessage.getData(),
                     ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER, false);
 
@@ -69,7 +69,7 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService impleme
 
         }
 
-        // Check if message contains a notification payload.
+        //Log the message payload, if any
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
