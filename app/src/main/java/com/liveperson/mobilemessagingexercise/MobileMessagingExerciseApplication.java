@@ -44,14 +44,6 @@ public class MobileMessagingExerciseApplication extends Application {
     }
 
     /**
-     * Start the messaging service to field Firebase messages
-     */
-    private void startMessagingService() {
-        Intent messagingIntent = new Intent(this, LpFirebaseMessagingService.class);
-        startService(messagingIntent);
-    }
-
-    /**
      * Display a pop up toast message
      * @param message the text of the message to be shown
      *
