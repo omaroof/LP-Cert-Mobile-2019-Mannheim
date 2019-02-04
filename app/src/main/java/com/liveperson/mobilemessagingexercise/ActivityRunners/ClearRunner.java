@@ -38,6 +38,11 @@ public class ClearRunner implements LogoutLivePersonCallback {
      */
     public void clearAndRun(Runnable runnable) {
         this.runnable = runnable;
+
+        //Unregister from push notifications
+        LivePerson.unregisterLPPusher(ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER, ApplicationConstants.LIVE_PERSON_APP_ID);
+        showToast("Unregistered from push notifications");
+
         //Log out from LivePerson, clearing any existing conversation
         LivePerson.logOut(hostContext, ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER,
                 ApplicationConstants.LIVE_PERSON_APP_ID, this) ;

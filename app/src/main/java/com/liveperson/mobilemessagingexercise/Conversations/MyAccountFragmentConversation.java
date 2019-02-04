@@ -5,7 +5,12 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.liveperson.infra.ConversationViewParams;
+import com.liveperson.infra.ICallback;
 import com.liveperson.infra.InitLivePersonProperties;
 import com.liveperson.infra.LPAuthenticationParams;
 import com.liveperson.infra.LPConversationsHistoryStateToDisplay;
@@ -23,7 +28,7 @@ import com.liveperson.mobilemessagingexercise.services.LpFirebaseRegistrationInt
  * Class to display the My Account Screen.
  * Provides the LivePerson initialization callback
  *************************************************************************************/
-public class MyAccountFragmentConversation implements Runnable, InitLivePersonCallBack {
+public class MyAccountFragmentConversation implements Runnable, InitLivePersonCallBack, OnCompleteListener<InstanceIdResult>, ICallback<Void, Exception> {
     private static final String TAG = MyAccountFragmentConversation.class.getSimpleName();
 
     private static final String LIVEPERSON_FRAGMENT = "liveperson_fragment";
@@ -89,13 +94,9 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
             FragmentTransaction ft = myAccountFragment.getSupportFragmentManager().beginTransaction();
             ft.add(R.id.my_account_fragment_container, lpConversationFragment, LIVEPERSON_FRAGMENT).commitAllowingStateLoss();
 
+            //Retrieve the Firebase token to use
+            FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(this);
         }
-
-        //Start or restart the registration intent service
-        Intent registrationIntent = new Intent(myAccountFragment, LpFirebaseRegistrationIntentService.class);
-        myAccountFragment.startService(registrationIntent);
-
-
     }
 
     /**
@@ -108,6 +109,45 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
         //Display and log the error
         Log.e(TAG, "LivePerson SDK initialize failed", e);
         showToast("Unable to initialize LivePerson");
+    }
+
+    /**
+     * Process the result of retrieving the FCM token for this app
+     * @param task the task whose completion triggered this method being called
+     */
+    @Override
+    public void onComplete(Task<InstanceIdResult> task) {
+        if (!task.isSuccessful()) {
+            Log.w(TAG, "getInstanceId failed", task.getException());
+            return;
+        }
+
+        // Get new Instance ID token
+        String fcmToken = task.getResult().getToken();
+
+        // Log and toast the token value
+        Log.d(TAG +  " Firebase token: ", fcmToken);
+
+        //Register to receive push messages with the new firebase token
+        LivePerson.registerLPPusher(ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER, ApplicationConstants.LIVE_PERSON_APP_ID,
+                fcmToken, null, this);
+    }
+
+    /**
+     * Registration for push messages with LiveEngage was successful
+     * @param aVoid the parameter for the successful registration
+     */
+    @Override
+    public void onSuccess(Void aVoid) {
+        Log.d(TAG, "Registered for push notifications");
+    }
+
+    /**
+     * Registration for push messages with LiveEngage failed
+     * @param e the Exception associated with the failure
+     */
+    public void onError(Exception e) {
+        Log.d(TAG, "Unable to register for push notifications");
     }
 
     /**

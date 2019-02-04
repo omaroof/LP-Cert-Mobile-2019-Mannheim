@@ -15,9 +15,11 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.liveperson.infra.ICallback;
 import com.liveperson.infra.model.PushMessage;
 import com.liveperson.messaging.sdk.api.LivePerson;
+import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
 import com.liveperson.mobilemessagingexercise.R;
 import com.liveperson.mobilemessagingexercise.WelcomeActivity;
 import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
+import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 import java.util.Map;
 
@@ -25,6 +27,9 @@ import static com.liveperson.mobilemessagingexercise.model.ApplicationConstants.
 
 public class LpFirebaseMessagingService extends FirebaseMessagingService implements ICallback<Integer, Exception> {
     private static final String TAG = LpFirebaseMessagingService.class.getSimpleName();
+
+    private ApplicationStorage applicationStorage;
+    private MobileMessagingExerciseApplication applicationInstance;
     private PushMessage pushMessage;
 
     public LpFirebaseMessagingService() {
@@ -36,6 +41,10 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService impleme
     public void onCreate() {
         Log.d(TAG, "onCreate called");
         super.onCreate();
+
+        //Link to the main application
+        applicationInstance = (MobileMessagingExerciseApplication)getApplication();
+        applicationStorage = ApplicationStorage.getInstance();
     }
 
     @Override
@@ -67,12 +76,16 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService impleme
 
     }
 
+    /**
+     * Process an updated Firebase push message token
+     * @param fcmToken
+     */
     @Override
-    public void onNewToken(String s) {
-        // Get updated InstanceID token.
-        Intent intent = new Intent(this, LpFirebaseMessagingService.class);
-        startService(intent);
-        Log.d("NEW_TOKEN",s);
+    public void onNewToken(String fcmToken) {
+        Log.d(TAG, "New Firebase token received: " + fcmToken);
+        //Update the registration with the new token
+        LivePerson.registerLPPusher(ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER, ApplicationConstants.LIVE_PERSON_APP_ID,
+                fcmToken, null, null);
     }
 
     /**
