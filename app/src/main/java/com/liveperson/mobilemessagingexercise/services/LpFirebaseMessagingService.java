@@ -1,15 +1,5 @@
 package com.liveperson.mobilemessagingexercise.services;
 
-import com.google.firebase.messaging.FirebaseMessagingService;
-import com.google.firebase.messaging.RemoteMessage;
-import com.liveperson.infra.ICallback;
-import com.liveperson.infra.model.PushMessage;
-import com.liveperson.messaging.sdk.api.LivePerson;
-import com.liveperson.mobilemessagingexercise.Fragments.MyAccountFragment;
-import com.liveperson.mobilemessagingexercise.R;
-import com.liveperson.mobilemessagingexercise.WelcomeActivity;
-import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
-
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -19,6 +9,15 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
+
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
+import com.liveperson.infra.ICallback;
+import com.liveperson.infra.model.PushMessage;
+import com.liveperson.messaging.sdk.api.LivePerson;
+import com.liveperson.mobilemessagingexercise.R;
+import com.liveperson.mobilemessagingexercise.WelcomeActivity;
+import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 
 import java.util.Map;
 

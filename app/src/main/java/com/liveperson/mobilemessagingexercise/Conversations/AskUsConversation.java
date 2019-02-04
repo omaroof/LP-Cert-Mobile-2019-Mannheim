@@ -2,6 +2,7 @@ package com.liveperson.mobilemessagingexercise.Conversations;
 
 import android.app.Activity;
 import android.util.Log;
+
 import com.liveperson.infra.ConversationViewParams;
 import com.liveperson.infra.InitLivePersonProperties;
 import com.liveperson.infra.LPAuthenticationParams;
