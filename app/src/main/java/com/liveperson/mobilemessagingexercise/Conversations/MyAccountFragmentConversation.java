@@ -85,7 +85,7 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
         conversationViewParams = new ConversationViewParams(false);
         conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
 
-        //Create the LivePerson fragment
+        //TODO - Phase5: Create the LivePerson fragment
         lpConversationFragment = (ConversationFragment) LivePerson.getConversationFragment(authParams, conversationViewParams);
 
         if (isValidState(myAccountFragment)) {
