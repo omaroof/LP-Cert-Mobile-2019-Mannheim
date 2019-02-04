@@ -1,6 +1,5 @@
 package com.liveperson.mobilemessagingexercise.Conversations;
 
-import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -22,7 +21,6 @@ import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication
 import com.liveperson.mobilemessagingexercise.R;
 import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
-import com.liveperson.mobilemessagingexercise.services.LpFirebaseRegistrationIntentService;
 
 /**************************************************************************************
  * Class to display the My Account Screen.
