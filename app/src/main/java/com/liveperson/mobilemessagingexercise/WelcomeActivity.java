@@ -34,7 +34,8 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
         findViewById(R.id.my_account_button).setOnClickListener(this);
         Log.i(TAG, "Welcome activity created");
 
-        if (startedByLEPushMessage(getIntent())) {
+        if (startedByLePushMessage(getIntent())) {
+            //Process the push message that started execution
             processLePushMessage(getIntent());
         }
     }

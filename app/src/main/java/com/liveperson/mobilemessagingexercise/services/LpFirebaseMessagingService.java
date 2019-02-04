@@ -59,9 +59,7 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService impleme
                 Log.d(TAG, "  " + entry.getKey() + " : " + entry.getValue());
             }
 
-            // Pass the data from the message into the SDK
-            pushMessage = LivePerson.handlePushMessage(this, remoteMessage.getData(),
-                    ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER, false);
+            //TODO Phase 5: Retrieve the PushMessage instance from the Firebase message
 
             if (pushMessage != null) {
                 showPushNotification(pushMessage);
@@ -69,11 +67,10 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService impleme
 
         }
 
-        // Check if message contains a notification payload.
+        //Log the message payload, if any
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
-
     }
 
     /**
@@ -111,12 +108,14 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService impleme
                 .setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setNumber(pushMessage.getCurrentUnreadMessgesCounter())
+                //TODO Phase 5: Add the count of unread messages
+
                 .setCategory(Notification.CATEGORY_MESSAGE)
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setStyle(new Notification.InboxStyle()
-                        .addLine(pushMessage.getMessage())
-                        .addLine(createUnreadMessageText(unreadMessageCount.intValue() - 1)));
+                    //Add a line containing the message text itself
+
+                    .addLine(createUnreadMessageText(unreadMessageCount.intValue() - 1)));
 
         getNotificationManager(this).notify(ApplicationConstants.LP_PUSH_NOTIFICATION_ID, builder.build());
     }

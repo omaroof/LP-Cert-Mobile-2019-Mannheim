@@ -32,7 +32,6 @@ public class MobileMessagingExerciseApplication extends Application {
 
         //Register the app to receive events from LivePerson
         registerForLivePersonEvents();
-
     }
 
     /**
@@ -42,14 +41,6 @@ public class MobileMessagingExerciseApplication extends Application {
         livePersonBroadcastReceiver = new LivePersonBroadcastReceiver(this);
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getApplicationContext());
         localBroadcastManager.registerReceiver(livePersonBroadcastReceiver, LivePersonIntents.getIntentFilterForAllEvents());
-    }
-
-    /**
-     * Start the messaging service to field Firebase messages
-     */
-    private void startMessagingService() {
-        Intent messagingIntent = new Intent(this, LpFirebaseMessagingService.class);
-        startService(messagingIntent);
     }
 
     /**
