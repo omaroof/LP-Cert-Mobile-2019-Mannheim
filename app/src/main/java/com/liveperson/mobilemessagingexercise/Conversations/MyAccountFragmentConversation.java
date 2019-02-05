@@ -22,10 +22,12 @@ import com.liveperson.mobilemessagingexercise.R;
 import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
-/**************************************************************************************
- * Class to display the My Account Screen.
+/*********************************************************************************************
+ * Class to display the My Account Screen using the LivePerson fragment mechanism.
  * Provides the LivePerson initialization callback
- *************************************************************************************/
+ * Provides the OnComplete listener to deal with Firebase callback
+ * Provides the ICallback listener to deal with LivePerson push message registration callback
+ *********************************************************************************************/
 public class MyAccountFragmentConversation implements Runnable, InitLivePersonCallBack, OnCompleteListener<InstanceIdResult>, ICallback<Void, Exception> {
     private static final String TAG = MyAccountFragmentConversation.class.getSimpleName();
 
@@ -91,7 +93,7 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
         if (isValidState(myAccountFragment)) {
             //TODO Phase 5: Add the LivePerson fragment to the screen
 
-            //TODO Phae 5: Retrieve the Firebase token to use
+            //TODO Phase 5: Retrieve the Firebase token to use
         }
     }
 
@@ -108,7 +110,7 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
     }
 
     /**
-     * Process the result of retrieving the FCM token for this app
+     * Process the result of retrieving the Firebase FCM token for this app
      * @param task the task whose completion triggered this method being called
      */
     @Override
@@ -118,11 +120,11 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
             return;
         }
 
-        // Get new Instance ID token
+        // Retrieve the Firebase FCM token from the result
         String fcmToken = task.getResult().getToken();
 
-        // Log and toast the token value
-        Log.d(TAG +  " Firebase token: ", fcmToken);
+        // Log the token value
+        Log.d(TAG +  " Firebase FCM token: ", fcmToken);
 
         //TODO Phase 5: Register to receive push messages with the new firebase token
     }
