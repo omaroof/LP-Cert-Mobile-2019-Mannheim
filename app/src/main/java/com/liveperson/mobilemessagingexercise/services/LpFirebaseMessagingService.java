@@ -90,8 +90,7 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService impleme
      * @param pushMessage The LivePerson push message
      */
     private void showPushNotification(PushMessage pushMessage) {
-        //Get the count of unread messages
-        LivePerson.getNumUnreadMessages(ApplicationConstants.LIVE_PERSON_APP_ID, this);
+        //TODO Phase 5: Get the count of unread messages
     }
 
     /**
