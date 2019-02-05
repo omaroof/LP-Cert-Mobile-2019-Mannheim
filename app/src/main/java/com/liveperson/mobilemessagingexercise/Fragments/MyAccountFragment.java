@@ -9,14 +9,11 @@ import com.liveperson.mobilemessagingexercise.Conversations.MyAccountFragmentCon
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseActivity;
 import com.liveperson.mobilemessagingexercise.R;
 
-/**************************************************************************************
- * Class to display the My Account Screen.
- * Provides the LivePerson initialization callback
- *************************************************************************************/
+/**********************************************************************************************
+ * Class to initiate display of the My Account Screen using the LivePerson Fragment mechanism
+ *********************************************************************************************/
 public class MyAccountFragment extends MobileMessagingExerciseActivity {
     private static final String TAG = MyAccountFragment.class.getSimpleName();
-
-    private static final String LIVEPERSON_FRAGMENT = "liveperson_fragment";
 
     private MyAccountFragmentConversation myAccountFragmentConversation;
 
@@ -31,10 +28,9 @@ public class MyAccountFragment extends MobileMessagingExerciseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
-        //Run the fragment conversation
+        //Run the fragment conversation, clearing any existing conversation first
         myAccountFragmentConversation = new MyAccountFragmentConversation(this, getApplicationStorage());
         getClearRunner().clearAndRun(myAccountFragmentConversation);
-
     }
 
     /**
@@ -72,6 +68,5 @@ public class MyAccountFragment extends MobileMessagingExerciseActivity {
 
         return true;
     }
-
 }
 
