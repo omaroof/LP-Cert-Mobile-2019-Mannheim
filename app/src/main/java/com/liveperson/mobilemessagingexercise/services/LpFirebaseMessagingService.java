@@ -75,9 +75,7 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
             //TODO Phase 5: Retrieve the LivePerson PushMessage instance from the Firebase message
 
             if (pushMessage != null) {
-                //The message contains a valid LivePerson push message, so create
-                //and show the notification
-                showPushNotification(pushMessage);
+                //TODO Phase 5: Get the count of unread messages
             }
         }
 
@@ -97,17 +95,6 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
         //Update the registration with the new token
         LivePerson.registerLPPusher(ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER, ApplicationConstants.LIVE_PERSON_APP_ID,
                 fcmToken, null, pushRegistrationHandler);
-    }
-
-    /**
-     * Notify the consumer of the arrival of the push message from LiveEngage
-     * @param pushMessage The LivePerson push message
-     * NOTE: Processing involves a chain of callback methods to create a notification builder
-     * used to create the notification itself.
-     */
-    private void showPushNotification(PushMessage pushMessage) {
-        //TODO Phase 5: Get the count of unread messages
-
     }
 
     /**
