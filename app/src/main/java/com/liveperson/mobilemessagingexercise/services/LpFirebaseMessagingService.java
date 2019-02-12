@@ -72,10 +72,10 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
                 Log.d(TAG, "  " + entry.getKey() + " : " + entry.getValue());
             }
 
-            //TODO Phase 5: Retrieve the LivePerson PushMessage instance from the Firebase message
+            //TODO Phase 4: Retrieve the LivePerson PushMessage instance from the Firebase message
 
             if (pushMessage != null) {
-                //TODO Phase 5: Get the count of unread messages
+                //TODO Phase 4: Get the count of unread messages
             }
         }
 
@@ -175,7 +175,7 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
                     .setCategory(Notification.CATEGORY_MESSAGE)
                     .setPriority(Notification.PRIORITY_HIGH)
                     .setStyle(new Notification.InboxStyle()
-                            //TODO Phase 5 Add a line containing the message text from the agent
+                            //TODO Phase 4 Add a line containing the message text from the agent
                             .addLine(createUnreadMessageText(unreadMessageCount.intValue() - 1)));
 
             getNotificationManager(context).notify(ApplicationConstants.LP_PUSH_NOTIFICATION_ID, builder.build());
@@ -220,10 +220,10 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
          *      the notification
          */
         private PendingIntent createPendingIntent(Context ctx) {
-            //TODO Phase 5 Create the Intent to start the Welcome Activity
+            //TODO Phase 4 Create the Intent to start the Welcome Activity
             Intent welcomeActivityIntent = null;
 
-            //TODO Phase 5 Add the indication that this is from a LivePerson push message
+            //TODO Phase 4 Add the indication that this is from a LivePerson push message
 
             //Create the pending intent which can be used from the notification Mark the
             //intent to reuse any existing instance, while updating any extra data

@@ -87,13 +87,12 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
         conversationViewParams = new ConversationViewParams(false);
         conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
 
-        //TODO Phase5: Create the LivePerson fragment
-        lpConversationFragment = (ConversationFragment) LivePerson.getConversationFragment(authParams, conversationViewParams);
+        //TODO Phase 4: Get the LivePerson fragment
 
         if (isValidState(myAccountFragment)) {
-            //TODO Phase 5: Add the LivePerson fragment to the screen
+            //TODO Phase 4: Add the LivePerson fragment to the screen
 
-            //TODO Phase 5: Retrieve the Firebase token to use
+            //TODO Phase 4: Retrieve the Firebase token to use
         }
     }
 
@@ -126,7 +125,7 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
         // Log the token value
         Log.d(TAG +  " Firebase FCM token: ", fcmToken);
 
-        //TODO Phase 5: Register to receive push messages with the new firebase token
+        //TODO Phase 4: Register to receive push messages with the new firebase token
     }
 
     /**
