@@ -88,7 +88,7 @@ public class LoginActivity extends MobileMessagingExerciseActivity
         JSONObject credentials = new JSONObject();
         try {
             //Set up the body for the POST request to the authentication API
-            credentials.put("userId", userId);
+            credentials.put("username", userId);
             credentials.put("password", password);
             //Create the authentication POST request
             JsonObjectRequest authenticationRequest = new JsonObjectRequest(
