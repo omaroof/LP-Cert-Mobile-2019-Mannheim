@@ -1,7 +1,7 @@
 package com.liveperson.mobilemessagingexercise.Conversations;
 
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
