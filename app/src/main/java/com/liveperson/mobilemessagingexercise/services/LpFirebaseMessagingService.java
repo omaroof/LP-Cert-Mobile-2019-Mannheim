@@ -175,7 +175,7 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
                     .setAutoCancel(true)
                     .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS)
                     .setSmallIcon(R.mipmap.ic_launcher)
-                    .setNumber(pushMessage.getCurrentUnreadMessgesCounter())
+                    .setNumber(pushMessage.getCurrentUnreadMessagesCounter())
                     .setCategory(Notification.CATEGORY_MESSAGE)
                     .setPriority(Notification.PRIORITY_HIGH)
                     .setStyle(new Notification.InboxStyle()
