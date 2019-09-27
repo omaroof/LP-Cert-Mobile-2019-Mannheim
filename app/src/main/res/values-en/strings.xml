@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="welcome_message">Welcome to LP Certification</string>
     <string name="app_name">Twisted Entertainment (P4)</string>
     <string name="brand_name">Twisted Entertainment</string>
     <string name="welcome">Welcome</string>
