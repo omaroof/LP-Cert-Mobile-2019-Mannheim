@@ -1,7 +1,7 @@
 package com.liveperson.mobilemessagingexercise;
 
 import android.app.Application;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
