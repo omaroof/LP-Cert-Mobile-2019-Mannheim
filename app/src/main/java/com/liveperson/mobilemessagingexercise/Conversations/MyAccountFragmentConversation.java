@@ -1,12 +1,11 @@
 package com.liveperson.mobilemessagingexercise.Conversations;
 
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.FragmentActivity;
+
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.liveperson.infra.ConversationViewParams;
 import com.liveperson.infra.ICallback;
@@ -18,7 +17,6 @@ import com.liveperson.infra.messaging_ui.fragment.ConversationFragment;
 import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.mobilemessagingexercise.Fragments.MyAccountFragment;
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
-import com.liveperson.mobilemessagingexercise.R;
 import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 

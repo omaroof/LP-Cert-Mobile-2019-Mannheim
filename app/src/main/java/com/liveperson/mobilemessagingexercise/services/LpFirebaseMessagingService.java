@@ -7,7 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -17,13 +17,10 @@ import com.liveperson.infra.model.PushMessage;
 import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
 import com.liveperson.mobilemessagingexercise.R;
-import com.liveperson.mobilemessagingexercise.WelcomeActivity;
 import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 import java.util.Map;
-
-import static com.liveperson.mobilemessagingexercise.model.ApplicationConstants.LP_IS_FROM_PUSH;
 
 public class LpFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = LpFirebaseMessagingService.class.getSimpleName();
@@ -171,7 +168,7 @@ public class LpFirebaseMessagingService extends FirebaseMessagingService {
                     .setAutoCancel(true)
                     .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS)
                     .setSmallIcon(R.mipmap.ic_launcher)
-                    .setNumber(pushMessage.getCurrentUnreadMessgesCounter())
+                    .setNumber(pushMessage.getCurrentUnreadMessagesCounter())
                     .setCategory(Notification.CATEGORY_MESSAGE)
                     .setPriority(Notification.PRIORITY_HIGH)
                     .setStyle(new Notification.InboxStyle()
