@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "290017039163",
-    "firebase_url": "https://lpcert-mobile-training-2019.firebaseio.com",
-    "project_id": "lpcert-mobile-training-2019",
-    "storage_bucket": "lpcert-mobile-training-2019.appspot.com"
+    "project_number": "722444033564",
+    "firebase_url": "https://lpcert-mobile-training-2-bb08e.firebaseio.com",
+    "project_id": "lpcert-mobile-training-2-bb08e",
+    "storage_bucket": "lpcert-mobile-training-2-bb08e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:290017039163:android:756bdea5967c9ee46d1d1e",
+        "mobilesdk_app_id": "1:722444033564:android:42172ebf070bbed4e1c9d9",
         "android_client_info": {
           "package_name": "com.liveperson.mobilemessagingexercise"
         }
       },
       "oauth_client": [
         {
-          "client_id": "290017039163-kdt4hp86hbhqabmlehjulfo6prq3alrf.apps.googleusercontent.com",
+          "client_id": "722444033564-ne0dhlpbuj8vp1m0u0rpl6ulnml4ev13.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.liveperson.mobilemessagingexercise",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "290017039163-8afdnadh9dp7cj7ko5oj0sahop7fmuim.apps.googleusercontent.com",
+          "client_id": "722444033564-6hp55eq8uafqdbt5h20mtjgn5b800d3r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB1Yua3HWX7ci7jmOm47I7lKDBbKoOHd7U"
+          "current_key": "AIzaSyD2kzKC1hcYRKXBz9i9UwCjJROna27KvcY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "290017039163-8afdnadh9dp7cj7ko5oj0sahop7fmuim.apps.googleusercontent.com",
+              "client_id": "722444033564-6hp55eq8uafqdbt5h20mtjgn5b800d3r.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
