@@ -3,7 +3,14 @@ package com.liveperson.mobilemessagingexercise.Conversations;
 import android.app.Activity;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.liveperson.infra.ConversationViewParams;
+import com.liveperson.infra.ICallback;
 import com.liveperson.infra.InitLivePersonProperties;
 import com.liveperson.infra.LPAuthenticationParams;
 import com.liveperson.infra.LPConversationsHistoryStateToDisplay;
@@ -83,6 +90,28 @@ public class AskUsConversation implements Runnable, InitLivePersonCallBack {
 
         //Start the conversation
         LivePerson.showConversation(hostContext, authParams, conversationViewParams);
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(
+                new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        LivePerson.registerLPPusher(ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER,
+                                ApplicationConstants.LIVE_PERSON_APP_ID,
+                                task.getResult().getToken(),
+                                authParams, new ICallback<Void, Exception>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "Registered FCM");
+                                    }
+
+                                    @Override
+                                    public void onError(Exception e) {
+                                        Log.d(TAG, "Registered FCM failed", e);
+                                    }
+                                });
+                    }
+                }
+        );
+
     }
 
     /**
