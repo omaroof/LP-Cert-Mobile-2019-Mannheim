@@ -163,6 +163,9 @@ public class LoginActivity extends MobileMessagingExerciseActivity
         Log.e(TAG, "Call to login failed: " + error.getMessage());
         showToast("Unable to log in: " + error.getMessage());
         startWelcome();
+
+
+
     }
 
 }

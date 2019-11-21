@@ -3,7 +3,12 @@ package com.liveperson.mobilemessagingexercise.Conversations;
 import android.app.Activity;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.liveperson.infra.ConversationViewParams;
+import com.liveperson.infra.ICallback;
 import com.liveperson.infra.InitLivePersonProperties;
 import com.liveperson.infra.LPAuthenticationParams;
 import com.liveperson.infra.LPConversationsHistoryStateToDisplay;
@@ -18,7 +23,7 @@ import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
  * Class to display the Ask Us Screen.
  * Provides the LivePerson initialization callback
  **********************************************************************************/
-public class AskUsConversation implements Runnable, InitLivePersonCallBack {
+public class AskUsConversation implements Runnable, InitLivePersonCallBack, OnCompleteListener<InstanceIdResult>, ICallback<Void, Exception> {
     private static final String TAG = AskUsConversation.class.getSimpleName();
 
     private Activity hostContext;
@@ -83,6 +88,8 @@ public class AskUsConversation implements Runnable, InitLivePersonCallBack {
 
         //Start the conversation
         LivePerson.showConversation(hostContext, authParams, conversationViewParams);
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(this);
     }
 
     /**
@@ -105,6 +112,46 @@ public class AskUsConversation implements Runnable, InitLivePersonCallBack {
         //Delegate to the method in the application
         applicationInstance.showToast(message);
     }
+
+    /**
+     * Process the result of retrieving the Firebase FCM token for this app
+     * @param task the task whose completion triggered this method being called
+     */
+    @Override
+    public void onComplete(Task<InstanceIdResult> task) {
+        if (!task.isSuccessful()) {
+            Log.w(TAG, "getInstanceId failed", task.getException());
+            return;
+        }
+
+        // Retrieve the Firebase FCM token from the result
+        String fcmToken = task.getResult().getToken();
+
+        // Log the token value
+        Log.d(TAG +  " Firebase FCM token: ", fcmToken);
+
+        //Register to receive push messages from LivePerson with the firebase FCM token
+        LivePerson.registerLPPusher(ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER, ApplicationConstants.LIVE_PERSON_APP_ID,
+                fcmToken, null, this);
+    }
+
+    /**
+     * Registration for push messages with LiveEngage was successful
+     * @param aVoid the parameter for the successful registration
+     */
+    @Override
+    public void onSuccess(Void aVoid) {
+        Log.d(TAG, "Registered for push notifications");
+    }
+
+    /**
+     * Registration for push messages with LiveEngage failed
+     * @param e the Exception associated with the failure
+     */
+    public void onError(Exception e) {
+        Log.d(TAG, "Unable to register for push notifications");
+    }
+
 }
 
 

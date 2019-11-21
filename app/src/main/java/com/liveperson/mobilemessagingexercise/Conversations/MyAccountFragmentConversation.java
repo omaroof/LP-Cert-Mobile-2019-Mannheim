@@ -65,6 +65,7 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
 
         //Initialize LivePerson for the My Account screen
         LivePerson.initialize(this.myAccountFragment, initLivePersonProperties);
+
     }
 
     /**
@@ -94,7 +95,6 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
             //Add the LivePerson conversation fragment to the screen
             FragmentTransaction ft = myAccountFragment.getSupportFragmentManager().beginTransaction();
             ft.add(R.id.my_account_fragment_container, lpConversationFragment, LIVEPERSON_FRAGMENT).commitAllowingStateLoss();
-
             //Retrieve the Firebase FCM token to use to regiser with LivePerson
             FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(this);
         }
