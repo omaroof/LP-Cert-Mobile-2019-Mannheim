@@ -7,17 +7,36 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.liveperson.infra.CampaignInfo;
 import com.liveperson.infra.ConversationViewParams;
 import com.liveperson.infra.ICallback;
 import com.liveperson.infra.InitLivePersonProperties;
 import com.liveperson.infra.LPAuthenticationParams;
 import com.liveperson.infra.LPConversationsHistoryStateToDisplay;
+import com.liveperson.infra.MonitoringInitParams;
 import com.liveperson.infra.callbacks.InitLivePersonCallBack;
+import com.liveperson.infra.messaging_ui.fragment.IFeedbackActions;
 import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.messaging.sdk.api.model.ConsumerProfile;
 import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication;
 import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
+import com.liveperson.monitoring.model.EngagementDetails;
+import com.liveperson.monitoring.model.LPMonitoringIdentity;
+import com.liveperson.monitoring.sdk.MonitoringParams;
+import com.liveperson.monitoring.sdk.api.LivepersonMonitoring;
+import com.liveperson.monitoring.sdk.callbacks.EngagementCallback;
+import com.liveperson.monitoring.sdk.callbacks.MonitoringErrorType;
+import com.liveperson.monitoring.sdk.responses.LPEngagementResponse;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /***********************************************************************************
  * Class to display the Ask Us Screen.
@@ -48,10 +67,16 @@ public class AskUsConversation implements Runnable, InitLivePersonCallBack, OnCo
      */
     @Override
     public void run() {
+
+        //TODO 2 Create MonitoringInitParams
+        MonitoringInitParams monitoringInitParams = new MonitoringInitParams(ApplicationConstants.LIVE_PERSON_APP_INSTALLATION_ID);
+
+        //TODO 3 Add MonitoringInitParams to InitLivePersonProperties
         //Set up the parameters needed for initializing LivePerson for messaging
         InitLivePersonProperties initLivePersonProperties =
                 new InitLivePersonProperties(ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER,
                         ApplicationConstants.LIVE_PERSON_APP_ID,
+                        monitoringInitParams,
                         this);
 
         //Initialize LivePerson
@@ -82,14 +107,90 @@ public class AskUsConversation implements Runnable, InitLivePersonCallBack, OnCo
         authParams.setAuthKey("");
         authParams.addCertificatePinningKey("");
 
-        //Set up the conversation view parameters
-        ConversationViewParams conversationViewParams = new ConversationViewParams(false);
-        conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
 
-        //Start the conversation
-        LivePerson.showConversation(hostContext, authParams, conversationViewParams);
+        //TODO 4  Creating Identities array and LPMonitoringIdentity
+        ArrayList<LPMonitoringIdentity> identityList = new ArrayList<>();
+        LPMonitoringIdentity monitoringIdentity = new LPMonitoringIdentity();
+        identityList.add(monitoringIdentity);
 
-        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(this);
+        //TODO 5 Create Monitoring Params
+        JSONArray entryPoints = new JSONArray();
+        entryPoints.put("unauth");
+
+        // Creating engagement attributes
+        JSONArray engagementAttriutes = new JSONArray();
+        JSONObject purchase = new JSONObject();
+        JSONObject lead = new JSONObject();
+        try {
+            purchase.put("type", "purchase");
+            purchase.put("total", 11.7);
+            purchase.put("orderId", "Dx342");
+
+           // lead.put("leadId", "xyz123");
+           // lead.put("value", 10500);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        engagementAttriutes.put(purchase);
+       // engagementAttriutes.put(lead);
+
+        MonitoringParams monitoringParams = new MonitoringParams("PageId", entryPoints, engagementAttriutes);
+
+        //TODO 6 Invoke getEnagement
+        LivepersonMonitoring.getEngagement(hostContext, identityList, monitoringParams, new EngagementCallback() {
+            @Override
+            public void onSuccess(@NotNull LPEngagementResponse lpEngagementResponse) {
+
+                if(lpEngagementResponse.getEngagementDetailsList().size() > 0){
+                    List<EngagementDetails> engagementDetails = lpEngagementResponse.getEngagementDetailsList();
+
+                    //TODO 7 Construcut CampaignInfo Object
+                    Long campaignID = Long.parseLong(engagementDetails.get(0).getCampaignId());
+                    Long engagementId = Long.parseLong(engagementDetails.get(0).getEngagementId());
+                    String contextId = engagementDetails.get(0).getContextId();
+
+                    String sessionId  = lpEngagementResponse.getSessionId();
+                    String visitorId = lpEngagementResponse.getVisitorId();
+
+                    try {
+                        CampaignInfo campaignInfo= new CampaignInfo(campaignID,
+                                engagementId,
+                                contextId,
+                                sessionId,
+                                visitorId);
+
+                        //Set up the conversation view parameters
+                        conversationViewParams = new ConversationViewParams(false);
+                        conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
+
+                        //TODO 7 set CampaignInfo Object in conversationViewParam
+                        conversationViewParams.setCampaignInfo(campaignInfo);
+
+                        //TODO 8 set CampaignInfo Object in conversationViewParam
+                        LivePerson.showConversation(hostContext, authParams, conversationViewParams);
+
+                        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(AskUsConversation.this);
+
+
+                    }catch (Exception e){
+                        //Handle Exception
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onError(@NotNull MonitoringErrorType errorType, @Nullable Exception exception) {
+                //Handle Exception
+                exception.printStackTrace();
+            }
+        });
+
+
+
     }
 
     /**
