@@ -12,8 +12,8 @@ public class ApplicationConstants {
     //TODO - Replace with your app's LiveEngage account number
     public static final String LIVE_PERSON_ACCOUNT_NUMBER = "68932071";
 
-    //TODO C4M 1 - Replace with your app's LiveEngage account number
-    public static final String LIVE_PERSON_APP_INSTALLATION_ID = "5ec84576-44e0-43d3-9bd5-6bfe0b274fbd";
+    //TODO C4M 1 - Replace with your app's LiveEngage App Installation ID
+    public static final String LIVE_PERSON_APP_INSTALLATION_ID = "";
 
     public static final int LP_PUSH_NOTIFICATION_ID = 42;
     public static final String LP_PUSH_NOTIFICATION_CHANNNEL_ID = "lp_push_notification_channel";

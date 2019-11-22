@@ -69,14 +69,13 @@ public class AskUsConversation implements Runnable, InitLivePersonCallBack, OnCo
     public void run() {
 
         //TODO C4M unauth 2 Create MonitoringInitParams
-        MonitoringInitParams monitoringInitParams = new MonitoringInitParams(ApplicationConstants.LIVE_PERSON_APP_INSTALLATION_ID);
+        MonitoringInitParams monitoringInitParams = null;
 
         //TODO C4M unauth 3 Add MonitoringInitParams to InitLivePersonProperties
         //Set up the parameters needed for initializing LivePerson for messaging
         InitLivePersonProperties initLivePersonProperties =
                 new InitLivePersonProperties(ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER,
                         ApplicationConstants.LIVE_PERSON_APP_ID,
-                        monitoringInitParams,
                         this);
 
         //Initialize LivePerson
@@ -110,32 +109,10 @@ public class AskUsConversation implements Runnable, InitLivePersonCallBack, OnCo
 
         //TODO C4M unauth 4  Creating Identities array and LPMonitoringIdentity
         ArrayList<LPMonitoringIdentity> identityList = new ArrayList<>();
-        LPMonitoringIdentity monitoringIdentity = new LPMonitoringIdentity();
-        identityList.add(monitoringIdentity);
+
 
         //TODO C4M unauth 5 Create Monitoring Params, Engagement Attributes and Entry Points
-        JSONArray entryPoints = new JSONArray();
-        entryPoints.put("unauth");
-
-        // Creating engagement attributes
-        JSONArray engagementAttriutes = new JSONArray();
-        JSONObject purchase = new JSONObject();
-        JSONObject lead = new JSONObject();
-        try {
-            purchase.put("type", "purchase");
-            purchase.put("total", 11.7);
-            purchase.put("orderId", "Dx342");
-
-           // lead.put("leadId", "xyz123");
-           // lead.put("value", 10500);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        engagementAttriutes.put(purchase);
-       // engagementAttriutes.put(lead);
-
-        MonitoringParams monitoringParams = new MonitoringParams("PageId", entryPoints, engagementAttriutes);
+        MonitoringParams monitoringParams = null;
 
         //TODO C4M unauth 6 Invoke getEnagement
         LivepersonMonitoring.getEngagement(hostContext, identityList, monitoringParams, new EngagementCallback() {
@@ -146,29 +123,19 @@ public class AskUsConversation implements Runnable, InitLivePersonCallBack, OnCo
                     List<EngagementDetails> engagementDetails = lpEngagementResponse.getEngagementDetailsList();
 
                     //TODO C4M unauth 7 Construct CampaignInfo Object
-                    Long campaignID = Long.parseLong(engagementDetails.get(0).getCampaignId());
-                    Long engagementId = Long.parseLong(engagementDetails.get(0).getEngagementId());
-                    String contextId = engagementDetails.get(0).getContextId();
 
-                    String sessionId  = lpEngagementResponse.getSessionId();
-                    String visitorId = lpEngagementResponse.getVisitorId();
 
                     try {
-                        CampaignInfo campaignInfo= new CampaignInfo(campaignID,
-                                engagementId,
-                                contextId,
-                                sessionId,
-                                visitorId);
+
 
                         //Set up the conversation view parameters
                         conversationViewParams = new ConversationViewParams(false);
                         conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
 
                         //TODO  C4M unauth 8 set CampaignInfo Object in conversationViewParam
-                        conversationViewParams.setCampaignInfo(campaignInfo);
 
                         //TODO  C4M unauth 9 set CampaignInfo Object in conversationViewParam
-                        LivePerson.showConversation(hostContext, authParams, conversationViewParams);
+
 
                         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(AskUsConversation.this);
 
