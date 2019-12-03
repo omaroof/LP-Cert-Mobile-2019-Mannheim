@@ -8,11 +8,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.liveperson.infra.CampaignInfo;
 import com.liveperson.infra.ConversationViewParams;
 import com.liveperson.infra.ICallback;
 import com.liveperson.infra.InitLivePersonProperties;
 import com.liveperson.infra.LPAuthenticationParams;
 import com.liveperson.infra.LPConversationsHistoryStateToDisplay;
+import com.liveperson.infra.MonitoringInitParams;
 import com.liveperson.infra.callbacks.InitLivePersonCallBack;
 import com.liveperson.infra.messaging_ui.fragment.ConversationFragment;
 import com.liveperson.messaging.sdk.api.LivePerson;
@@ -21,6 +23,22 @@ import com.liveperson.mobilemessagingexercise.MobileMessagingExerciseApplication
 import com.liveperson.mobilemessagingexercise.R;
 import com.liveperson.mobilemessagingexercise.model.ApplicationConstants;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
+import com.liveperson.monitoring.model.EngagementDetails;
+import com.liveperson.monitoring.model.LPMonitoringIdentity;
+import com.liveperson.monitoring.sdk.MonitoringParams;
+import com.liveperson.monitoring.sdk.api.LivepersonMonitoring;
+import com.liveperson.monitoring.sdk.callbacks.EngagementCallback;
+import com.liveperson.monitoring.sdk.callbacks.MonitoringErrorType;
+import com.liveperson.monitoring.sdk.responses.LPEngagementResponse;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /*********************************************************************************************
  * Class to display the My Account Screen using the LivePerson fragment mechanism.
@@ -51,16 +69,22 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
         this.applicationInstance = (MobileMessagingExerciseApplication)myAccountFragment.getApplication();
     }
 
+
     /**
      * Run the My Account screen as a LivePerson conversation
      */
     @Override
     public void run() {
+
+        //TODO C4M auth 2 Create MonitoringInitParams
+        MonitoringInitParams monitoringInitParams = new MonitoringInitParams(ApplicationConstants.LIVE_PERSON_APP_INSTALLATION_ID);
+
+        //TODO C4M auth 3 Add MonitoringInitParams to InitLivePersonProperties
         //Set up the parameters needed for initializing LivePerson
         InitLivePersonProperties initLivePersonProperties =
                 new InitLivePersonProperties(ApplicationConstants.LIVE_PERSON_ACCOUNT_NUMBER,
                         ApplicationConstants.LIVE_PERSON_APP_ID,
-                        null,
+                        monitoringInitParams,
                         this);
 
         //Initialize LivePerson for the My Account screen
@@ -78,26 +102,106 @@ public class MyAccountFragmentConversation implements Runnable, InitLivePersonCa
         Log.i(TAG, "LivePerson SDK initialize completed");
         showToast("LivePerson SDK initialize completed");
 
+
         //Set up the authentication parameters
         authParams = new LPAuthenticationParams(LPAuthenticationParams.LPAuthenticationType.AUTH);
         authParams.setAuthKey("");
         authParams.addCertificatePinningKey("");
         authParams.setHostAppJWT(applicationStorage.getJwt());
 
-        //Set up the conversation view parameters
-        conversationViewParams = new ConversationViewParams(false);
-        conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
+        //TODO C4M auth 4 Create identities array and LPMonitoringIdentity
+        ArrayList<LPMonitoringIdentity> identityList = new ArrayList<>();
+        LPMonitoringIdentity monitoringIdentity = new LPMonitoringIdentity("bader","issuer");
 
-        //Create the fragment that holds the LivePerson conversation
-        lpConversationFragment = (ConversationFragment) LivePerson.getConversationFragment(authParams, conversationViewParams);
+        identityList.add(monitoringIdentity);
 
-        if (isValidState(myAccountFragment)) {
-            //Add the LivePerson conversation fragment to the screen
-            FragmentTransaction ft = myAccountFragment.getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.my_account_fragment_container, lpConversationFragment, LIVEPERSON_FRAGMENT).commitAllowingStateLoss();
-            //Retrieve the Firebase FCM token to use to regiser with LivePerson
-            FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(this);
+        //TODO C4M auth 5 Create Monitoring Params, Engagement Attributes and Entry Points
+        JSONArray entryPoints = new JSONArray();
+        entryPoints.put("homepage");
+
+        // Creating engagement attributes
+        JSONArray engagementAttriutes = new JSONArray();
+        JSONObject purchase = new JSONObject();
+        JSONObject lead = new JSONObject();
+        try {
+            purchase.put("type", "purchase");
+            purchase.put("total", 11.7);
+            purchase.put("orderId", "Dx342");
+
+            // lead.put("leadId", "xyz123");
+            // lead.put("value", 10500);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
+        engagementAttriutes.put(purchase);
+        // engagementAttriutes.put(lead);
+
+        MonitoringParams monitoringParams = new MonitoringParams("PageId", entryPoints, engagementAttriutes);
+
+        //TODO C4M auth 6 Invoke getEnagement
+        LivepersonMonitoring.getEngagement(this.myAccountFragment.getBaseContext(), identityList, monitoringParams, new EngagementCallback() {
+            @Override
+            public void onSuccess(@NotNull LPEngagementResponse lpEngagementResponse) {
+
+                if(lpEngagementResponse.getEngagementDetailsList().size() > 0){
+                    List<EngagementDetails> engagementDetails = lpEngagementResponse.getEngagementDetailsList();
+
+                    //TODO C4M auth 7 Construct CampaignInfo Object
+                    Long campaignID = Long.parseLong(engagementDetails.get(0).getCampaignId());
+                    Long engagementId = Long.parseLong(engagementDetails.get(0).getEngagementId());
+                    String contextId = engagementDetails.get(0).getContextId();
+
+                    String sessionId  = lpEngagementResponse.getSessionId();
+                    String visitorId = lpEngagementResponse.getVisitorId();
+
+                    try {
+                        CampaignInfo campaignInfo= new CampaignInfo(campaignID,
+                                engagementId,
+                                contextId,
+                                sessionId,
+                                visitorId);
+
+                        //Set up the conversation view parameters
+                        conversationViewParams = new ConversationViewParams(false);
+                        conversationViewParams.setHistoryConversationsStateToDisplay(LPConversationsHistoryStateToDisplay.ALL);
+
+                        //TODO  C4M auth 8 set CampaignInfo Object in conversationViewParam
+                        conversationViewParams.setCampaignInfo(campaignInfo);
+
+                        //TODO  C4M auth 9 set CampaignInfo Object in conversationViewParam
+                        //Create the fragment that holds the LivePerson conversation
+                        lpConversationFragment = (ConversationFragment) LivePerson.getConversationFragment(authParams, conversationViewParams);
+
+                        if (isValidState(myAccountFragment)) {
+                            //Add the LivePerson conversation fragment to the screen
+                            FragmentTransaction ft = myAccountFragment.getSupportFragmentManager().beginTransaction();
+                            ft.add(R.id.my_account_fragment_container, lpConversationFragment, LIVEPERSON_FRAGMENT).commitAllowingStateLoss();
+                            //Retrieve the Firebase FCM token to use to regiser with LivePerson
+                            FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener((MyAccountFragmentConversation.this));
+                        }
+
+                        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(MyAccountFragmentConversation.this);
+
+
+                    }catch (Exception e){
+                        //Handle Exception
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onError(@NotNull MonitoringErrorType errorType, @Nullable Exception exception) {
+                //Handle Exception
+                exception.printStackTrace();
+            }
+        });
+
+
+
     }
 
     /**
