@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.liveperson.messaging.sdk.api.LivePerson;
 import com.liveperson.mobilemessagingexercise.model.ApplicationStorage;
 
 /******************************************************************************
@@ -38,6 +39,8 @@ public class WelcomeActivity extends MobileMessagingExerciseActivity implements 
             //Process the push message that started execution
             processLePushMessage(getIntent());
         }
+
+        LivePerson.setIsDebuggable(BuildConfig.DEBUG);
     }
 
     /**
